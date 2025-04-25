@@ -1,0 +1,7 @@
+@use "abstracts/variables" as vars;
+
+.button
+{
+    border-radius: vars.$border-radius-rounded;
+    font-weight: vars.$font-weight-semi-bold;
+}

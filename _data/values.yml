@@ -1,0 +1,15 @@
+- name: Inclusion
+  description: Embracing every color of the rainbow with open arms and minds.
+  icon: fa-solid fa-door-open
+
+- name: Authenticity
+  description: Owning your truth empowers you and inspires the world around you.
+  icon: fa-solid fa-heart
+
+- name: Community
+  description: Together, we uplift diverse voices and foster genuine connections.
+  icon: fa-solid fa-users
+
+- name: Respect
+  description: Valuing every individual's journey creates a safe space for all.
+  icon: fa-solid fa-handshake

@@ -1,0 +1,13 @@
+title: The Spectrum Space
+description: A blog about the LGBTQ+ community and mental health.
+keywords: LGBTQ+
+image: https://the-spectrum-space.netlify.app/assets/images/site-image.jpg
+favicon: /assets/images/favicon.png
+logo: /assets/images/logo.png
+permalink: /blog/:title
+tagline: Where Every Identity Finds Community
+hero-graphic: /assets/images/undraw_loving-story_k8gb.svg
+
+# Build settings
+plugins:
+  - jekyll-feed

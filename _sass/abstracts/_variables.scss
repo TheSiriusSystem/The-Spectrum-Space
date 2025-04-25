@@ -1,0 +1,35 @@
+$color-debug: #00ffff; // Used only when I need to test how something actually looks.
+$breakpoint-mobile: 768px;
+$breakpoint-touch: 1023px;
+
+// Font Weights
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+$font-weight-extra-black: 950;
+
+// Border Radii
+$border-radius-default: 8px;
+$border-radius-rounded: 9999px;
+
+// Font Colors
+$font-color-black: #000;
+$font-color-white: #fff;
+$font-color-charcoal-1: #36454f;
+$font-color-charcoal-2: #4a4a4a;
+$font-color-light-gray: #d3d3d3;
+
+// Shadows
+$shadow-light: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-medium: 0 8px 18px rgba(0, 0, 0, 0.225);
+$shadow-heavy: 0 12px 24px rgba(0, 0, 0, 0.3);
+
+// Animation Times
+$animation-time: 0.3s;
+$animation-time-long: 0.8s;

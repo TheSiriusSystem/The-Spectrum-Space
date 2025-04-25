@@ -1,0 +1,186 @@
+@use "abstracts/variables" as vars;
+
+#home
+{
+    background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+
+    .hero-background-overlay
+    {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("/assets/images/hero-background-overlay.svg");
+        background-position: center;
+        background-size: cover;
+        opacity: 0.2;
+        mix-blend-mode: soft-light;
+        pointer-events: none;
+    }
+
+    .title
+    {
+        position: relative;
+        margin-bottom: 0.5rem; // Adds spacing to account for the underline.
+        font-weight: vars.$font-weight-black;
+        color: vars.$font-color-white; // Fallback font color.
+        background: linear-gradient(to right, #ff6961, #ffc067, #fdfd96, #77dd77, #b3ebf2, #966fd6);
+        background-size: 200% auto;
+        background-clip: text;
+        animation: title-shimmer 5.0s linear infinite alternate;
+        display: inline-block;
+
+        // These two lines are needed for the gradient effect to display properly.
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        &::after
+        {
+            content: "";
+            position: absolute;
+            transform: scaleX(0);
+            transform-origin: left;
+            left: 0px;
+            bottom: -10px;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, 
+                #5bcefa 20%,
+                #f5a9b8 20%, #f5a9b8 40%,
+                #fff 40%, #fff 60%,
+                #f5a9b8 60%, #f5a9b8 80%,
+                #5bcefa 80%
+            );
+            animation: underline-slide-in 0.8s ease forwards;
+        }
+    }
+
+    .subtitle
+    {
+        font-weight: vars.$font-weight-medium;
+        color: vars.$font-color-light-gray;
+    }
+
+    .hero-graphic
+    {
+        max-width: 400px;
+        margin: 2.0rem auto 0;
+        animation: float 5.0s ease-in-out infinite;
+
+        @media screen and (max-width: vars.$breakpoint-mobile)
+        {
+            max-width: 300px;
+        }
+    }
+
+    .button
+    {
+        font-weight: vars.$font-weight-bold;
+    }
+
+    // Primary CTA Button
+    .button:not(.is-outlined)
+    {
+        background-color: #ff4081;
+        border-color: transparent;
+        color: vars.$font-color-white;
+
+        &:hover
+        {
+            background-color: #ff0d5f;
+        }
+    }
+
+    // Secondary CTA Button
+    .button.is-outlined
+    {
+        color: vars.$font-color-white;
+
+        &:hover
+        {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    .columns.is-mobile.is-centered .column
+    {
+        flex-direction: column;
+        justify-content: center;
+
+        .icon-container
+        {
+            width: auto;
+            padding: 1.0rem;
+            transition: transform vars.$animation-time ease;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+
+            &:hover
+            {
+                transform: scale(1.1);
+            }
+
+            i, p
+            {
+                color: vars.$font-color-white;
+                text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            p
+            {
+                font-weight: vars.$font-weight-bold;
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce)
+    {
+        .title
+        {
+            &::after
+            {
+                animation: underline-slide-in 0.0s ease forwards;
+            }
+        }
+
+        .hero-graphic, .button, .icon-container
+        {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+
+    @keyframes title-shimmer
+    {
+        0%
+        {
+            background-position: 0% 50%;
+        }
+        100%
+        {
+            background-position: 100% 50%;
+        }
+    }
+
+    @keyframes underline-slide-in
+    {
+        to
+        {
+            transform: scaleX(1.0);
+        }
+    }
+
+    @keyframes float
+    {
+        0%, 100%
+        {
+            transform: translateY(0px);
+        }
+        50%
+        {
+            transform: translateY(-10px);
+        }
+    }
+}

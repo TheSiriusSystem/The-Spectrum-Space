@@ -1,0 +1,44 @@
+@use "abstracts/variables" as vars;
+
+html
+{
+    scroll-behavior: smooth;
+}
+
+.ls-1
+{
+    letter-spacing: 0.05rem;
+}
+
+.ls-2
+{
+    letter-spacing: -0.05rem;
+}
+
+.desktop-only
+{
+    @media screen and (max-width: vars.$breakpoint-touch)
+    {
+        display: none;
+    }
+}
+
+.touch-only
+{
+    display: none;
+
+    @media screen and (max-width: vars.$breakpoint-touch)
+    {
+        display: inline;
+    }
+}
+
+.touch-only-flex
+{
+    display: none;
+
+    @media screen and (max-width: vars.$breakpoint-touch)
+    {
+        display: flex;
+    }
+}

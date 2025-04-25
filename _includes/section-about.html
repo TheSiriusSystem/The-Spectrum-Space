@@ -1,0 +1,185 @@
+<section id="about" class="section">
+    <div class="container">
+        <!-- Heading -->
+        <h1 class="title is-size-2-desktop is-size-3-mobile has-text-centered">
+            About Us
+        </h1>
+        <h2 class="subtitle is-size-4-desktop is-size-5-mobile ls-1 has-text-centered">
+            Our Mission. Our Values. Our Voice.
+        </h2>
+        <hr>
+
+        <div class="columns">
+            <!-- Main Column -->
+            <div class="column">
+                <div class="content has-text-centered-mobile">
+                    <!-- Story Elements -->
+                    <h3 class="title is-size-4-desktop is-size-5-mobile">
+                        Our Story
+                    </h3>
+                    <p>
+                        In the quiet of the internet noise, <strong>{{ site.title }}</strong> offers a soft landing.
+                    </p>
+                    <p>
+                        This is a place for stories—yours, mine, and ours. A digital sanctuary designed for <strong>connection</strong>, <strong>reflection</strong>, and <strong>joy</strong>. It’s for every moment you’ve felt out of place, and every step you’ve taken to find your truth.
+                    </p>
+                    <p>
+                        Our goal is simple: create a space where <em>love is louder</em>, <em>colors shine brighter</em>, and <em>no one ever has to walk alone</em>.
+                    </p>
+
+                    <!-- Mission Statement -->
+                    <div class="box mission-box mt-5">
+                        <blockquote class="is-size-5 is-italic">
+                            To build a space where LGBTQ+ people are not just accepted, but <strong>uplifted</strong>—where we celebrate our diversity, share our stories, and stand proud in our colors.
+                        </blockquote>
+                        <p class="mt-2">
+                            We believe visibility is power, kindness is resistance, and love—always—wins.
+                        </p>
+                        <p class="mt-4">
+                            — {{ site.title }} Team
+                        </p>
+                    </div>
+
+                    <!-- Values Display -->
+                    <div class="columns value-boxes-wrapper is-multiline is-centered is-mobile">
+                        {% for value in site.data.values %}
+                            <div class="column is-3-desktop is-6-touch has-text-centered">
+                                <div class="box value-box">
+                                    <i class="{{ value.icon }} fa-2x"></i>
+                                    <p class="mt-2 mb-0 is-size-6">
+                                        {{ value.name }}
+                                    </p>
+                                    <p class="is-size-7">
+                                        {{ value.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Grid Column -->
+            <div class="column">
+                <div class="columns is-multiline">
+                    {% for image in site.data.about-images %}
+                        <div class="column is-6-desktop is-12-tablet is-12-mobile">
+                            <figure class="image pride-image-wrapper is-square">
+                                <img class="pride-image" src="{{ image.path }}" alt="{{ image.caption }}">
+                            </figure>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <h3 class="title is-size-3-desktop is-size-4-mobile has-text-centered">
+            What People Are Saying
+        </h3>
+        <div class="columns testimonial-cards-wrapper is-multiline is-centered">
+            {% for testimonial in site.data.testimonials %}
+                <div class="column is-6-desktop is-6-tablet is-12-mobile">
+                    <div class="card">
+                        <div class="card-content">
+                            <!-- Desktop Layout -->
+                            <div class="desktop-only">
+                                <div class="columns is-vcentered">
+                                    <div class="column is-3">
+                                        <figure class="image is-inline-block is-128x128">
+                                            <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
+                                        </figure>
+                                    </div>
+                                    <div class="column is-9">
+                                        <blockquote class="is-size-6">
+                                            "{{ testimonial.quote }}"
+                                        </blockquote>
+                                        <p class="is-size-5 mt-4">
+                                            — {{ testimonial.author }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Layout -->
+                            <div class="touch-only-flex">
+                                <figure class="image is-inline-block is-96x96">
+                                    <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
+                                </figure>
+                                <blockquote class="is-size-6 mt-3">
+                                    "{{ testimonial.quote }}"
+                                </blockquote>
+                                <p class="is-size-5 mt-4">
+                                    — {{ testimonial.author }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function()
+    {
+        const boxes = document.querySelectorAll("#about .value-box");
+        const cards = document.querySelectorAll("#about .card");
+        const images = document.querySelectorAll("#about .pride-image-wrapper");
+        const delay = 250;
+
+        const boxObserver = new IntersectionObserver(function(entries)
+        {
+            entries.forEach(function(entry, index)
+            {
+                if (entry.isIntersecting)
+                {
+                    setTimeout(function()
+                    {
+                        entry.target.classList.add("fade-in");
+                        boxObserver.unobserve(entry.target);
+                    }, index * delay);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+        const cardObserver = new IntersectionObserver(function(entries)
+        {
+            entries.forEach(function(entry, index)
+            {
+                if (entry.isIntersecting)
+                {
+                    setTimeout(function()
+                    {
+                        entry.target.classList.add("fade-in");
+                        cardObserver.unobserve(entry.target);
+                    }, index * delay);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+        const imageObserver = new IntersectionObserver(function(entries)
+        {
+            entries.forEach(function(entry, index)
+            {
+                if (entry.isIntersecting)
+                {
+                    setTimeout(function()
+                    {
+                        entry.target.classList.add("flip-in");
+                        imageObserver.unobserve(entry.target);
+                    }, index * delay);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        boxes.forEach(box => boxObserver.observe(box));
+        cards.forEach(card => cardObserver.observe(card));
+        images.forEach(image => imageObserver.observe(image));
+    });
+</script>

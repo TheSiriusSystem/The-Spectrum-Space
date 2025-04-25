@@ -1,0 +1,11 @@
+@mixin flex-wrap()
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin flex-column()
+{
+    display: flex;
+    flex-direction: column;
+}

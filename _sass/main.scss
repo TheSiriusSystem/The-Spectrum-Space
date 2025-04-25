@@ -1,0 +1,20 @@
+// Import abstracts
+@use "abstracts/variables" as *;
+@use "abstracts/mixins" as *;
+@use "abstracts/functions" as *;
+
+// Import base styles
+@use "base/global";
+@use "base/typography";
+
+// Import components
+@use "components/buttons";
+
+// Import sections
+@use "sections/home";
+@use "sections/about";
+
+// Import external modules
+@import "/assets/css/bulma.min.css";
+@import "/assets/css/aos.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
