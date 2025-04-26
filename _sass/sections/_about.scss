@@ -51,7 +51,7 @@
 
             .value-box
             {
-                transform: translateX(-16px);
+                transform: scale(0.8);
                 border-top: 4px solid #e6e6fa;
                 opacity: 0.0;
                 box-shadow: none; // Removes the default box shadow on Bulma's boxes.
@@ -61,7 +61,7 @@
 
                 &.fade-in
                 {
-                    transform: translateX(0px);
+                    transform: scale(1.0);
                     opacity: 1.0;
                     box-shadow: vars.$shadow-light;
                     filter: blur(0px);
@@ -111,7 +111,7 @@
                 transform: translateY(20px);
                 background-color: #f5f1ec;
                 opacity: 0.0;
-                box-shadow: vars.$shadow-light, 0 0 8px rgba(214, 2, 112, 0.4), 0 0 12px rgba(155, 79, 150, 0.3), 0 0 16px rgba(0, 56, 168, 0.3);
+                box-shadow: none; // Removes the default box shadow on Bulma's cards.
                 transition: transform vars.$animation-time-long ease, opacity vars.$animation-time-long ease, box-shadow vars.$animation-time-long ease;
                 flex-grow: 1.0;
 
@@ -120,10 +120,37 @@
                     transform: translateY(0px);
                     opacity: 1.0;
                     box-shadow: vars.$shadow-light, 0 0 8px rgba(214, 2, 112, 0.4), 0 0 12px rgba(155, 79, 150, 0.3), 0 0 16px rgba(0, 56, 168, 0.3);
+
+                    &:hover
+                    {
+                        transform: rotateX(3deg) rotateY(3deg);
+                        perspective: 1200px;
+                        transform-style: preserve-3d;
+                        transition: transform 0.6s ease, opacity vars.$animation-time-long ease, box-shadow vars.$animation-time-long ease;
+                    }
                 }
 
                 .card-content
                 {
+                    .desktop-only blockquote
+                    {
+                        position: relative;
+                        padding-left: 2.0rem;
+                        font-style: italic;
+                        color: vars.$font-color-charcoal-1;
+
+                        &::before
+                        {
+                            content: "“";
+                            position: absolute;
+                            left: 0;
+                            top: -0.25rem;
+                            font-size: 48px;
+                            color: vars.$font-color-light-gray;
+                            line-height: 1;
+                        }
+                    }
+
                     .touch-only-flex
                     {
                         text-align: center;
@@ -135,11 +162,25 @@
                     {
                         border: 3px solid transparent;
                         background: linear-gradient(to right, #d60270, #9b4f96, #0038a8);
-                        transition: transform vars.$animation-time ease;
+                        box-shadow: 0 0 8px rgba(214, 2, 112, 0.4), 0 0 12px rgba(155, 79, 150, 0.3), 0 0 16px rgba(0, 56, 168, 0.3);
+                        transition: transform 1.2s ease, box-shadow vars.$animation-time ease;
 
-                        &:hover
+                        &.spinning
                         {
-                            transform: scale(1.05);
+                            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4), 0 0 20px rgba(214, 2, 112, 0.5), 0 0 28px rgba(0, 56, 168, 0.4);
+                            animation: avatar-spin 10.0s linear infinite;
+                        }
+
+                        @keyframes avatar-spin
+                        {
+                            from
+                            {
+                                transform: rotateZ(0deg);
+                            }
+                            to
+                            {
+                                transform: rotateZ(360deg);
+                            }
                         }
                     }
 
@@ -151,6 +192,7 @@
                     p
                     {
                         font-weight: vars.$font-weight-bold;
+                        color: vars.$font-color-black;
                     }
                 }
             }
@@ -161,17 +203,15 @@
     {
         transform: rotateY(90deg);
         perspective: 1000px;
-        opacity: 0.0;
         max-width: 100%;
         margin: 0 auto;
         backface-visibility: hidden;
-        transition: transform vars.$animation-time-long ease, opacity vars.$animation-time-long ease, filter vars.$animation-time-long ease;
+        transition: transform vars.$animation-time-long ease, filter vars.$animation-time-long ease;
         display: block;
 
         &.flip-in
         {
             transform: rotateY(0deg);
-            opacity: 1.0;
         }
 
         .pride-image
@@ -197,9 +237,19 @@
 
     @media (prefers-reduced-motion: reduce)
     {
-        img
+        .value-box, .pride-image-wrapper, .pride-image
         {
             transition: none !important;
+        }
+
+        .card
+        {
+            transition: none !important;
+
+            img
+            {
+                transition: none !important;
+            }
         }
     }
 }
