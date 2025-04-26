@@ -5,11 +5,6 @@
 {
     background-color: #faf3dd;
 
-    hr
-    {
-        background-color: #343434;
-    }
-
     .mission-box
     {
         background-color: #d0f0c0;
@@ -96,6 +91,47 @@
                 }
             }
         }
+    }
+
+    .pride-image-wrapper
+    {
+        transform: rotateY(90deg);
+        perspective: 1000px;
+        max-width: 100%;
+        margin: 0 auto;
+        backface-visibility: hidden;
+        transition: transform vars.$animation-time-long ease, filter vars.$animation-time-long ease;
+        display: block;
+
+        &.flip-in
+        {
+            transform: rotateY(0deg);
+        }
+
+        .pride-image
+        {
+            border: 3px dotted #aaa;
+            border-radius: 8px;
+            box-shadow: vars.$shadow-light;
+            transition: transform vars.$animation-time ease, box-shadow vars.$animation-time ease;
+
+            &:hover
+            {
+                transform: scale(1.05);
+                box-shadow: vars.$shadow-heavy;
+            }
+        }
+
+        @media screen and (max-width: vars.$breakpoint-touch)
+        {
+            width: 70%;
+            height: auto;
+        }
+    }
+
+    hr
+    {
+        background-color: #343434;
     }
 
     .testimonial-cards-wrapper
@@ -196,42 +232,6 @@
                     }
                 }
             }
-        }
-    }
-
-    .pride-image-wrapper
-    {
-        transform: rotateY(90deg);
-        perspective: 1000px;
-        max-width: 100%;
-        margin: 0 auto;
-        backface-visibility: hidden;
-        transition: transform vars.$animation-time-long ease, filter vars.$animation-time-long ease;
-        display: block;
-
-        &.flip-in
-        {
-            transform: rotateY(0deg);
-        }
-
-        .pride-image
-        {
-            border: 3px dotted #aaa;
-            border-radius: 8px;
-            box-shadow: vars.$shadow-light;
-            transition: transform vars.$animation-time ease, box-shadow vars.$animation-time ease;
-
-            &:hover
-            {
-                transform: scale(1.05);
-                box-shadow: vars.$shadow-heavy;
-            }
-        }
-
-        @media screen and (max-width: vars.$breakpoint-touch)
-        {
-            width: 70%;
-            height: auto;
         }
     }
 
