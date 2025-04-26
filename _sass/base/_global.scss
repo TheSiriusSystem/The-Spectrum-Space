@@ -6,12 +6,17 @@ html
     scroll-behavior: smooth;
 }
 
-.ls-1
+.ls-wide
 {
     letter-spacing: 0.05rem;
 }
 
-.ls-2
+.ls-packed
+{
+    letter-spacing: -0.025rem;
+}
+
+.ls-tight
 {
     letter-spacing: -0.05rem;
 }
