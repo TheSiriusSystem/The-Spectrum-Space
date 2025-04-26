@@ -1,3 +1,15 @@
+@use "abstracts/variables" as vars;
+
+@mixin touch-only-media-query($display)
+{
+    display: none;
+
+    @media screen and (max-width: vars.$breakpoint-touch)
+    {
+        display: flex;
+    }
+}
+
 @mixin flex-wrap()
 {
     display: flex;

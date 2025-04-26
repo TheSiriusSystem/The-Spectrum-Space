@@ -1,4 +1,5 @@
 @use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
 
 html
 {
@@ -25,20 +26,10 @@ html
 
 .touch-only
 {
-    display: none;
-
-    @media screen and (max-width: vars.$breakpoint-touch)
-    {
-        display: inline;
-    }
+    @include mixins.touch-only-media-query(inline);
 }
 
 .touch-only-flex
 {
-    display: none;
-
-    @media screen and (max-width: vars.$breakpoint-touch)
-    {
-        display: flex;
-    }
+    @include mixins.touch-only-media-query(flex);
 }
