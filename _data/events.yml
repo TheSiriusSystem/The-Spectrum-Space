@@ -1,0 +1,53 @@
+- title: Winter Warmth Gathering
+  date: 2025-01-28
+  description: Kick off the year with our cozy community meet-up, featuring hot drinks and great conversations.
+  cta-text: Find Out More
+  url: /events/winter-warmth-gathering
+  background-color: "#c0e0e0"
+  font-color: "#1a4b4b"
+  status: past
+
+- title: Pride History Month Talk
+  date: 2025-03-15
+  description: A look back at pivotal moments and figures in LGBTQ+ history, inspiring activism today.
+  cta-text: Attend Talk
+  url: /events/pride-history-month-talk
+  background-color: "#f0c0d8"
+  font-color: "#6b1a3b"
+  status: ongoing
+
+- title: Transgender Visibility Workshop
+  date: 2025-04-05
+  description: An educational session focusing on the experiences and rights of transgender individuals.
+  cta-text: Register Now
+  url: /events/transgender-visibility-workshop
+  background-color: "#d0e8c0"
+  font-color: "#3a5a2a"
+  status: upcoming
+
+- title: Annual Pride Picnic in the Park
+  date: 2025-06-22
+  description: Celebrate Pride Month with food, games, and community spirit in the sunshine!
+  cta-text: Join the Fun
+  url: /events/annual-pride-picnic
+  background-color: "#ffe0b2"
+  font-color: "#8a4b00"
+  status: upcoming
+
+- title: Mental Wellness for the Community
+  date: 2025-09-10
+  description: A workshop offering resources and strategies for maintaining mental health and well-being.
+  cta-text: Learn More
+  url: /events/mental-wellness-workshop
+  background-color: "#b2d8e0"
+  font-color: "#2a5a6b"
+  status: upcoming
+
+- title: End-of-Year Holiday Social
+  date: 2025-12-07
+  description: Wrap up the year with friends, festive cheer, and a celebration of our vibrant community.
+  cta-text: RSVP Here
+  url: /events/holiday-social
+  background-color: "#e8b2e0"
+  font-color: "#5a2a5b"
+  status: upcoming

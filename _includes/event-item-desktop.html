@@ -1,0 +1,16 @@
+<div class="event {{ event.status }} {% unless forloop.first %}mt-6{% endunless %}">
+    <div class="event-date-box" style="background-color: {{ event.background-color }};">
+        <p class="is-size-4 has-text-centered" style="color: {{ event.font-color }};">
+            {{ event.date | date: "%b %d %Y" | upcase }}
+        </p>
+    </div>
+
+    <div class="event-content-box">
+        <div class="event-content">
+            <h3 class="is-size-4">{{ event.title }}</h3>
+            <p>{{ event.description }}</p>
+        </div>
+        {% include event-status-badge.html event=event %}
+        {% include event-cta-button.html event=event %}
+    </div>
+</div>

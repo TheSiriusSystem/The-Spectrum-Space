@@ -1,0 +1,9 @@
+<p class="status-badge {{ event.status }} is-size-7">
+    {% if event.status == "past" %}
+        Past Event
+    {% elsif event.status == "ongoing" %}
+        Happening Now
+    {% elsif event.status == "upcoming" %}
+        Upcoming
+    {% endif %}
+</p>

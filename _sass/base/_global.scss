@@ -23,10 +23,12 @@ html
 
 .desktop-only
 {
-    @media screen and (max-width: vars.$breakpoint-touch)
-    {
-        display: none;
-    }
+    @include mixins.desktop-only-media-query(inline);
+}
+
+.desktop-only-flex
+{
+    @include mixins.desktop-only-media-query(flex);
 }
 
 .touch-only

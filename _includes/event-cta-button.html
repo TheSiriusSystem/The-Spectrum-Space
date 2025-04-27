@@ -1,0 +1,13 @@
+{% if event.status == "past" %}
+    <button class="button is-disabled" disabled aria-disabled="true">
+        Event Ended
+    </button>
+{% elsif event.status == "ongoing" %}
+    <a class="button ongoing-event-button" href="{{ event.url }}/live">
+        <i class="fa-solid fa-video"></i> Join Now
+    </a>
+{% else %}
+    <a class="button" href="{{ event.url }}">
+        {{ event.cta-text }}
+    </a>
+{% endif %}

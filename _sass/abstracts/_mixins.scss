@@ -1,12 +1,22 @@
 @use "abstracts/variables" as vars;
 
+@mixin desktop-only-media-query($display)
+{
+    display: $display;
+
+    @media screen and (max-width: vars.$breakpoint-touch)
+    {
+        display: none;
+    }
+}
+
 @mixin touch-only-media-query($display)
 {
     display: none;
 
     @media screen and (max-width: vars.$breakpoint-touch)
     {
-        display: flex;
+        display: $display;
     }
 }
 

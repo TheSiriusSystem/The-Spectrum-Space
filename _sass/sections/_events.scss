@@ -1,0 +1,277 @@
+@use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
+
+$border-radius-event-date-box: 4px;
+$border-radius-event-content-box: 16px;
+$event-border-accent: 6px solid #e8ffff;
+
+@mixin event-fade-in-animation()
+{
+    transform: translateY(-20px);
+    opacity: 0.0;
+    transition: transform vars.$animation-time-long ease, opacity vars.$animation-time-long ease;
+
+    &.fade-in
+    {
+        transform: translateY(0px);
+        opacity: 1.0;
+    }
+}
+
+@mixin event-content-style()
+{
+    h3
+    {
+        font-weight: vars.$font-weight-semi-bold;
+        color: vars.$font-color-black;
+    }
+
+    p
+    {
+        color: vars.$font-color-charcoal-1;
+    }
+}
+
+@mixin event-cta-button-style()
+{
+    border-color: transparent;
+    color: vars.$font-color-white;
+    background-color: #ff4d8d;
+    transition: transform vars.$animation-time ease;
+
+    &:hover
+    {
+        transform: rotateZ(2deg) scale(1.05);
+        background-color: #d34080;
+    }
+
+    &.is-disabled
+    {
+        opacity: 0.75;
+        background-color: #6c757d;
+        cursor: not-allowed;
+
+        &:hover
+        {
+            transform: none;
+            background-color: #6c757d;
+        }
+    }
+}
+
+#events
+{
+    background-color: #f9f6ee;
+
+    // Event Item (Desktop)
+    .event
+    {
+        box-shadow: vars.$shadow-light;
+        overflow: hidden;
+        @include event-fade-in-animation();
+        display: flex;
+
+        &:nth-child(odd)
+        {
+            border-right: $event-border-accent;
+            border-radius: $border-radius-event-date-box $border-radius-event-content-box $border-radius-event-content-box $border-radius-event-date-box;
+        }
+
+        &:nth-child(even)
+        {
+            border-left: $event-border-accent;
+            border-radius: $border-radius-event-content-box $border-radius-event-date-box $border-radius-event-date-box $border-radius-event-content-box;
+            flex-direction: row-reverse;
+
+            .event-content-box
+            {
+                text-align: right;
+                flex-direction: row-reverse;
+            }
+        }
+
+        .event-date-box
+        {
+            position: relative;
+            padding: 0.5rem;
+            text-align: center;
+            // background-color is set in events.yml entries.
+            flex-shrink: 0.0;
+            flex-basis: 150px;
+
+            p
+            {
+                font-weight: vars.$font-weight-bold;
+                // color is set in events.yml entries.
+            }
+        }
+
+        .event-content-box
+        {
+            background-color: #ffe8e8;
+            display: flex;
+            flex-grow: 1.0;
+            justify-content: space-between;
+            align-items: center;
+
+            .event-content
+            {
+                margin: 0 1.5rem;
+
+                @include event-content-style();
+            }
+
+            .status-badge
+            {
+                width: 150px;
+                padding: 0.25rem 0.5rem;
+                border-radius: 6px;
+                font-weight: vars.$font-weight-bold;
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+        
+                &.past
+                {
+                    background-color: #888;
+                }
+        
+                &.ongoing
+                {
+                    background-color: #ff4d8d;
+                    animation: status-badge-pulse 1.5s infinite;
+                }
+        
+                &.upcoming
+                {
+                    background-color: #4caf50;
+                }
+            }
+
+            .button
+            {
+                width: 160px;
+                margin: 0 1.0rem;
+                @include event-cta-button-style();
+            }
+        }
+    }
+
+    // Event Card (Mobile)
+    .card
+    {
+        height: 100%; // Ensures that the card stretches properly.
+        box-shadow: vars.$shadow-light;
+        @include event-fade-in-animation();
+        @include mixins.flex-column();
+
+        &.past
+        {
+
+        }
+
+        &.ongoing
+        {
+
+        }
+
+        &.upcoming
+        {
+
+        }
+
+        .card-header
+        {
+            position: relative;
+
+            .status-badge
+            {
+                position: absolute;
+                transform: translateX(-50%);
+                top: -1.0rem;
+                left: 50%;
+                width: 150px;
+                padding: 0.25rem 0.5rem;
+                border-radius: 6px;
+                font-weight: vars.$font-weight-bold;
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+    
+                &.past
+                {
+                    background-color: #888;
+                }
+    
+                &.ongoing
+                {
+                    background-color: #ff4d8d;
+                    animation: status-badge-pulse 1.5s infinite;
+                }
+    
+                &.upcoming
+                {
+                    background-color: #4caf50;
+                }
+            }
+        }
+
+        .card-content
+        {
+            background-color: #ffe8e8;
+            @include mixins.flex-column();
+            flex-grow: 1.0; // Makes the card stretch to match the height of the tallest card.
+            justify-content: space-between;
+            align-items: center;
+
+            @include event-content-style();
+
+            .button
+            {
+                width: 200px;
+                margin-top: 1.5rem;
+                @include event-cta-button-style();
+            }
+        }
+    }
+
+    @keyframes status-badge-pulse
+    {
+        0%, 100%
+        {
+            transform: translateX(-50%) scale(1.0);
+        }
+        50%
+        {
+            transform: translateX(-50%) scale(1.1);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce)
+    {
+        .event
+        {
+            transition: none !important;
+
+            .event-content-box .button
+            {
+                transition: none !important;
+            }
+        }
+
+        .card
+        {
+            transition: none !important;
+
+            .card-header .status-badge
+            {
+                animation: none !important;
+            }
+
+            .card-content .button
+            {
+                transition: none !important;
+            }
+        }
+    }
+}

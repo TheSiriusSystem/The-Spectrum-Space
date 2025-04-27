@@ -31,8 +31,8 @@
         display: inline-block;
 
         // These two lines are needed for the gradient effect to display properly.
-        -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
 
         &::after
         {
@@ -82,9 +82,9 @@
     // Primary CTA Button
     .button:not(.is-outlined)
     {
-        background-color: #ff4081;
         border-color: transparent;
         color: vars.$font-color-white;
+        background-color: #ff4081;
 
         &:hover
         {

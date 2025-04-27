@@ -9,10 +9,14 @@
 
 // Import components
 @use "components/buttons";
+@use "components/footer";
 
 // Import sections
 @use "sections/home";
 @use "sections/about";
+@use "sections/events";
+@use "sections/resources";
+@use "sections/join";
 
 // Import external modules
 @import "/assets/css/bulma.min.css";
