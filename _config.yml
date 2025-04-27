@@ -1,13 +1,23 @@
+# Website Basics
 title: The Spectrum Space
-description: A blog about the LGBTQ+ community and mental health.
-keywords: LGBTQ+
+description: A safe and empowering space for LGBTQ+ voices and mental health awareness.
+keywords: LGBTQ+, LGBTQ+ mental health, queer community, mental health resources, pride support, transgender support, bisexual community, non-binary support, queer mental health, LGBTQ+ safe space, inclusive community, mental wellness LGBTQ+, LGBTQ+ blog, queer identities, gender diversity, LGBTQ+ support network, mental health awareness, LGBTQ+ advocacy, coming out support, LGBTQ+ positivity
 image: https://the-spectrum-space.netlify.app/assets/images/site-image.jpg
+author: Blake Emerson
+og-author: https://www.facebook.com/SoftwareEngineerBlake/
+x-creator: "@TheSiriusSystem"
+
+# Website Branding
 favicon: /assets/images/favicon.png
 logo: /assets/images/logo.png
-permalink: /blog/:title
+
+# Blog Post URL Structure
+permalink: /news/:title
+
+# Front Page Settings
 tagline: Where Every Identity Finds Community
 hero-graphic: /assets/images/undraw_loving-story_k8gb.svg
 
-# Build settings
+# Build Settings
 plugins:
   - jekyll-feed
