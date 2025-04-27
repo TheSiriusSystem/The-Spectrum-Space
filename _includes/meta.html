@@ -5,9 +5,10 @@
 <!-- SEO Tags -->
 <meta name="title" content="{{ site.title }}">
 <meta name="description" content="{{ site.description }}">
-<meta name="image" content="{{ site.image }}">
 <meta name="keywords" content="{{ site.keywords }}">
 <meta name="author" content="{{ site.author }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<meta name="robots" content="index, follow">
 
 <!-- Open Graph Tags -->
 <meta property="og:type" content="article">
@@ -17,7 +18,7 @@
 <meta property="og:image" content="{{ page.image | default: site.image }}">
 <meta property="og:image:alt" content="{{ page.title | default: site.title }}">
 <meta property="og:site_name" content="{{ site.title }}">
-<meta property="article:author" content="https://www.facebook.com/SoftwareEngineerBlake/">
+<meta property="article:author" content="{{ site.og-author }}">
 
 <!-- LinkedIn Tags -->
 <meta name="title" property="og:title" content="{{ page.title | default: site.title }}">
@@ -26,8 +27,8 @@
 
 <!-- X Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@TheSiriusSystem">
-<meta name="twitter:creator" content="@TheSiriusSystem">
+<meta name="twitter:site" content="{{ site.x-creator }}">
+<meta name="twitter:creator" content="{{ site.x-creator }}">
 <meta name="twitter:title" content="{{ page.title | default: site.title }}">
 <meta name="twitter:description" content="{{ page.description | default: site.description }}">
 <meta name="twitter:image" content="{{ page.image | default: site.image }}">
