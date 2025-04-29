@@ -1,13 +1,13 @@
-{% if event.status == "past" %}
-    <button class="button is-disabled" disabled aria-disabled="true">
-        Event Ended
-    </button>
-{% elsif event.status == "ongoing" %}
-    <a class="button ongoing-event-button" href="{{ event.url }}/live">
-        <i class="fa-solid fa-video"></i> Join Now
+{% if event.status == "ongoing" %}
+    <a class="button" href="{{ event.url }}/live">
+        <i class="fa-solid fa-video mr-2"></i> Join Now
     </a>
-{% else %}
+{% elsif event.status == "upcoming" %}
     <a class="button" href="{{ event.url }}">
-        {{ event.cta-text }}
+        <i class="fa-solid fa-calendar-days mr-2"></i> {{ event.cta-text }}
     </a>
+{% elsif event.status == "past" %}
+    <button class="button" disabled aria-disabled="true">
+        <i class="fa-solid fa-book mr-2"></i> Event Ended
+    </button>
 {% endif %}

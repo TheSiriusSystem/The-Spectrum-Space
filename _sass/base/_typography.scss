@@ -3,10 +3,45 @@
 body
 {
     font-family: "Open Sans", sans-serif;
-    color: vars.$font-color-charcoal-1;
+    color: vars.$font-color-licorice;
+
+    h1, h2, h3, h4, h5, h6
+    {
+        font-family: "Montserrat", sans-serif;
+    }
+
+    strong
+    {
+        color: vars.$font-color-black;
+    }
+
+    .title
+    {
+        color: vars.$font-color-grey;
+    }
+
+    .subtitle
+    {
+        color: vars.$font-color-charcoal;
+    }
 }
 
-h1, h2, h3, h4, h5, h6
+html.dark body
 {
-    font-family: "Montserrat", sans-serif;
+    color: vars.$font-color-off-white;
+
+    strong
+    {
+        color: vars.$font-color-white;
+    }
+
+    .title
+    {
+        color: vars.$font-color-light-grey;
+    }
+
+    .subtitle
+    {
+        color: vars.$font-color-platinum;
+    }
 }

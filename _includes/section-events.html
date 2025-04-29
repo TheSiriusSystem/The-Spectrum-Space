@@ -3,7 +3,7 @@
         <!-- Header -->
         <header class="mb-5 has-text-centered">
             <h1 class="title is-size-2-desktop is-size-3-mobile">
-                <i class="fa-solid fa-calendar-alt"></i> Events
+                <i class="fa-solid fa-calendar-days"></i> Events
             </h1>
             <h2 class="subtitle is-size-4-desktop is-size-5-mobile ls-wide">
                 Be Seen. Be Heard. Be There.
@@ -17,97 +17,23 @@
         {% assign events_shown_on_desktop = 0 %}
         {% assign events_shown_on_mobile = 0 %}
 
-        {% if ongoing_events.size > 0 %}
-            <h3 class="title mt-6 is-size-3-desktop is-size-4-mobile has-text-centered">
-                Ongoing Events
-            </h3>
-
-            <div class="desktop-only">
-                {% for event in ongoing_events %}
-                    {% if events_shown_on_desktop < event_limit %}
-                        {% assign events_shown_on_desktop = events_shown_on_desktop | plus: 1 %}
-                        {% include event-item-desktop.html event=event %}
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="touch-only">
-                <div class="columns is-multiline is-mobile">
-                    {% for event in ongoing_events %}
-                        {% if events_shown_on_mobile < event_limit %}
-                            {% assign events_shown_on_mobile = events_shown_on_mobile | plus: 1 %}
-                            {% include event-card-mobile.html event=event %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-
-        {% if upcoming_events.size > 0 %}
-            <h3 class="title mt-6 is-size-3-desktop is-size-4-mobile has-text-centered">
-                Upcoming Events
-            </h3>
-
-            <div class="desktop-only">
-                {% for event in upcoming_events %}
-                    {% if events_shown_on_desktop < event_limit %}
-                        {% assign events_shown_on_desktop = events_shown_on_desktop | plus: 1 %}
-                        {% include event-item-desktop.html event=event %}
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="touch-only">
-                <div class="columns is-multiline is-mobile">
-                    {% for event in upcoming_events %}
-                        {% if events_shown_on_mobile < event_limit %}
-                            {% assign events_shown_on_mobile = events_shown_on_mobile | plus: 1 %}
-                            {% include event-card-mobile.html event=event %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-
-        {% if past_events.size > 0 %}
-            <h3 class="title mt-6 is-size-3-desktop is-size-4-mobile has-text-centered">
-                Past Events
-            </h3>
-
-            <div class="desktop-only">
-                {% for event in past_events %}
-                    {% if events_shown_on_desktop < event_limit %}
-                        {% assign events_shown_on_desktop = events_shown_on_desktop | plus: 1 %}
-                        {% include event-item-desktop.html event=event %}
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="touch-only">
-                <div class="columns is-multiline is-mobile">
-                    {% for event in past_events %}
-                        {% if events_shown_on_mobile < event_limit %}
-                            {% assign events_shown_on_mobile = events_shown_on_mobile | plus: 1 %}
-                            {% include event-card-mobile.html event=event %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
+        {% include event-group.html events=ongoing_events title="Ongoing Events" %}
+        {% include event-group.html events=upcoming_events title="Upcoming Events" %}
+        {% include event-group.html events=past_events title="Past Events" %}
     </div>
 </section>
 
 <script>
     document.addEventListener("DOMContentLoaded", function()
     {
-        const events = document.querySelectorAll("#events .event");
-        const cards = document.querySelectorAll("#events .card");
+        const eventItems = document.querySelectorAll("#events .event");
+        const eventCards = document.querySelectorAll("#events .card");
 
         if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches)
         {
             const delay = 250;
 
-            const eventObserver = new IntersectionObserver(function(entries)
+            const eventItemObserver = new IntersectionObserver(function(entries)
             {
                 entries.forEach(function(entry, index)
                 {
@@ -116,14 +42,14 @@
                         setTimeout(function()
                         {
                             entry.target.classList.add("fade-in");
-                            eventObserver.unobserve(entry.target);
+                            eventItemObserver.unobserve(entry.target);
                         }, index * delay);
                     }
                 });
             }, {
                 threshold: 0.15
             });
-            const cardObserver = new IntersectionObserver(function(entries)
+            const eventCardObserver = new IntersectionObserver(function(entries)
             {
                 entries.forEach(function(entry, index)
                 {
@@ -132,7 +58,7 @@
                         setTimeout(function()
                         {
                             entry.target.classList.add("fade-in");
-                            cardObserver.unobserve(entry.target);
+                            eventCardObserver.unobserve(entry.target);
                         }, index * delay);
                     }
                 });
@@ -140,17 +66,17 @@
                 threshold: 0.15
             });
 
-            events.forEach(event => eventObserver.observe(event));
-            cards.forEach(event => cardObserver.observe(event));
+            eventItems.forEach(eventItem => eventItemObserver.observe(eventItem));
+            eventCards.forEach(eventCard => eventCardObserver.observe(eventCard));
         } else
         {
-            events.forEach(function(event)
+            eventItems.forEach(function(eventItem)
             {
-                event.classList.add("fade-in");
+                eventItem.classList.add("fade-in");
             });
-            cards.forEach(function(card)
+            eventCards.forEach(function(eventCard)
             {
-                card.classList.add("fade-in");
+                eventCard.classList.add("fade-in");
             });
         }
     });

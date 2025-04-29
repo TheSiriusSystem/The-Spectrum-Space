@@ -3,6 +3,7 @@
 
 #about
 {
+    padding: 6.0rem 0;
     background-color: #faf3dd;
 
     .mission-box
@@ -15,7 +16,7 @@
         blockquote
         {
             font-style: italic;
-            color: vars.$font-color-charcoal-1;
+            color: vars.$font-color-licorice;
 
             strong
             {
@@ -23,9 +24,10 @@
             }
         }
 
+        // Mission Emphasis
         p.mt-2
         {
-            color: vars.$font-color-charcoal-1;
+            color: vars.$font-color-licorice;
         }
 
         // Quote Source
@@ -72,7 +74,7 @@
                 // Font Awesome Icon
                 i
                 {
-                    color: vars.$font-color-light-gray;
+                    color: vars.$font-color-light-grey;
                     filter: blur(1px);
                 }
 
@@ -80,14 +82,14 @@
                 p.mt-2.mb-0.is-size-6
                 {
                     font-weight: vars.$font-weight-semi-bold;
-                    color: vars.$font-color-charcoal-1;
+                    color: vars.$font-color-charcoal;
                 }
 
                 // Description
                 p.is-size-7
                 {
                     font-weight: vars.$font-weight-light;
-                    color: vars.$font-color-charcoal-2;
+                    color: vars.$font-color-licorice;
                 }
             }
         }
@@ -129,11 +131,6 @@
         }
     }
 
-    hr
-    {
-        background-color: #343434;
-    }
-
     .testimonial-cards-wrapper
     {
         @include mixins.flex-wrap();
@@ -173,7 +170,7 @@
                         position: relative;
                         padding-left: 2.0rem;
                         font-style: italic;
-                        color: vars.$font-color-charcoal-1;
+                        color: vars.$font-color-licorice;
 
                         &::before
                         {
@@ -182,7 +179,7 @@
                             left: 0;
                             top: -0.25rem;
                             font-size: 48px;
-                            color: vars.$font-color-light-gray;
+                            color: vars.$font-color-light-grey;
                             line-height: 1.0;
                         }
                     }
@@ -242,13 +239,130 @@
             transition: none !important;
         }
 
-        .card
+        .testimonial-cards-wrapper .column .card
         {
             transition: none !important;
 
             img
             {
                 transition: none !important;
+                animation: none !important;
+            }
+        }
+    }
+}
+
+html
+{
+    &.light #about
+    {
+        background-color: #f8f8f8;
+
+        .mission-box
+        {
+            background-color: #c8e6c9;
+        }
+
+        .value-box
+        {
+            background-color: #f5f5f5;
+        }
+
+        .testimonial-cards-wrapper .column .card
+        {
+            background-color: #fef9f4 !important;
+        }
+    }
+
+    &.dark #about
+    {
+        background-color: #3a3a3a;
+
+        .mission-box
+        {
+            background-color: #4a148c;
+
+            p.mt-2
+            {
+                color: vars.$font-color-off-white;
+            }
+
+            // Quote Source
+            p.mt-4
+            {
+                color: vars.$font-color-white;
+            }
+        }
+
+        .value-box
+        {
+            border-top-color: #8e24aa !important;
+            background-color: #424242;
+
+            // Font Awesome Icon
+            i
+            {
+                color: vars.$font-color-grey !important;
+                filter: blur(1px);
+            }
+
+            // Title
+            p.mt-2.mb-0.is-size-6
+            {
+                color: vars.$font-color-platinum !important;
+            }
+
+            // Description
+            p.is-size-7
+            {
+                color: vars.$font-color-off-white !important;
+            }
+        }
+
+        .pride-image-wrapper .pride-image
+        {
+            &:hover
+            {
+                box-shadow: vars.$shadow-light, 0 0 16px rgba(138, 43, 226, 0.5);
+            }
+        }
+
+        .testimonial-cards-wrapper .column .card
+        {
+            background-color: #1b5e20 !important;
+
+            &.fade-in
+            {
+                box-shadow: vars.$shadow-light, 0 0 5px rgba(228, 3, 3, 0.5), 0 0 10px rgba(255, 140, 0, 0.4), 0 0 15px rgba(255, 237, 0, 0.4), 0 0 20px rgba(0, 128, 38, 0.3), 0 0 25px rgba(0, 77, 255, 0.3), 0 0 30px rgba(117, 8, 135, 0.3);
+            }
+
+            .card-content
+            {
+                .desktop-only
+                {
+                    blockquote
+                    {
+                        &::before
+                        {
+                            color: vars.$font-color-grey !important;
+                        }
+                    }
+                }
+
+                img
+                {
+                    background: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787);
+                }
+
+                blockquote
+                {
+                    color: vars.$font-color-off-white !important;
+                }
+
+                p
+                {
+                    color: vars.$font-color-white !important;
+                }
             }
         }
     }

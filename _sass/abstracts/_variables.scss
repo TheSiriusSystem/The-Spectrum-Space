@@ -1,4 +1,4 @@
-$color-debug: #00ffff; // Used only when I need to test how something actually looks.
+$color-debug: #00c0ff; // Used only when I need to test how something actually looks.
 $breakpoint-mobile: 768px;
 $breakpoint-touch: 1023px;
 
@@ -20,10 +20,13 @@ $border-radius-rounded: 9999px;
 
 // Font Colors
 $font-color-black: #000;
+$font-color-licorice: #1b1212;
+$font-color-charcoal: #36454f;
+$font-color-grey: #808080;
 $font-color-white: #fff;
-$font-color-charcoal-1: #36454f;
-$font-color-charcoal-2: #4a4a4a;
-$font-color-light-gray: #d3d3d3;
+$font-color-off-white: #faf9f6;
+$font-color-platinum: #e5e4e2;
+$font-color-light-grey: #d3d3d3;
 
 // Shadows
 $shadow-light: 0 4px 12px rgba(0, 0, 0, 0.15);

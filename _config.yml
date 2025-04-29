@@ -1,4 +1,4 @@
-# Website Basics
+# Website Metadata
 title: The Spectrum Space
 description: A safe and empowering space for LGBTQ+ voices and mental health awareness.
 keywords: LGBTQ+, LGBTQ+ mental health, queer community, mental health resources, pride support, transgender support, bisexual community, non-binary support, queer mental health, LGBTQ+ safe space, inclusive community, mental wellness LGBTQ+, LGBTQ+ blog, queer identities, gender diversity, LGBTQ+ support network, mental health awareness, LGBTQ+ advocacy, coming out support, LGBTQ+ positivity
@@ -11,8 +11,13 @@ x-creator: "@TheSiriusSystem"
 favicon: /assets/images/favicon.png
 logo: /assets/images/logo.png
 
-# Blog Post URL Structure
+# Post URL Structure
 permalink: /news/:title
+
+collections:
+  resources:
+    output: true
+    permalink: /resources/:title
 
 # Front Page Settings
 tagline: Where Every Identity Finds Community

@@ -1,0 +1,11 @@
+- name: Love
+  icon: fa-solid fa-heart
+
+- name: Support
+  icon: fa-solid fa-hands-helping
+
+- name: Creativity
+  icon: fa-solid fa-palette
+
+- name: Community
+  icon: fa-solid fa-users

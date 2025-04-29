@@ -1,0 +1,35 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html lang="en">
+    {% include head.html %}
+
+    <body>
+        {% include navbar.html %}
+
+        <div class="hero is-primary is-fullheight">
+            <div class="hero-body">
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+
+        <section class="section" style="background-color: {{ page.page-color }};">
+            <div class="container">
+                <!-- Header -->
+                <header class="mt-6 mb-5 has-text-centered">
+                    <h1 class="title is-size-1-desktop is-size-2-mobile" style="color: {{ page.page-font-color }};">
+                        {{ page.title }}
+                    </h1>
+                    <p class="subtitle is-size-5" style="color: {{ page.page-font-color }};">
+                        {{ page.long-description }}
+                    </p>
+                </header>
+            </div>
+        </section>
+
+        {% include footer.html %}
+    </body>
+</html>

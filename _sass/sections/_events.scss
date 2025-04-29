@@ -1,8 +1,22 @@
 @use "abstracts/variables" as vars;
 @use "abstracts/mixins" as mixins;
 
+$text-ongoing-event-watermark: "LIVE";
+$text-upcoming-event-watermark: "SOON";
+$angle-event-watermark-desktop: 5deg;
+$angle-event-watermark-mobile: 30deg;
+$border-color-event-border-accent-light: #b5ffff;
+$border-color-event-border-accent-dark: #00e8e8;
 $border-radius-event-date-box: 4px;
 $border-radius-event-content-box: 16px;
+$font-size-event-watermark-desktop: 72px;
+$font-size-event-watermark-mobile: 96px;
+$font-color-ongoing-event-watermark-pride: #247ba0;
+$font-color-ongoing-event-watermark-light: #167dac;
+$font-color-ongoing-event-watermark-dark: #aad4f0;
+$font-color-upcoming-event-watermark-pride: #aa3e52;
+$font-color-upcoming-event-watermark-light: #a8325e;
+$font-color-upcoming-event-watermark-dark: #e4b78e;
 $event-border-accent: 6px solid #e8ffff;
 
 @mixin event-fade-in-animation()
@@ -18,6 +32,98 @@ $event-border-accent: 6px solid #e8ffff;
     }
 }
 
+@mixin event-states()
+{
+    &.ongoing
+    {
+        box-shadow: vars.$shadow-medium;
+
+        .event-content-box, .card-content
+        {
+            background-color: #ade8f4;
+
+            .button
+            {
+                font-weight: vars.$font-weight-bold;
+                background-color: #00b4d8;
+                transition: transform vars.$animation-time ease, background-color vars.$animation-time ease;
+
+                &:hover
+                {
+                    transform: rotateZ(2deg) scale(1.05);
+                    background-color: #0096b5;
+                }
+            }
+        }
+
+        .event-content-box
+        {
+            @include event-content-watermark-style($text-ongoing-event-watermark, $angle-event-watermark-desktop, $font-size-event-watermark-desktop, $font-color-ongoing-event-watermark-pride);
+        }
+
+        .card-content
+        {
+            @include event-content-watermark-style($text-ongoing-event-watermark, $angle-event-watermark-mobile, $font-size-event-watermark-mobile, $font-color-ongoing-event-watermark-pride);
+        }
+    }
+
+    &.upcoming
+    {
+        box-shadow: vars.$shadow-light;
+
+        .event-content-box, .card-content
+        {
+            background-color: #ffe8e8;
+
+            .button
+            {
+                background-color: #ff4d8d;
+                transition: transform vars.$animation-time ease, background-color vars.$animation-time ease, box-shadow vars.$animation-time ease;
+
+                &:hover
+                {
+                    transform: scale(1.025);
+                    background-color: #d34080;
+                    box-shadow: 0 0 16px rgba(255, 77, 141, 0.75);
+                }
+            }
+        }
+
+        .event-content-box
+        {
+            @include event-content-watermark-style($text-upcoming-event-watermark, $angle-event-watermark-desktop, $font-size-event-watermark-desktop, $font-color-upcoming-event-watermark-pride);
+        }
+
+        .card-content
+        {
+            @include event-content-watermark-style($text-upcoming-event-watermark, $angle-event-watermark-mobile, $font-size-event-watermark-mobile, $font-color-upcoming-event-watermark-pride);
+        }
+    }
+
+    &.past
+    {
+        box-shadow: vars.$shadow-light;
+
+        .event-content-box, .card-content
+        {
+            background-color: #f0f0f0;
+
+            .button
+            {
+                font-weight: vars.$font-weight-medium;
+                background-color: #b095a8;
+                transition: filter vars.$animation-time ease;
+                cursor: default;
+
+                &:hover
+                {
+                    filter: saturate(70%) grayscale(40%);
+                }
+            }
+        }
+    }
+}
+
 @mixin event-content-style()
 {
     h3
@@ -28,7 +134,7 @@ $event-border-accent: 6px solid #e8ffff;
 
     p
     {
-        color: vars.$font-color-charcoal-1;
+        color: vars.$font-color-licorice;
     }
 }
 
@@ -36,37 +142,79 @@ $event-border-accent: 6px solid #e8ffff;
 {
     border-color: transparent;
     color: vars.$font-color-white;
-    background-color: #ff4d8d;
-    transition: transform vars.$animation-time ease;
+}
 
-    &:hover
+@mixin event-content-watermark-style($text, $angle, $font-size, $font-color)
+{
+    position: relative;
+
+    &::before
     {
-        transform: rotateZ(2deg) scale(1.05);
-        background-color: #d34080;
+        content: $text;
+        position: absolute;
+        transform: translate(-50%, -50%) rotateZ($angle);
+        top: 50%;
+        left: 50%;
+        font-size: $font-size;
+        font-weight: vars.$font-weight-extra-bold;
+        color: $font-color;
+        letter-spacing: 0.5rem;
+        opacity: 0.15;
+        pointer-events: none;
+    }
+}
+
+@mixin event-alternating-border-accent($border-accent-color)
+{
+    &:nth-child(odd)
+    {
+        border-right-color: $border-accent-color;
     }
 
-    &.is-disabled
+    &:nth-child(even)
     {
-        opacity: 0.75;
-        background-color: #6c757d;
-        cursor: not-allowed;
+        border-left-color: $border-accent-color;
+    }
+}
+
+@mixin active-event-content-colors($background-color, $watermark-color, $button-base-color, $button-hover-color)
+{
+    background-color: $background-color;
+
+    &::before
+    {
+        color: $watermark-color;
+    }
+
+    .button
+    {
+        background-color: $button-base-color;
 
         &:hover
         {
-            transform: none;
-            background-color: #6c757d;
+            background-color: $button-hover-color;
         }
+    }
+}
+
+@mixin past-event-content-colors($background-color, $button-base-color)
+{
+    background-color: $background-color;
+
+    .button
+    {
+        background-color: $button-base-color;
     }
 }
 
 #events
 {
+    padding: 6.0rem 0;
     background-color: #f9f6ee;
 
     // Event Item (Desktop)
     .event
     {
-        box-shadow: vars.$shadow-light;
         overflow: hidden;
         @include event-fade-in-animation();
         display: flex;
@@ -90,6 +238,8 @@ $event-border-accent: 6px solid #e8ffff;
             }
         }
 
+        @include event-states();
+
         .event-date-box
         {
             position: relative;
@@ -108,7 +258,6 @@ $event-border-accent: 6px solid #e8ffff;
 
         .event-content-box
         {
-            background-color: #ffe8e8;
             display: flex;
             flex-grow: 1.0;
             justify-content: space-between;
@@ -119,33 +268,6 @@ $event-border-accent: 6px solid #e8ffff;
                 margin: 0 1.5rem;
 
                 @include event-content-style();
-            }
-
-            .status-badge
-            {
-                width: 150px;
-                padding: 0.25rem 0.5rem;
-                border-radius: 6px;
-                font-weight: vars.$font-weight-bold;
-                color: #fff;
-                text-transform: uppercase;
-                text-align: center;
-        
-                &.past
-                {
-                    background-color: #888;
-                }
-        
-                &.ongoing
-                {
-                    background-color: #ff4d8d;
-                    animation: status-badge-pulse 1.5s infinite;
-                }
-        
-                &.upcoming
-                {
-                    background-color: #4caf50;
-                }
             }
 
             .button
@@ -161,64 +283,13 @@ $event-border-accent: 6px solid #e8ffff;
     .card
     {
         height: 100%; // Ensures that the card stretches properly.
-        box-shadow: vars.$shadow-light;
         @include event-fade-in-animation();
         @include mixins.flex-column();
 
-        &.past
-        {
-
-        }
-
-        &.ongoing
-        {
-
-        }
-
-        &.upcoming
-        {
-
-        }
-
-        .card-header
-        {
-            position: relative;
-
-            .status-badge
-            {
-                position: absolute;
-                transform: translateX(-50%);
-                top: -1.0rem;
-                left: 50%;
-                width: 150px;
-                padding: 0.25rem 0.5rem;
-                border-radius: 6px;
-                font-weight: vars.$font-weight-bold;
-                color: #fff;
-                text-transform: uppercase;
-                text-align: center;
-    
-                &.past
-                {
-                    background-color: #888;
-                }
-    
-                &.ongoing
-                {
-                    background-color: #ff4d8d;
-                    animation: status-badge-pulse 1.5s infinite;
-                }
-    
-                &.upcoming
-                {
-                    background-color: #4caf50;
-                }
-            }
-        }
+        @include event-states();
 
         .card-content
         {
-            background-color: #ffe8e8;
             @include mixins.flex-column();
             flex-grow: 1.0; // Makes the card stretch to match the height of the tallest card.
             justify-content: space-between;
@@ -232,18 +303,6 @@ $event-border-accent: 6px solid #e8ffff;
                 margin-top: 1.5rem;
                 @include event-cta-button-style();
             }
-        }
-    }
-
-    @keyframes status-badge-pulse
-    {
-        0%, 100%
-        {
-            transform: translateX(-50%) scale(1.0);
-        }
-        50%
-        {
-            transform: translateX(-50%) scale(1.1);
         }
     }
 
@@ -263,15 +322,91 @@ $event-border-accent: 6px solid #e8ffff;
         {
             transition: none !important;
 
-            .card-header .status-badge
-            {
-                animation: none !important;
-            }
-
             .card-content .button
             {
                 transition: none !important;
             }
+        }
+    }
+}
+
+html
+{
+    &.light #events
+    {
+        background-color: #f2f2f2;
+
+        .event
+        {
+            @include event-alternating-border-accent($border-color-event-border-accent-light);
+        }
+
+        .ongoing .event-content-box, .ongoing .card-content
+        {
+            @include active-event-content-colors(#80dbee, $font-color-ongoing-event-watermark-light, #5ea9c1, #4d8fa3);
+        }
+
+        .upcoming .event-content-box, .upcoming .card-content
+        {
+            @include active-event-content-colors(#ffb5b5, $font-color-upcoming-event-watermark-light, #d47a9b, #b66680);
+        }
+
+        .past .event-content-box, .past .card-content
+        {
+            @include past-event-content-colors(#d6d6d6, #b4bcbe);
+        }
+    }
+
+    &.dark #events
+    {
+        background-color: #2c2c2c;
+
+        .event
+        {
+            @include event-alternating-border-accent($border-color-event-border-accent-dark);
+        }
+
+        .ongoing
+        {
+            box-shadow: 0 0 30px rgba(0, 119, 182, 1.0);
+        }
+
+        .upcoming
+        {
+            box-shadow: 0 0 30px rgba(155, 34, 38, 1.0);
+        }
+
+        .past
+        {
+            box-shadow: vars.$shadow-heavy;
+        }
+
+        .ongoing .event-content-box, .ongoing .card-content, .upcoming .event-content-box, .upcoming .card-content, .past .event-content-box, .past .card-content
+        {
+            h3
+            {
+                color: vars.$font-color-white;
+            }
+
+            p
+            {
+                color: vars.$font-color-off-white;
+            }
+        }
+
+        .ongoing .event-content-box, .ongoing .card-content
+        {
+            @include active-event-content-colors(#0077b6, $font-color-ongoing-event-watermark-dark, #31a7e3, #6bc4f1);
+        }
+
+        .upcoming .event-content-box, .upcoming .card-content
+        {
+            @include active-event-content-colors(#9b2226, $font-color-upcoming-event-watermark-dark, #e36414, #f08c4b);
+        }
+
+        .past .event-content-box, .past .card-content
+        {
+            @include past-event-content-colors(#495057, #d0d8da);
         }
     }
 }

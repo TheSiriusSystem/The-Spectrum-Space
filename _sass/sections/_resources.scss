@@ -2,5 +2,29 @@
 
 #resources
 {
-    
+    background-color: #f0e6ff;
+
+    .message .message-header h3
+    {
+        font-weight: vars.$font-weight-semi-bold;
+    }
+
+    .fa-rotate-180
+    {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
+}
+
+html
+{
+    &.light #resources
+    {
+        background-color: #f5f5f5;
+    }
+
+    &.dark #resources
+    {
+        background-color: #333;
+    }
 }

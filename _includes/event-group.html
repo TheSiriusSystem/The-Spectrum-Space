@@ -1,0 +1,27 @@
+{% if include.events.size > 0 %}
+    <h3 class="title mt-6 is-size-3-desktop is-size-4-mobile has-text-centered">
+        {{ include.title }}
+    </h3>
+
+    <!-- Event Item List (Desktop) -->
+    <div class="desktop-only">
+        {% for event in include.events %}
+            {% if events_shown_on_desktop < event_limit %}
+                {% assign events_shown_on_desktop = events_shown_on_desktop | plus: 1 %}
+                {% include event-item-desktop.html %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Event Card Grid (Mobile) -->
+    <div class="touch-only">
+        <div class="columns is-multiline is-mobile">
+            {% for event in include.events %}
+                {% if events_shown_on_mobile < event_limit %}
+                    {% assign events_shown_on_mobile = events_shown_on_mobile | plus: 1 %}
+                    {% include event-card-mobile.html %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

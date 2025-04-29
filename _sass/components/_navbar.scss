@@ -1,0 +1,70 @@
+@use "abstracts/variables" as vars;
+
+$opacity-navbar-background-gradient: 0.5;
+
+.navbar
+{ 
+    border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(to right, rgba(228, 3, 3, $opacity-navbar-background-gradient), rgba(255, 140, 0, $opacity-navbar-background-gradient), rgba(255, 237, 0, $opacity-navbar-background-gradient), rgba(0, 128, 38, $opacity-navbar-background-gradient), rgba(0, 77, 255, $opacity-navbar-background-gradient), rgba(117, 7, 135, $opacity-navbar-background-gradient));
+    //background: linear-gradient(to right, rgba(255, 0, 128, $opacity-navbar-background-gradient), rgba(121, 40, 202, $opacity-navbar-background-gradient));
+    backdrop-filter: blur(16px);
+    box-shadow: vars.$shadow-light;
+
+    .navbar-brand
+    {
+        .navbar-item
+        {
+            &:hover, &:focus
+            {
+                background-color: rgba(0, 0, 0, 0.0);
+            }
+        }
+
+        .navbar-burger
+        {
+            transition: transform vars.$animation-time ease, height vars.$animation-time ease, background-color vars.$animation-time ease;
+
+            span
+            {
+                height: 2px;
+                background-color: vars.$font-color-white;
+            }
+
+            &:hover
+            {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+
+    .navbar-menu .navbar-start .navbar-item
+    {
+        position: relative;
+        font-weight: vars.$font-weight-medium;
+        color: vars.$font-color-black;
+        transition: all vars.$animation-time ease;
+
+        &::after
+        {
+            content: "";
+            position: absolute;
+            transform: translateX(-50%);
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: all vars.$animation-time ease;
+        }
+
+        &:hover, &:focus
+        {
+            background-color: rgba(255, 255, 255, 0.15);
+
+            &::after
+            {
+                width: 80%;
+            }
+        }
+    }
+}

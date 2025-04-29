@@ -1,6 +1,6 @@
 <section id="about" class="section">
     <div class="container">
-        <!-- Heading -->
+        <!-- Header -->
         <header class="mb-5 has-text-centered">
             <h1 class="title is-size-2-desktop is-size-3-mobile">
                 <i class="fa-solid fa-rainbow"></i> About Us
@@ -43,7 +43,7 @@
 
                     <!-- Values Display -->
                     <div class="columns value-boxes-wrapper is-multiline is-centered is-mobile">
-                        {% for value in site.data.values %}
+                        {% for value in site.data.values limit:4 %}
                             <div class="column is-3-desktop is-6-touch has-text-centered">
                                 <div class="box value-box">
                                     <i class="{{ value.icon }} fa-2x"></i>
@@ -63,10 +63,10 @@
             <!-- Image Grid Column -->
             <div class="column">
                 <div class="columns is-multiline">
-                    {% for image in site.data.about-images %}
+                    {% for image in site.data.about-images limit:4 %}
                         <div class="column is-6-desktop is-12-tablet is-12-mobile">
                             <figure class="image pride-image-wrapper is-square">
-                                <img class="pride-image" src="{{ image.path }}" alt="{{ image.caption }}">
+                                <img class="pride-image" src="{{ image.path }}" alt="{{ image.alt }}">
                             </figure>
                         </div>
                     {% endfor %}
@@ -81,7 +81,7 @@
             What People Are Saying
         </h3>
         <div class="columns testimonial-cards-wrapper is-multiline is-centered">
-            {% for testimonial in site.data.testimonials %}
+            {% for testimonial in site.data.testimonials limit:4 %}
                 <div class="column is-6-desktop is-6-tablet is-12-mobile">
                     <div class="card">
                         <div class="card-content">

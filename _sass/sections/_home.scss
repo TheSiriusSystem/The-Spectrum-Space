@@ -1,5 +1,7 @@
 @use "abstracts/variables" as vars;
 
+$shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
+
 #home
 {
     background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
@@ -10,9 +12,10 @@
         inset: 0;
         width: 100%;
         height: 100%;
-        background-image: url("/assets/images/hero-background-overlay.svg");
+        background-image: url("/assets/images/hero-background-overlay.png");
         background-position: center;
         background-size: cover;
+        background-repeat: no-repeat;
         opacity: 0.2;
         mix-blend-mode: soft-light;
         pointer-events: none;
@@ -23,7 +26,7 @@
         position: relative;
         margin-bottom: 0.5rem; // Adds spacing to account for the underline.
         font-weight: vars.$font-weight-black;
-        color: vars.$font-color-white; // Fallback font color.
+        color: vars.$font-color-light-grey; // Fallback font color.
         background: linear-gradient(to right, #ff6961, #ffc067, #fdfd96, #77dd77, #b3ebf2, #966fd6);
         background-size: 200% auto;
         background-clip: text;
@@ -59,7 +62,7 @@
     .subtitle
     {
         font-weight: vars.$font-weight-medium;
-        color: vars.$font-color-light-gray;
+        color: vars.$font-color-platinum;
     }
 
     .hero-graphic
@@ -77,13 +80,13 @@
     .button
     {
         font-weight: vars.$font-weight-bold;
+        color: vars.$font-color-white;
     }
 
     // Primary CTA Button
     .button:not(.is-outlined)
     {
         border-color: transparent;
-        color: vars.$font-color-white;
         background-color: #ff4081;
 
         &:hover
@@ -95,20 +98,18 @@
     // Secondary CTA Button
     .button.is-outlined
     {
-        color: vars.$font-color-white;
-
         &:hover
         {
             background-color: rgba(255, 255, 255, 0.2);
         }
     }
 
-    .columns.is-mobile.is-centered .column
+    .icon-container .column
     {
         flex-direction: column;
         justify-content: center;
 
-        .icon-container
+        .icon-wrapper
         {
             width: auto;
             padding: 1.0rem;
@@ -125,7 +126,7 @@
             i, p
             {
                 color: vars.$font-color-white;
-                text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+                text-shadow: $shadow-icon;
             }
 
             p
@@ -145,10 +146,10 @@
             }
         }
 
-        .hero-graphic, .button, .icon-container
+        .hero-graphic, .button, .icon-wrapper
         {
-            animation: none !important;
             transition: none !important;
+            animation: none !important;
         }
     }
 
@@ -180,7 +181,91 @@
         }
         50%
         {
-            transform: translateY(-10px);
+            transform: translateY(-12px);
+        }
+    }
+}
+
+html
+{
+    &.light #home, &.dark #home
+    {
+        .hero-background-overlay
+        {
+            opacity: 1.0;
+        }
+
+        .title
+        {
+            background: none;
+            background-size: auto auto;
+            background-clip: border-box;
+            -webkit-background-clip: border-box;
+        }
+    }
+
+    &.light #home
+    {
+        background: #eee;
+
+        .hero-background-overlay
+        {
+            background-image: url("/assets/images/hero-background-overlay-light.jpg");
+        }
+
+        .title
+        {
+            color: vars.$font-color-grey;
+            -webkit-text-fill-color: vars.$font-color-grey;
+        }
+
+        .subtitle
+        {
+            color: vars.$font-color-charcoal;
+        }
+
+        // Secondary CTA Button
+        .button.is-outlined
+        {
+            border-color: #000;
+            color: vars.$font-color-black;
+
+            &:hover
+            {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .icon-container .column .icon-wrapper
+        {
+            i, p
+            {
+                color: vars.$font-color-black;
+            }
+        }
+    }
+
+    &.dark #home
+    {
+        background: #282828;
+
+        .hero-background-overlay
+        {
+            background-image: url("/assets/images/hero-background-overlay-dark.jpg");
+        }
+
+        .title
+        {
+            color: vars.$font-color-light-grey;
+            -webkit-text-fill-color: vars.$font-color-light-grey;
+        }
+
+        .icon-container .column .icon-wrapper
+        {
+            i, p
+            {
+                text-shadow: $shadow-icon, 0 0 8px rgba(255, 255, 255, 1.0);
+            }
         }
     }
 }

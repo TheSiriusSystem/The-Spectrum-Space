@@ -9,5 +9,75 @@
                 Helpful Tools for Every Step of Your Journey.
             </h2>
         </header>
+
+        <!-- Featured Resource -->
+        <div class="box featured-resource mb-6">
+            <h3 class="title is-size-4 has-text-centered">
+                <i class="fa-solid fa-star"></i> Featured Resource
+            </h3>
+            <div class="columns is-multiline is-vcentered">
+                <div class="column is-4">
+                    <img src="/assets/images/trevor-project-logo.png" alt="Trevor Project Logo">
+                </div>
+                <div class="column is-8">
+                    <h4 class="title is-size-5">The Trevor Project</h4>
+                    <p>24/7 crisis intervention and suicide prevention services for LGBTQ+ young people under 25.</p>
+                    <div class="buttons mt-3">
+                        <a href="https://www.thetrevorproject.org" class="button is-primary" target="_blank">Visit Website</a>
+                        <a href="tel:+18664887386" class="button is-link is-light">Call: 1-866-488-7386</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resource Accordion -->
+        <div class="accordion">
+            {% for resource in site.resources %}
+                <article class="message mb-4">
+                    <div class="message-header" style="background-color: {{ resource.header-color }};" onclick="toggleAccordion(this)">
+                        <h3 style="color: {{ resource.header-font-color }};">
+                            <i class="{{ resource.icon }} mr-2"></i> {{ resource.title }}
+                        </h3>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="message-body is-hidden">
+                        <p>
+                            {{ resource.description }}
+                        </p>
+                        <a class="button is-small is-link mt-2" href="{{ resource.url }}">
+                            View Resource
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
     </div>
 </section>
+
+<script>
+    function toggleAccordion(header)
+    {
+        const body = header.nextElementSibling;
+        const chevron = header.querySelector(".fa-chevron-down");
+        const isActive = !body.classList.contains("is-hidden");
+
+        document.querySelectorAll(".message-body").forEach(function(item)
+        {
+            item.classList.add("is-hidden");
+        });
+        document.querySelectorAll(".fa-chevron-down").forEach(function(icon)
+        {
+            icon.classList.remove("fa-rotate-180");
+        });
+
+        if (isActive)
+        {
+            body.classList.add("is-hidden");
+            chevron.classList.remove("fa-rotate-180");
+        } else
+        {
+            body.classList.remove("is-hidden");
+            chevron.classList.add("fa-rotate-180");
+        }
+    }
+</script>

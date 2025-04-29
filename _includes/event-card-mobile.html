@@ -1,16 +1,19 @@
 <div class="column is-6-tablet is-12-mobile">
     <div class="card {{ event.status }}">
         <header class="card-header" style="background-color: {{ event.background-color }};">
-            {% include event-status-badge.html event=event %}
             <p class="card-header-title is-size-4 is-centered" style="color: {{ event.font-color }};">
                 {{ event.date | date: "%B %d, %Y" | upcase }}
             </p>
         </header>
 
         <div class="card-content has-text-centered">
-            <h3 class="is-size-5">{{ event.title }}</h3>
-            <p class="mt-1">{{ event.description }}</p>
-            {% include event-cta-button.html event=event %}
+            <h3 class="is-size-5">
+                {{ event.title }}
+            </h3>
+            <p class="mt-1">
+                {{ event.description }}
+            </p>
+            {% include event-cta-button.html %}
         </div>
     </div>
 </div>

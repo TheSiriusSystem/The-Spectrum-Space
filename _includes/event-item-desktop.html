@@ -7,10 +7,13 @@
 
     <div class="event-content-box">
         <div class="event-content">
-            <h3 class="is-size-4">{{ event.title }}</h3>
-            <p>{{ event.description }}</p>
+            <h3 class="is-size-4">
+                {{ event.title }}
+            </h3>
+            <p>
+                {{ event.description }}
+            </p>
         </div>
-        {% include event-status-badge.html event=event %}
-        {% include event-cta-button.html event=event %}
+        {% include event-cta-button.html %}
     </div>
 </div>

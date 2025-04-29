@@ -1,23 +1,25 @@
-// Import abstracts
+// Abstracts
 @use "abstracts/variables" as *;
 @use "abstracts/mixins" as *;
 @use "abstracts/functions" as *;
 
-// Import base styles
+// Base Styles
 @use "base/global";
 @use "base/typography";
 
-// Import components
+// Component Styles
+@use "components/line";
 @use "components/buttons";
+@use "components/navbar";
 @use "components/footer";
 
-// Import sections
+// Section Styles
 @use "sections/home";
 @use "sections/about";
 @use "sections/events";
 @use "sections/resources";
 @use "sections/join";
 
-// Import external modules
+// External Modules & Google Fonts Imports
 @import "/assets/css/bulma.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
