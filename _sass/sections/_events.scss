@@ -3,12 +3,13 @@
 
 $text-ongoing-event-watermark: "LIVE";
 $text-upcoming-event-watermark: "SOON";
+$margin-event-content: 1.0rem;
 $angle-event-watermark-desktop: 5deg;
 $angle-event-watermark-mobile: 30deg;
 $border-color-event-border-accent-light: #b5ffff;
 $border-color-event-border-accent-dark: #00e8e8;
-$border-radius-event-date-box: 4px;
-$border-radius-event-content-box: 16px;
+$border-radius-date-column: 4px; // Desktop
+$border-radius-content-column: 16px; // Desktop
 $font-size-event-watermark-desktop: 72px;
 $font-size-event-watermark-mobile: 96px;
 $font-color-ongoing-event-watermark-pride: #247ba0;
@@ -38,7 +39,7 @@ $event-border-accent: 6px solid #e8ffff;
     {
         box-shadow: vars.$shadow-medium;
 
-        .event-content-box, .card-content
+        .content-column, .card-content
         {
             background-color: #ade8f4;
 
@@ -56,7 +57,7 @@ $event-border-accent: 6px solid #e8ffff;
             }
         }
 
-        .event-content-box
+        .content-column
         {
             @include event-content-watermark-style($text-ongoing-event-watermark, $angle-event-watermark-desktop, $font-size-event-watermark-desktop, $font-color-ongoing-event-watermark-pride);
         }
@@ -71,7 +72,7 @@ $event-border-accent: 6px solid #e8ffff;
     {
         box-shadow: vars.$shadow-light;
 
-        .event-content-box, .card-content
+        .content-column, .card-content
         {
             background-color: #ffe8e8;
 
@@ -89,7 +90,7 @@ $event-border-accent: 6px solid #e8ffff;
             }
         }
 
-        .event-content-box
+        .content-column
         {
             @include event-content-watermark-style($text-upcoming-event-watermark, $angle-event-watermark-desktop, $font-size-event-watermark-desktop, $font-color-upcoming-event-watermark-pride);
         }
@@ -104,7 +105,7 @@ $event-border-accent: 6px solid #e8ffff;
     {
         box-shadow: vars.$shadow-light;
 
-        .event-content-box, .card-content
+        .content-column, .card-content
         {
             background-color: #f0f0f0;
 
@@ -217,37 +218,47 @@ $event-border-accent: 6px solid #e8ffff;
     {
         overflow: hidden;
         @include event-fade-in-animation();
-        display: flex;
 
         &:nth-child(odd)
         {
             border-right: $event-border-accent;
-            border-radius: $border-radius-event-date-box $border-radius-event-content-box $border-radius-event-content-box $border-radius-event-date-box;
+            border-radius: $border-radius-date-column $border-radius-content-column $border-radius-content-column $border-radius-date-column;
         }
 
         &:nth-child(even)
         {
             border-left: $event-border-accent;
-            border-radius: $border-radius-event-content-box $border-radius-event-date-box $border-radius-event-date-box $border-radius-event-content-box;
-            flex-direction: row-reverse;
+            border-radius: $border-radius-content-column $border-radius-date-column $border-radius-date-column $border-radius-content-column;
 
-            .event-content-box
+            .columns
             {
-                text-align: right;
                 flex-direction: row-reverse;
+
+                .content-column
+                {
+                    text-align: right;
+                    flex-direction: row-reverse;
+
+                    .event-content
+                    {
+                        margin-left: 0;
+                        margin-right: $margin-event-content;
+                    }
+
+                    .button
+                    {
+                        margin-left: $margin-event-content;
+                        margin-right: 0;
+                    }
+                }
             }
         }
 
         @include event-states();
 
-        .event-date-box
+        .date-column
         {
-            position: relative;
-            padding: 0.5rem;
-            text-align: center;
             // background-color is set in events.yml entries.
-            flex-shrink: 0.0;
-            flex-basis: 150px;
 
             p
             {
@@ -256,16 +267,16 @@ $event-border-accent: 6px solid #e8ffff;
             }
         }
 
-        .event-content-box
+        .content-column
         {
             display: flex;
-            flex-grow: 1.0;
             justify-content: space-between;
             align-items: center;
 
             .event-content
             {
-                margin: 0 1.5rem;
+                margin-left: $margin-event-content;
+                flex-grow: 1.0;
 
                 @include event-content-style();
             }
@@ -273,7 +284,7 @@ $event-border-accent: 6px solid #e8ffff;
             .button
             {
                 width: 160px;
-                margin: 0 1.0rem;
+                margin-right: $margin-event-content;
                 @include event-cta-button-style();
             }
         }
@@ -312,7 +323,7 @@ $event-border-accent: 6px solid #e8ffff;
         {
             transition: none !important;
 
-            .event-content-box .button
+            .content-column .button
             {
                 transition: none !important;
             }
@@ -341,17 +352,17 @@ html
             @include event-alternating-border-accent($border-color-event-border-accent-light);
         }
 
-        .ongoing .event-content-box, .ongoing .card-content
+        .ongoing .content-column, .ongoing .card-content
         {
             @include active-event-content-colors(#80dbee, $font-color-ongoing-event-watermark-light, #5ea9c1, #4d8fa3);
         }
 
-        .upcoming .event-content-box, .upcoming .card-content
+        .upcoming .content-column, .upcoming .card-content
         {
             @include active-event-content-colors(#ffb5b5, $font-color-upcoming-event-watermark-light, #d47a9b, #b66680);
         }
 
-        .past .event-content-box, .past .card-content
+        .past .content-column, .past .card-content
         {
             @include past-event-content-colors(#d6d6d6, #b4bcbe);
         }
@@ -381,7 +392,7 @@ html
             box-shadow: vars.$shadow-heavy;
         }
 
-        .ongoing .event-content-box, .ongoing .card-content, .upcoming .event-content-box, .upcoming .card-content, .past .event-content-box, .past .card-content
+        .ongoing .content-column, .ongoing .card-content, .upcoming .content-column, .upcoming .card-content, .past .content-column, .past .card-content
         {
             h3
             {
@@ -394,17 +405,17 @@ html
             }
         }
 
-        .ongoing .event-content-box, .ongoing .card-content
+        .ongoing .content-column, .ongoing .card-content
         {
             @include active-event-content-colors(#0077b6, $font-color-ongoing-event-watermark-dark, #31a7e3, #6bc4f1);
         }
 
-        .upcoming .event-content-box, .upcoming .card-content
+        .upcoming .content-column, .upcoming .card-content
         {
             @include active-event-content-colors(#9b2226, $font-color-upcoming-event-watermark-dark, #e36414, #f08c4b);
         }
 
-        .past .event-content-box, .past .card-content
+        .past .content-column, .past .card-content
         {
             @include past-event-content-colors(#495057, #d0d8da);
         }

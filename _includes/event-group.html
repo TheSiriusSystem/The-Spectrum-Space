@@ -5,12 +5,14 @@
 
     <!-- Event Item List (Desktop) -->
     <div class="desktop-only">
-        {% for event in include.events %}
-            {% if events_shown_on_desktop < event_limit %}
-                {% assign events_shown_on_desktop = events_shown_on_desktop | plus: 1 %}
-                {% include event-item-desktop.html %}
-            {% endif %}
-        {% endfor %}
+        <div class="columns is-multiline">
+            {% for event in include.events %}
+                {% if events_shown_on_desktop < event_limit %}
+                    {% assign events_shown_on_desktop = events_shown_on_desktop | plus: 1 %}
+                    {% include event-item-desktop.html %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
     <!-- Event Card Grid (Mobile) -->
