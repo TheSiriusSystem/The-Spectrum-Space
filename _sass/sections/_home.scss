@@ -67,13 +67,13 @@ $shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
 
     .hero-graphic
     {
-        max-width: 400px;
+        max-width: 300px;
         margin: 2.0rem auto 0;
         animation: float 5.0s ease-in-out infinite;
 
         @media screen and (max-width: vars.$breakpoint-mobile)
         {
-            max-width: 300px;
+            max-width: 225px;
         }
     }
 
@@ -181,7 +181,7 @@ $shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
         }
         50%
         {
-            transform: translateY(-12px);
+            transform: translateY(-10px);
         }
     }
 }
