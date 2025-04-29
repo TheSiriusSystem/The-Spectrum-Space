@@ -31,3 +31,26 @@
     display: flex;
     flex-direction: column;
 }
+
+@mixin button($font-color, $base-color, $hover-color)
+{
+    border-color: transparent;
+    color: $font-color;
+    background-color: $base-color;
+
+    &:hover
+    {
+        background-color: $hover-color;
+    }
+}
+
+@mixin outlined-button($font-color, $base-color, $hover-color)
+{
+    border-color: $base-color;
+    color: $font-color;
+
+    &:hover
+    {
+        background-color: $hover-color;
+    }
+}
