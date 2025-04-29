@@ -77,30 +77,34 @@ $shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
         }
     }
 
-    .button
+    .buttons
     {
-        font-weight: vars.$font-weight-bold;
-        color: vars.$font-color-white;
-    }
-
-    // Primary CTA Button
-    .button:not(.is-outlined)
-    {
-        border-color: transparent;
-        background-color: #ff4081;
-
-        &:hover
+        .button
         {
-            background-color: #ff0d5f;
+            width: 320px;
+            font-weight: vars.$font-weight-bold;
+            color: vars.$font-color-white;
         }
-    }
 
-    // Secondary CTA Button
-    .button.is-outlined
-    {
-        &:hover
+        // Primary CTA Button
+        .button:not(.is-outlined)
         {
-            background-color: rgba(255, 255, 255, 0.2);
+            border-color: transparent;
+            background-color: #ff4081;
+
+            &:hover
+            {
+                background-color: #ff0d5f;
+            }
+        }
+
+        // Secondary CTA Button
+        .button.is-outlined
+        {
+            &:hover
+            {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
         }
     }
 
