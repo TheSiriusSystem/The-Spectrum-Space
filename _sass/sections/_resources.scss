@@ -4,6 +4,26 @@
 {
     background-color: #f0e6ff;
 
+    .box
+    {
+        max-width: 85%;
+        margin: 0 auto;
+
+        .columns .column.is-4
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img
+            {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+    }
+
     .message .message-header h3
     {
         font-weight: vars.$font-weight-semi-bold;

@@ -19,9 +19,15 @@ collections:
     output: true
     permalink: /resources/:title
 
-# Front Page Settings
+# Homepage Settings
 tagline: Where Every Identity Finds Community
 hero-graphic: /assets/images/undraw_loving-story_k8gb.svg
+featured-resource: The Trevor Project
+featured-resource-logo: /assets/images/the-trevor-project-logo.png
+featured-resource-description: 24/7 crisis intervention and suicide prevention services for LGBTQ+ young people under 25.
+featured-resource-hotline-text: "Call: 1-866-488-7386"
+featured-resource-url: https://www.thetrevorproject.org
+featured-resource-hotline-url: tel:+18664887386
 
 # Build Settings
 plugins:

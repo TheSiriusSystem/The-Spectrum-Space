@@ -11,20 +11,28 @@
         </header>
 
         <!-- Featured Resource -->
-        <div class="box featured-resource mb-6">
+        <div class="box mb-6">
             <h3 class="title is-size-4 has-text-centered">
                 <i class="fa-solid fa-star"></i> Featured Resource
             </h3>
             <div class="columns is-multiline is-vcentered">
                 <div class="column is-4">
-                    <img src="/assets/images/trevor-project-logo.png" alt="Trevor Project Logo">
+                    <img src="{{ site.featured-resource-logo }}" alt="{{ site.featured-resource }} Logo">
                 </div>
                 <div class="column is-8">
-                    <h4 class="title is-size-5">The Trevor Project</h4>
-                    <p>24/7 crisis intervention and suicide prevention services for LGBTQ+ young people under 25.</p>
+                    <h4 class="title is-size-5">
+                        {{ site.featured-resource }}
+                    </h4>
+                    <p>
+                        {{ site.featured-resource-description }}
+                    </p>
                     <div class="buttons mt-3">
-                        <a href="https://www.thetrevorproject.org" class="button is-primary" target="_blank">Visit Website</a>
-                        <a href="tel:+18664887386" class="button is-link is-light">Call: 1-866-488-7386</a>
+                        <a class="button is-primary" href="{{ site.featured-resource-url }}" target="_blank">
+                            Visit Website
+                        </a>
+                        <a class="button is-link is-light" href="{{ site.featured-resource-hotline-text }}">
+                            {{ site.featured-resource-hotline-text }}
+                        </a>
                     </div>
                 </div>
             </div>
