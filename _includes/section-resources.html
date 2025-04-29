@@ -11,35 +11,44 @@
         </header>
 
         <!-- Featured Resource -->
-        <div class="box mb-6">
-            <h3 class="title is-size-4 has-text-centered">
-                <i class="fa-solid fa-star"></i> Featured Resource
-            </h3>
-            <div class="columns is-multiline is-vcentered">
-                <div class="column is-4">
-                    <img src="{{ site.featured-resource-logo }}" alt="{{ site.featured-resource }} Logo">
-                </div>
-                <div class="column is-8">
-                    <h4 class="title is-size-5">
-                        {{ site.featured-resource }}
-                    </h4>
-                    <p>
-                        {{ site.featured-resource-description }}
-                    </p>
-                    <div class="buttons mt-3">
-                        <a class="button is-primary" href="{{ site.featured-resource-url }}" target="_blank">
-                            Visit Website
-                        </a>
-                        <a class="button is-link is-light" href="{{ site.featured-resource-hotline-text }}">
-                            {{ site.featured-resource-hotline-text }}
-                        </a>
+        <div class="card mb-6">
+            <header class="card-header">
+                <h3 class="card-header-title title is-size-3-desktop is-size-4-mobile is-centered">
+                    Featured Resource
+                </h3>
+            </header>
+            <div class="card-content">
+                <div class="columns is-multiline is-vcentered">
+                    <div class="column is-3">
+                        <img src="{{ site.featured-resource-logo }}" alt="{{ site.featured-resource }} Logo">
+                    </div>
+                    <div class="column is-9">
+                        <h4 class="title mb-4 is-size-5">
+                            {{ site.featured-resource }}
+                        </h4>
+                        <p>
+                            {{ site.featured-resource-description }}
+                        </p>
+                        <div class="buttons mt-3">
+                            <a class="button" href="{{ site.featured-resource-url }}" target="_blank">
+                                Visit Website
+                            </a>
+
+                            {% unless site.featured-resource-hotline-url == "" or site.featured-resource-hotline-url == nil %}
+                                <a class="button is-outlined" href="{{ site.featured-resource-hotline-url }}">
+                                    {{ site.featured-resource-hotline-text }}
+                                </a>
+                            {% endunless %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <hr class="mb-6">
+
         <!-- Resource Accordion -->
-        <div class="accordion">
+        <div>
             {% for resource in site.resources %}
                 <article class="message mb-4">
                     <div class="message-header" style="background-color: {{ resource.header-color }};" onclick="toggleAccordion(this)">
@@ -52,7 +61,7 @@
                         <p>
                             {{ resource.description }}
                         </p>
-                        <a class="button is-small is-link mt-2" href="{{ resource.url }}">
+                        <a class="button mt-2 is-small is-outlined" href="{{ resource.url }}">
                             View Resource
                         </a>
                     </div>

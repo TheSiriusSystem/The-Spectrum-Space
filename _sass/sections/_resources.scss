@@ -1,32 +1,70 @@
 @use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
 
 #resources
 {
+    padding: 6.0rem 0;
     background-color: #f0e6ff;
 
-    .box
+    .card
     {
-        max-width: 85%;
+        max-width: 75%;
         margin: 0 auto;
 
-        .columns .column.is-4
+        .card-header
         {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: #fffaf0;
+        }
 
-            img
+        .card-content .columns
+        {
+            .column.is-3
             {
-                max-width: 100%;
-                height: auto;
-                display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img
+                {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+
+            .column.is-9 .buttons
+            {
+                .button
+                {
+                    width: 240px;
+                }
+
+                // Primary CTA Button
+                .button:nth-child(1)
+                {
+                    @include mixins.button(vars.$font-color-white, #ff4081, #ff0d5f);
+                }
+
+                // Secondary CTA Button
+                .button:nth-child(2)
+                {
+                    @include mixins.outlined-button(vars.$font-color-black, #1976d2, rgba(25, 118, 210, 0.2));
+                }
             }
         }
     }
 
-    .message .message-header h3
+    .message
     {
-        font-weight: vars.$font-weight-semi-bold;
+        .message-header h3
+        {
+            font-weight: vars.$font-weight-semi-bold;
+        }
+
+        .message-body .button
+        {
+            @include mixins.outlined-button(vars.$font-color-black, #1976d2, rgba(25, 118, 210, 0.2));
+        }
     }
 
     .fa-rotate-180
@@ -41,10 +79,94 @@ html
     &.light #resources
     {
         background-color: #f5f5f5;
+
+        .card
+        {
+            .card-header
+            {
+                background-color: #eee;
+            }
+
+            .card-content .columns .column.is-9 .buttons
+            {
+                // Primary CTA Button
+                .button:not(.is-outlined)
+                {
+                    @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
+                }
+
+                // Secondary CTA Button
+                .button.is-outlined
+                {
+                    @include mixins.outlined-button(vars.$font-color-black, #212121, rgba(0, 0, 0, 0.2));
+                }
+            }
+        }
+
+        .message .message-body
+        {
+            background-color: #fff;
+
+            .button
+            {
+                @include mixins.outlined-button(vars.$font-color-black, #212121, rgba(0, 0, 0, 0.2));
+            }
+        }
     }
 
     &.dark #resources
     {
         background-color: #333;
+
+        .card
+        {
+            .card-header
+            {
+                background-color: #424242;
+            }
+
+            .card-content
+            {
+                background-color: #4a4a4a;
+
+                .columns .column.is-9
+                {
+                    p
+                    {
+                        color: vars.$font-color-off-white;
+                    }
+
+                    .buttons
+                    {
+                        // Primary CTA Button
+                        .button:nth-child(1)
+                        {
+                            @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
+                        }
+
+                        // Secondary CTA Button
+                        .button:nth-child(2)
+                        {
+                            @include mixins.outlined-button(vars.$font-color-white, #f2f0ef, rgba(255, 255, 255, 0.2));
+                        }
+                    }
+                }
+            }
+        }
+
+        .message .message-body
+        {
+            background-color: #3a3a3a;
+
+            p
+            {
+                color: vars.$font-color-off-white;
+            }
+
+            .button
+            {
+                @include mixins.outlined-button(vars.$font-color-white, #f2f0ef, rgba(255, 255, 255, 0.2));
+            }
+        }
     }
 }
