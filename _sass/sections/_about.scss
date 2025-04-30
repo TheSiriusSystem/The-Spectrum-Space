@@ -172,6 +172,7 @@
                         font-style: italic;
                         color: vars.$font-color-licorice;
 
+                        // Create the stylized quotation mark.
                         &::before
                         {
                             content: "“";

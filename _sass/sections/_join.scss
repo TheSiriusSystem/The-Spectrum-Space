@@ -1,6 +1,151 @@
 @use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
+
+@mixin a-mixin($width, $background-color, $z-index)
+{
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+    width: $width;
+    height: 2px;
+    background-color: $background-color;
+    z-index: $z-index;
+}
 
 #join
 {
+    padding: 6.0rem 0;
     background-color: #c1f0d9;
+
+    .progress-bar
+    {
+        position: relative;
+        margin-bottom: 2.0rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        // Create the line connecting the dots.
+        &::before
+        {
+            content: "";
+            @include a-mixin(100%, #e0e0e0, 1);
+        }
+
+        .progress-line
+        {
+            @include a-mixin(0%, #48c78e, 2);
+            transition: width 0.4s ease;
+        }
+
+        .progress-step
+        {
+            position: relative;
+            z-index: 3;
+            @include mixins.flex-column();
+            align-items: center;
+
+            .step-dot
+            {
+                width: 30px;
+                height: 30px;
+                margin-bottom: 0.5rem;
+                border: 2px solid #e0e0e0;
+                border-radius: 50%;
+                background-color: #fff;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .step-number
+                {
+                    font-size: 14px;
+                    font-weight: vars.$font-weight-bold;
+                    color: vars.$font-color-grey;
+                    transition: color 0.3s ease;
+                }
+
+                .step-check
+                {
+                    color: vars.$font-color-white;
+                    font-size: 14px;
+                    display: none;
+                }
+            }
+
+            &.is-active
+            {
+                .step-dot
+                {
+                    border-color: #48c78e;
+
+                    .step-number
+                    {
+                        color: #48c78e;
+                    }
+                }
+            }
+
+            &.is-completed
+            {
+                .step-dot
+                {
+                    background-color: #48c78e;
+                    border-color: #48c78e;
+
+                    .step-number
+                    {
+                        display: none;
+                    }
+
+                    .step-check
+                    {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    
+
+    .form-step
+    {
+        opacity: 0.0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        display: none;
+
+        &.is-active
+        {
+            display: inline;
+        }
+
+        &.fade-in
+        {
+            opacity: 1.0;
+            pointer-events: auto;
+        }
+
+        &.fade-out
+        {
+            opacity: 0.0;
+            pointer-events: none;
+        }
+    }
+}
+
+// TODO: Work on themes after the section is completed.
+html
+{
+    &.light #join
+    {
+
+    }
+
+    &.dark #join
+    {
+
+    }
 }

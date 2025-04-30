@@ -38,6 +38,7 @@ $shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
 
+        // Create the trans flag-colored underline.
         &::after
         {
             content: "";

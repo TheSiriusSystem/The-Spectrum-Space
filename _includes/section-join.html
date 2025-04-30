@@ -9,5 +9,390 @@
                 Let's Build a Brighter Future Together.
             </h2>
         </header>
+
+        <!-- Join Form -->
+        <div class="columns is-centered is-mobile">
+            <div class="column is-6-desktop is-9-tablet is-12-mobile">
+                <form id="join-form" class="box">
+                    <!-- Progress Bar -->
+                    <div id="form-progress" class="progress-bar mb-4">
+                        <div class="progress-line"></div>
+
+                        <!-- Step 1 -->
+                        <div class="progress-step is-active" data-step="step-information">
+                            <div class="step-dot">
+                                <span class="step-number">1</span>
+                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="progress-step" data-step="step-background">
+                            <div class="step-dot">
+                                <span class="step-number">2</span>
+                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="progress-step" data-step="step-involvement">
+                            <div class="step-dot">
+                                <span class="step-number">3</span>
+                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="progress-step" data-step="step-preferences">
+                            <div class="step-dot">
+                                <span class="step-number">4</span>
+                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="progress-step" data-step="step-confirm">
+                            <div class="step-dot">
+                                <span class="step-number">5</span>
+                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 1 -->
+                    <div id="step-information" class="form-step is-first">
+                        <div class="content mb-4 has-text-centered">
+                            <h3 class="title mb-2 is-size-4">
+                                Step 1: Personal Information
+                            </h3>
+                            <p class="is-size-5">
+                                Let's Start With The Basics
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">
+                                Full Name
+                            </label>
+                            <div class="control">
+                                <input id="name" name="name" type="text" class="input" required placeholder="John Doe">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">
+                                Email Address
+                            </label>
+                            <div class="control">
+                                <input id="email" name="email" type="email" class="input" required placeholder="johndoe@provider.com">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">
+                                Phone Number <strong>(Optional)</strong>
+                            </label>
+                            <div class="control">
+                                <input id="phone" name="phone" type="tel" class="input" placeholder="+1 555-123-4567">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">
+                                Gender <strong>(Optional)</strong>
+                            </label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="gender-select" name="gender">
+                                        <option value="mystery" disabled hidden selected>Select an option...</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="nonbinary">Nonbinary</option>
+                                        <option value="mystery">Prefer not to disclose</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">
+                                Pronouns <strong>(Optional)</strong>
+                            </label>
+                            <div class="control">
+                                <input id="pronouns" name="pronouns" type="text" class="input" placeholder="he/him, she/her, they/them, etc.">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <p class="has-text-centered">
+                            We collect this information to personalize your experience and keep you informed about our activities. Your privacy is important to us.
+                        </p>
+
+                        {% include join-form-buttons.html prev_step_id="" next_step_id="step-background" %}
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div id="step-background" class="form-step">
+                        <div class="content mb-4 has-text-centered">
+                            <h3 class="title mb-2 is-size-4">
+                                Step 2: Interests & Background
+                            </h3>
+                            <p class="is-size-5">
+                                Tell Us More About Your Connection
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">
+                                How do you identify within the LGBTQ+ community? <strong>(Optional)</strong>
+                            </label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="identity-select" name="identity">
+                                        <option value="mystery" disabled hidden selected>Select an option...</option>
+                                        <optgroup label="Sexual Orientations">
+                                            <option value="lesbian">Lesbian</option>
+                                            <option value="gay">Gay</option>
+                                            <option value="bisexual">Bisexual</option>
+                                            <option value="asexual">Asexual</option>
+                                            <option value="pansexual">Pansexual</option>
+                                            <option value="demisexual">Demisexual</option>
+                                        </optgroup>
+                                        <optgroup label="Gender Identities">
+                                            <option value="transgender">Transgender</option>
+                                            <option value="intersex">Intersex</option>
+                                        </optgroup>
+                                        <optgroup label="Other">
+                                            <option value="queer">Queer</option>
+                                            <option value="questioning">Questioning</option>
+                                            <option value="ally">Ally</option>
+                                            <option value="other">Other</option>
+                                            <option value="mystery">Prefer not to disclose</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">
+                                How long have you been connected to or aware of our organization? <strong>(Optional)</strong>
+                            </label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="time-aware-select" name="time-aware">
+                                        <option value="mystery" disabled hidden selected>Select an option...</option>
+                                        <option value="<6m">Less than 6 months</option>
+                                        <option value="6m-1y">6 months to 1 year</option>
+                                        <option value="1y-3y">1 to 3 years</option>
+                                        <option value="3y+">More than 3 years</option>
+                                        <option value="mystery">Prefer not to disclose</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">
+                                What are you hoping to find or experience by joining our community? <strong>(Optional)</strong>
+                            </label>
+                            <div class="control">
+                                <textarea id="expectations" name="expectations" rows="5" class="textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">
+                                How did you hear about us? <strong>(Optional)</strong>
+                            </label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="hearsay-select" name="hearsay">
+                                        <option value="mystery" disabled hidden selected>Select an option...</option>
+                                        <option value="friend-family">Friend or Family</option>
+                                        <option value="social-media">Social Media</option>
+                                        <option value="online-search">Online Search</option>
+                                        <option value="another-org">Another Organization</option>
+                                        <option value="event">Event</option>
+                                        <option value="flyer-print">Flyer or Print Material</option>
+                                        <option value="news-article">News Article</option>
+                                        <option value="website">Our Website (Directly)</option>
+                                        <option value="other">Other</option>
+                                        <option value="mystery">Prefer not to disclose</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <p class="has-text-centered">
+                            Sharing your connection and interests helps us tailor your experience and keep you informed about relevant opportunities.
+                        </p>
+
+                        {% include join-form-buttons.html prev_step_id="step-information" next_step_id="step-involvement" %}
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div id="step-involvement" class="form-step">
+                        <div class="content mb-4 has-text-centered">
+                            <h3 class="title mb-2 is-size-4">
+                                Step 3: Involvement Options
+                            </h3>
+                            <p>
+                                How Would You Like To Get Involved?
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="checkbox involvement-option">
+                                    <input id="involvement" name="involvement" type="checkbox" value="volunteer" class="controls-dynamic-content">
+                                    <span class="checkbox-custom">
+                                        <span class="icon"><i class="fa-solid fa-hands-helping"></i></span>
+                                        <span>Volunteer</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="checkbox involvement-option">
+                                    <input id="involvement" name="involvement" type="checkbox" value="donate" class="controls-dynamic-content">
+                                    <span class="checkbox-custom">
+                                        <span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                                        <span>Donate</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="checkbox involvement-option">
+                                    <input id="involvement" name="involvement" type="checkbox" value="membership" class="controls-dynamic-content">
+                                    <span class="checkbox-custom">
+                                        <span class="icon"><i class="fa-solid fa-id-card"></i></span>
+                                        <span>Become a Member</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="checkbox involvement-option">
+                                    <input id="involvement" name="involvement" type="checkbox" value="newsletter" class="controls-dynamic-content">
+                                    <span class="checkbox-custom">
+                                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                                        <span>Subscribe to Newsletter</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        {% include join-form-buttons.html prev_step_id="step-background" next_step_id="step-preferences" %}
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div id="step-preferences" class="form-step">
+                        <div class="content mb-4 has-text-centered">
+                            <h3 class="title is-size-4">
+                                Step 4: Preferences
+                            </h3>
+                            <p>
+                                Please provide more details based on your selections.
+                            </p>
+                        </div>
+
+                        <div id="volunteer-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:volunteer">
+                            <h4 class="title is-size-5">Volunteering Interests</h4>
+
+                            <div class="field">
+                                <label class="label">Areas of Interest (Select one or more)</label>
+                                <div class="control">
+                                    <label class="checkbox"><input type="checkbox" name="volunteer_interest" value="events"> Events</label><br>
+                                    <label class="checkbox"><input type="checkbox" name="volunteer_interest" value="outreach"> Outreach</label><br>
+                                    <label class="checkbox"><input type="checkbox" name="volunteer_interest" value="admin"> Administrative Support</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="donate-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:donate">
+                            <h4 class="title is-size-5">
+                                Donation Details
+                            </h4>
+
+                            <div class="field">
+                                <label class="label">How much would you like to donate?</label>
+                                <div class="control">
+                                    <input type="number" name="donation_amount" class="input" placeholder="e.g. 50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="membership-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:membership">
+                            <h4 class="title is-size-5">
+                                Membership Preferences
+                            </h4>
+
+                            <div class="field">
+                                <label class="label">
+                                    Preferred Membership Level
+                                </label>
+                                <div class="control">
+                                    <label class="radio">
+                                        <input type="radio" name="membership_level" value="individual"> Individual
+                                    </label>
+                                    <br>
+                                    <label class="radio">
+                                        <input type="radio" name="membership_level" value="supporter"> Supporter
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="newsletter-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:newsletter">
+                            <h4 class="title is-size-5">
+                                Newsletter Preferences
+                            </h4>
+
+                            <div class="field">
+                                <label class="label">
+                                    Which topics are you interested in?
+                                </label>
+                                <div class="control">
+                                    <label class="checkbox"><input type="checkbox" name="newsletter_topics" value="events"> Events</label><br>
+                                    <label class="checkbox"><input type="checkbox" name="newsletter_topics" value="advocacy"> Advocacy News</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% include join-form-buttons.html prev_step_id="step-involvement" next_step_id="step-confirm" %}
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div id="step-confirm" class="form-step">
+                        <div class="content mb-4 has-text-centered">
+                            <h3 class="title is-size-4">
+                                Step 5: Confirmation
+                            </h3>
+                            <p>
+                                We're excited to have you on board.
+                            </p>
+                        </div>
+
+                        <label class="checkbox">
+                            <input type="checkbox" required>
+                            I agree to the <a href="/terms" target="_blank">Terms and Conditions</a>.
+                        </label>
+
+                        {% include join-form-buttons.html prev_step_id="step-preferences" next_step_id="" %}
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
+
+<script src="/assets/js/sections/join.js"></script>
