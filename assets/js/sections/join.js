@@ -21,15 +21,15 @@ document.addEventListener("DOMContentLoaded", function()
         {
             if (index < stepIndex)
             {
-                step.classList.remove('is-active');
-                step.classList.add('is-completed');
+                step.classList.remove("is-active");
+                step.classList.add("is-completed");
             } else if (index === stepIndex)
             {
-                step.classList.add('is-active');
-                step.classList.remove('is-completed');
+                step.classList.add("is-active");
+                step.classList.remove("is-completed");
             } else
             {
-                step.classList.remove('is-active', 'is-completed');
+                step.classList.remove("is-active", "is-completed");
             }
         });
 
@@ -40,54 +40,118 @@ document.addEventListener("DOMContentLoaded", function()
         }
     }
 
-    function updateDynamicContentDisplay()
+    function updateDynamicContent()
     {
-        /*dynamicContentSections.forEach(section => {
-            const controlledBy = section.getAttribute("data-controlled-by");
-            if (!controlledBy) return;
-            
-            const [name, value] = controlledBy.split(":");
-            if (!name || !value) return;
-            
-            const controllingInput = form.querySelector(
-                `input[name="${name}"][value="${value}"][type="checkbox"]`
-            );
-            
-            section.classList.toggle("is-hidden", !(controllingInput && controllingInput.checked));
-        });*/
-
-        let anySectionVisible = false;
-
-        dynamicContentSections.forEach(section => {
+        dynamicContentSections.forEach(function(section)
+        {
             const controlledBy = section.getAttribute("data-controlled-by");
             if (controlledBy)
             {
-                const parts = controlledBy.split(":");
-                if (parts.length === 2)
+                const [name, value] = controlledBy.split(":");
+                if (name && value)
                 {
-                    const name = parts[0];
-                    const value = parts[1];
-
                     const controllingInput = form.querySelector(`input[name="${name}"][value="${value}"][type="checkbox"]`);
-                    if (controllingInput && controllingInput.checked)
-                    {
-                        section.classList.remove("is-hidden");
-                        anySectionVisible = true;
-                    } else
-                    {
-                        section.classList.add("is-hidden");
-                    }
+                    section.classList.toggle("is-hidden", !(controllingInput && controllingInput.checked));
                 }
             }
         });
     }
 
+    function isElementInStep(element, stepId)
+    {
+        const parentStep = element.closest(".form-step");
+        return parentStep && parentStep.id === stepId;
+    }
+
+    function validateStep(stepId)
+    {
+        const currentStep = document.getElementById(stepId);
+
+        let isValid = true;
+
+        const requiredFields = currentStep.querySelectorAll("[required]");
+        requiredFields.forEach(function(field)
+        {
+            const dynamicSection = field.closest(".dynamic-content-section");
+            if (!dynamicSection || !dynamicSection.classList.contains("is-hidden"))
+            {
+                if (!field.checkValidity())
+                {
+                    isValid = false;
+                }
+            }
+        });
+
+        const stepControllingCheckboxes = currentStep.querySelectorAll(".controls-dynamic-content");
+        if (stepControllingCheckboxes.length > 0)
+        {
+            console.log("Testa");
+            isValid = isValid && Array.from(stepControllingCheckboxes).some(checkbox => checkbox.checked);
+        }
+
+        const nextButton = currentStep.querySelector(".next-step-button");
+        if (nextButton)
+        {
+            nextButton.disabled = !isValid;
+        }
+
+        return isValid;
+    }
+
     function makeStepVisible(step, stepId)
     {
-        updateButtonStates(stepId);
-        attachValidationListeners(step);
-        updateDynamicContentDisplay();
-        checkCurrentStepValidity();
+        const requiredFields = step.querySelectorAll("[required]");
+        requiredFields.forEach(function(field)
+        {
+            field.removeEventListener("input", field._validateListener);
+            field.removeEventListener("change", field._validateListener);
+
+            const listener = () => validateStep(stepId);
+            field._validateListener = listener;
+
+            field.addEventListener("input", listener);
+            field.addEventListener("change", listener);
+        });
+
+        validateStep(stepId);
+        updateDynamicContent();
+
+        const stepIndex = formSteps.findIndex(step => step.id === stepId);
+        const isFirst = stepIndex === 0;
+        const isLast = stepIndex === formSteps.length - 1;
+
+        // Update the Previous buttons.
+        previousButtons.forEach(function(button)
+        {
+            if (isElementInStep(button, stepId))
+            {
+                button.disabled = isFirst;
+            }
+        });
+
+        // Update the Next buttons.
+        nextButtons.forEach(function(button)
+        {
+            if (isElementInStep(button, stepId))
+            {
+                if (isLast)
+                {
+                    button.type = "submit";
+                    button.innerHTML = `
+                        <span>Submit</span>
+                        <span class="icon"><i class="fa-solid fa-paper-plane"></i></span>
+                    `;
+                } else
+                {
+                    button.type = "button";
+                    button.innerHTML = `
+                        <span>Next</span>
+                        <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
+                    `;
+                }
+            }
+        });
+
         step.classList.add("is-active"); // This has to be put before the reflow line, else the fade effect will break.
         void window.getComputedStyle(step).opacity; // Force a reflow.
         step.classList.add("fade-in");
@@ -108,8 +172,7 @@ document.addEventListener("DOMContentLoaded", function()
             setTimeout(function()
             {
                 // Update the previous form step.
-                currentStep.classList.remove("is-active");
-                currentStep.classList.remove("fade-out");
+                currentStep.classList.remove("is-active", "fade-out");
 
                 // Update the next form step.
                 makeStepVisible(targetStep, targetStepId);
@@ -123,123 +186,23 @@ document.addEventListener("DOMContentLoaded", function()
         }
     }
 
-    function isParentStepSameAsCurrentStep(element, stepId)
+    previousButtons.forEach(function(button)
     {
-        const parentStep = element.closest(".form-step");
-        if (parentStep && parentStep.id === stepId)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    function updateButtonStates(stepId)
-    {
-        const stepIndex = formSteps.findIndex(step => step.id === stepId);
-        const isFirst = stepIndex === 0;
-        const isLast = stepIndex === formSteps.length - 1;
-
-        // Update Previous buttons
-        previousButtons.forEach(button => {
-            if (isParentStepSameAsCurrentStep(button, stepId))
-            {
-                button.disabled = isFirst;
-                button.style.visibility = isFirst ? "hidden" : "visible";
-            }
-        });
-
-        // Update Next buttons
-        nextButtons.forEach(button => {
-            if (isParentStepSameAsCurrentStep(button, stepId))
-            {
-                if (isLast)
-                {
-                    button.type = "submit";
-                    button.innerHTML = `
-                        <span>Submit</span>
-                        <span class="icon"><i class="fa-solid fa-paper-plane"></i></span>
-                    `;
-                } else
-                {
-                    button.type = "button";
-                    button.innerHTML = `
-                        <span>Next</span>
-                        <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
-                    `;
-                }
-            }
-        });
-    }
-
-    function checkCurrentStepValidity()
-    {
-        const currentStep = document.getElementById(currentStepId);
-
-        let allValid = true;
-
-        const requiredFields = currentStep.querySelectorAll("[required]");
-        requiredFields.forEach(field => {
-            const parentDynamicSection = field.closest(".dynamic-content-section");
-            if (!parentDynamicSection || !parentDynamicSection.classList.contains("is-hidden"))
-            {
-                if (!field.checkValidity())
-                {
-                    allValid = false;
-                }
-            }
-        });
-
-        const stepControllingCheckboxes = currentStep.querySelectorAll(".controls-dynamic-content");
-        if (stepControllingCheckboxes.length > 0)
-        {
-            let foundTickedCheckbox = false;
-            for (const checkbox of stepControllingCheckboxes)
-            {
-                if (checkbox.checked)
-                {
-                    foundTickedCheckbox = true;
-                    break;
-                }
-            }
-
-            allValid = allValid && foundTickedCheckbox;
-        }
-
-        const nextButton = currentStep.querySelector(".next-step");
-        if (nextButton)
-        {
-            nextButton.disabled = !allValid;
-        }
-
-        return allValid;
-    }
-
-    function attachValidationListeners(stepElement)
-    {
-        const requiredFields = stepElement.querySelectorAll("[required]");
-        requiredFields.forEach(field => {
-            field.removeEventListener("input", checkCurrentStepValidity);
-            field.removeEventListener("change", checkCurrentStepValidity);
-            field.addEventListener("input", checkCurrentStepValidity);
-            field.addEventListener("change", checkCurrentStepValidity);
-        });
-    }
-
-    previousButtons.forEach(button => {
         button.addEventListener("click", function()
         {
             const targetStepId = button.getAttribute("data-step-id");
-            if (targetStepId !== "" && !isTransitioning)
+            if (targetStepId)
             {
                 showStep(targetStepId);
             }
         });
     });
 
-    nextButtons.forEach(button => {
+    nextButtons.forEach(function(button)
+    {
         button.addEventListener("click", function(event)
         {
-            if (checkCurrentStepValidity() && !isTransitioning)
+            if (validateStep(currentStepId) && !isTransitioning)
             {
                 const targetStepId = button.getAttribute("data-step-id");
                 if (button.type === "submit")
@@ -260,11 +223,12 @@ document.addEventListener("DOMContentLoaded", function()
         });
     });
 
-    controllingCheckboxes.forEach(checkbox => {
+    controllingCheckboxes.forEach(function(checkbox)
+    {
         checkbox.addEventListener("change", function()
         {
-            checkCurrentStepValidity();
-            updateDynamicContentDisplay();
+            validateStep(currentStepId);
+            updateDynamicContent();
         });
     });
 
