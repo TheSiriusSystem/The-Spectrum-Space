@@ -1,4 +1,4 @@
-<section id="home" class="hero is-fullheight">
+<section id="home" class="hero is-fullheight" role="banner">
     <div class="hero-background-overlay"></div>
 
     <div class="hero-body">
@@ -31,7 +31,7 @@
                 {% for icon in site.data.home-icons limit:4 %}
                     <div class="column is-2-desktop is-3-tablet is-6-mobile">
                         <div class="icon-wrapper">
-                            <i class="{{ icon.icon }} fa-2x"></i>
+                            <i class="{{ icon.icon }} fa-2x" aria-hidden="true"></i>
                             <p class="mt-2 is-size-7">
                                 {{ icon.name }}
                             </p>

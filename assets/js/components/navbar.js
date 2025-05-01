@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function()
         // Animated elements are not affected by this.
         const css = document.createElement("style");
         css.appendChild(document.createTextNode(
-            `*:not(.fade-in):not(.flip-in)
+            `*:not(.fade-in):not(.fade-out):not(.flip-in)
             {
                 transition: none !important;
             }`

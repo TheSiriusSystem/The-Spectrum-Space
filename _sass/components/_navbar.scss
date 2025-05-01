@@ -6,7 +6,6 @@ $opacity-navbar-background-gradient: 0.5;
 { 
     border-bottom: 2px solid rgba(255, 255, 255, 0.25);
     background: linear-gradient(to right, rgba(228, 3, 3, $opacity-navbar-background-gradient), rgba(255, 140, 0, $opacity-navbar-background-gradient), rgba(255, 237, 0, $opacity-navbar-background-gradient), rgba(0, 128, 38, $opacity-navbar-background-gradient), rgba(0, 77, 255, $opacity-navbar-background-gradient), rgba(117, 7, 135, $opacity-navbar-background-gradient));
-    //background: linear-gradient(to right, rgba(255, 0, 128, $opacity-navbar-background-gradient), rgba(121, 40, 202, $opacity-navbar-background-gradient));
     backdrop-filter: blur(16px);
     box-shadow: vars.$shadow-light;
 

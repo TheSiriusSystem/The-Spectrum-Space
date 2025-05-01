@@ -1,0 +1,24 @@
+- name: Bluesky
+  icon: fa-brands fa-bluesky
+  icon-color: "#0085ff"
+  link: #
+
+- name: Instagram
+  icon: fa-brands fa-instagram
+  icon-color: "#e4405f"
+  link: #
+
+- name: YouTube
+  icon: fa-brands fa-youtube
+  icon-color: "#ff0000"
+  link: #
+
+- name: Discord
+  icon: fa-brands fa-discord
+  icon-color: "#5865f2"
+  link: #
+
+- name: Facebook
+  icon: fa-brands fa-facebook-f
+  icon-color: "#1877f2"
+  link: #

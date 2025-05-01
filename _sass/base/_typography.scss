@@ -5,16 +5,15 @@ body
     font-family: "Open Sans", sans-serif;
     color: vars.$font-color-licorice;
 
-    h1, h2, h3, h4, h5, h6
+    h1, h2, h3, h4, h5, h6, legend
     {
         font-family: "Montserrat", sans-serif;
     }
 
-    strong
+    strong, label
     {
         color: vars.$font-color-black;
     }
-
 
     input, textarea, select, optgroup
     {
@@ -37,7 +36,7 @@ html.dark body
 {
     color: vars.$font-color-off-white;
 
-    strong
+    strong, label
     {
         color: vars.$font-color-white;
     }

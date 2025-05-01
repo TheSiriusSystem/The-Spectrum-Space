@@ -1,0 +1,198 @@
+@use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
+
+$opacity-footer-background-gradient: 0.2;
+
+.footer
+{
+    border-top: 2px solid #e91e63;
+    background: linear-gradient(195deg, rgba(214, 41, 0, $opacity-footer-background-gradient), rgba(255, 155, 85, $opacity-footer-background-gradient), rgba(255, 255, 255, $opacity-footer-background-gradient), rgba(212, 98, 166, $opacity-footer-background-gradient), rgba(164, 0, 97, $opacity-footer-background-gradient));
+    background-color: #e0f8ff;
+
+    .footer-brand
+    {
+        .subtitle
+        {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    }
+
+    .footer-connect .buttons a
+    {
+        padding: 1.75rem;
+        border-radius: vars.$border-radius-rounded;
+        // color is set in socials.yml entries.
+        background-color: #fff;
+        transition: color vars.$animation-time ease, background-color vars.$animation-time ease;
+
+        &:hover
+        {
+            background-color: #eee;
+        }
+    }
+
+    .footer-nav .buttons
+    {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        a
+        {
+            text-decoration: none;
+            color: vars.$font-color-licorice;
+            transition: color vars.$animation-time ease;
+
+            &:hover
+            {
+                text-decoration: underline;
+                color: #e91e63;
+            }
+        }
+
+        .nav-divider
+        {
+            color: vars.$font-color-grey;
+            display: inline-flex;
+            align-items: center;
+        }
+    }
+
+    .columns
+    {
+        .button:not(.is-outlined)
+        {
+            @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
+        }
+
+        .button.is-outlined
+        {
+            @include mixins.outlined-button(vars.$font-color-black, #000, rgba(0, 0, 0, 0.2));
+        }
+    }
+
+    .footer-legal a
+    {
+        text-decoration: none;
+        color: #0077cc;
+        transition: color vars.$animation-time ease;
+
+        &:hover
+        {
+            text-decoration: underline;
+            color: #0055a5;
+        }
+    }
+
+    @media screen and (max-width: vars.$breakpoint-mobile)
+    {
+        .footer-nav
+        {
+            .nav-divider
+            {
+                display: none !important;
+            }
+        }
+    }
+}
+
+html
+{
+    &.light .footer
+    {
+        border-color: #b0b0b0;
+        background: #fff;
+
+        .footer-connect .buttons a
+        {
+            color: vars.$font-color-black !important;
+            background-color: #f5f5f5;
+
+            &:hover
+            {
+                background-color: #e0e0e0;
+            }
+        }
+
+        .footer-nav .buttons a
+        {
+            &:hover
+            {
+                color: #0077cc;
+            }
+        }
+
+        .columns
+        {
+            .button:not(.is-outlined)
+            {
+                @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
+            }
+
+            .button.is-outlined
+            {
+                @include mixins.outlined-button(vars.$font-color-black, #000, rgba(0, 0, 0, 0.2));
+            }
+        }
+
+        .footer-legal a
+        {
+            color: vars.$font-color-grey;
+
+            &:hover
+            {
+                color: vars.$font-color-charcoal;
+            }
+        }
+    }
+
+    &.dark .footer
+    {
+        border-color: #5a5a5a;
+        background: #1a1a1a;
+
+        .footer-connect .buttons a
+        {
+            color: vars.$font-color-white !important;
+            background-color: #353935;
+
+            &:hover
+            {
+                background-color: #4a4a4a;
+            }
+        }
+
+        .footer-nav .buttons a
+        {
+            color: vars.$font-color-off-white;
+
+            &:hover
+            {
+                color: #00b4d8;
+            }
+        }
+
+        .columns
+        {
+            .button:not(.is-outlined)
+            {
+                @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
+            }
+
+            .button.is-outlined
+            {
+                @include mixins.outlined-button(vars.$font-color-white, #fff, rgba(255, 255, 255, 0.2));
+            }
+        }
+
+        .footer-legal a
+        {
+            color: vars.$font-color-light-grey;
+
+            &:hover
+            {
+                color: vars.$font-color-platinum;
+            }
+        }
+    }
+}

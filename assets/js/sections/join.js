@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", function()
     const dynamicContentSections = document.querySelectorAll("#join .dynamic-content-section");
     const progressSteps = document.querySelectorAll("#join .progress-step");
     const progressLine = document.querySelector("#join .progress-line");
-    const transitionDelay = 500;
+    const transitionDelay = 1000;
+    const toastDuration = 3000;
 
+    let isContentLoaded = false;
     let currentStepId = formSteps[0].id;
     let isTransitioning = false;
 
@@ -51,7 +53,76 @@ document.addEventListener("DOMContentLoaded", function()
                 if (name && value)
                 {
                     const controllingInput = form.querySelector(`input[name="${name}"][value="${value}"][type="checkbox"]`);
-                    section.classList.toggle("is-hidden", !(controllingInput && controllingInput.checked));
+                    const isVisible = controllingInput && controllingInput.checked;
+                    const wasVisible = !section.classList.contains("is-hidden");
+
+                    section.classList.toggle("is-hidden", !isVisible);
+
+                    const requiredFields = section.querySelectorAll("[required], [data-require-one='true'], [data-was-required='true']");
+                    requiredFields.forEach(function(field)
+                    {
+                        if (!isVisible)
+                        {
+                            if (field.hasAttribute("required"))
+                            {
+                                field.setAttribute("data-was-required", "true");
+                                field.removeAttribute("required");
+                            }
+                        } else
+                        {
+                            if (field.getAttribute("data-was-required") === "true")
+                            {
+                                field.setAttribute("required", "");
+                            }
+                        }
+                    });
+
+                    if (wasVisible && !isVisible)
+                    {
+                        section.querySelectorAll("input[type='text'], input[type='number'], input[type='email'], input[type='tel'], textarea").forEach(function(field)
+                        {
+                            field.value = "";
+                        });
+
+                        section.querySelectorAll("select").forEach(function(select)
+                        {
+                            select.selectedIndex = 0;
+                        });
+
+                        section.querySelectorAll("input[type='checkbox']").forEach(function(checkbox)
+                        {
+                            if (!checkbox.classList.contains("controls-dynamic-content"))
+                            {
+                                checkbox.checked = false;
+                            }
+                        });
+
+                        const radioGroups = new Set();
+                        section.querySelectorAll("input[type='radio']").forEach(function(radio)
+                        {
+                            radioGroups.add(radio.name);
+                        });
+                        radioGroups.forEach(function(groupName)
+                        {
+                            const radios = section.querySelectorAll(`input[name="${groupName}"]`);
+                            radios.forEach(function(radio)
+                            {
+                                radio.checked = false;
+                            });
+                        });
+
+                        // Only show toasts after the content has fully loaded.
+                        if (isContentLoaded)
+                        {
+                            Toastify({
+                                text: `Input fields for ${value.charAt(0).toUpperCase()}${value.slice(1)} have been cleared!`,
+                                duration: toastDuration,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                            }).showToast();
+                        }
+                    }
                 }
             }
         });
@@ -65,15 +136,16 @@ document.addEventListener("DOMContentLoaded", function()
 
     function validateStep(stepId)
     {
-        const currentStep = document.getElementById(stepId);
+        const step = document.getElementById(stepId);
 
         let isValid = true;
 
-        const requiredFields = currentStep.querySelectorAll("[required]");
+        // Validate standard required fields.
+        const requiredFields = step.querySelectorAll("[required]");
         requiredFields.forEach(function(field)
         {
-            const dynamicSection = field.closest(".dynamic-content-section");
-            if (!dynamicSection || !dynamicSection.classList.contains("is-hidden"))
+            const parentDynamicSection = field.closest(".dynamic-content-section");
+            if (!parentDynamicSection || !parentDynamicSection.classList.contains("is-hidden"))
             {
                 if (!field.checkValidity())
                 {
@@ -82,14 +154,28 @@ document.addEventListener("DOMContentLoaded", function()
             }
         });
 
-        const stepControllingCheckboxes = currentStep.querySelectorAll(".controls-dynamic-content");
+        // Validate required checkbox groups.
+        const requiredCheckboxGroups = step.querySelectorAll("[data-require-one='true']");
+        requiredCheckboxGroups.forEach(function(group) {
+            const parentDynamicSection = group.closest(".dynamic-content-section");
+            if (!parentDynamicSection || !parentDynamicSection.classList.contains("is-hidden"))
+            {
+                const checkboxes = group.querySelectorAll("input[type='checkbox']");
+                if (!Array.from(checkboxes).some(checkbox => checkbox.checked))
+                {
+                    isValid = false;
+                }
+            }
+        });
+
+        // Check that at least one option is selected for controlling checkboxes.
+        const stepControllingCheckboxes = step.querySelectorAll(".controls-dynamic-content");
         if (stepControllingCheckboxes.length > 0)
         {
-            console.log("Testa");
             isValid = isValid && Array.from(stepControllingCheckboxes).some(checkbox => checkbox.checked);
         }
 
-        const nextButton = currentStep.querySelector(".next-step-button");
+        const nextButton = step.querySelector(".next-step-button");
         if (nextButton)
         {
             nextButton.disabled = !isValid;
@@ -100,8 +186,8 @@ document.addEventListener("DOMContentLoaded", function()
 
     function makeStepVisible(step, stepId)
     {
-        const requiredFields = step.querySelectorAll("[required]");
-        requiredFields.forEach(function(field)
+        const allFields = step.querySelectorAll("input, textarea, select");
+        allFields.forEach(function(field)
         {
             field.removeEventListener("input", field._validateListener);
             field.removeEventListener("change", field._validateListener);
@@ -113,8 +199,8 @@ document.addEventListener("DOMContentLoaded", function()
             field.addEventListener("change", listener);
         });
 
-        validateStep(stepId);
         updateDynamicContent();
+        validateStep(stepId);
 
         const stepIndex = formSteps.findIndex(step => step.id === stepId);
         const isFirst = stepIndex === 0;
@@ -207,7 +293,38 @@ document.addEventListener("DOMContentLoaded", function()
                 const targetStepId = button.getAttribute("data-step-id");
                 if (button.type === "submit")
                 {
-                    form.submit();
+                    const allDynamicSections = form.querySelectorAll(".dynamic-content-section");
+                    allDynamicSections.forEach(function(section)
+                    {
+                        if (section.classList.contains("is-hidden"))
+                        {
+                            // Remove required attributes from hidden fields.
+                            const fieldsWithRequiredData = section.querySelectorAll("[data-was-required]");
+                            fieldsWithRequiredData.forEach(function(field)
+                            {
+                                field.removeAttribute("required");
+                            });
+
+                            // Disable all form fields in hidden sections so they don't get submitted.
+                            // This prevents empty or partial data from hidden sections being submitted.
+                            section.querySelectorAll("input, textarea, select").forEach(function(field)
+                            {
+                                field.disabled = true;
+                            });
+                        } else
+                        {
+                            const fieldsWithRequiredData = section.querySelectorAll("[data-was-required]");
+                            fieldsWithRequiredData.forEach(function(field)
+                            {
+                                field.setAttribute("required", "");
+                            });
+                        }
+                    });
+
+                    // TODO: Replace this with form actions.
+                    event.preventDefault();
+                    alert("Thank you for your submission!");
+                    window.location.href = "/";
                 } else if (targetStepId)
                 {
                     event.preventDefault();
@@ -227,8 +344,8 @@ document.addEventListener("DOMContentLoaded", function()
     {
         checkbox.addEventListener("change", function()
         {
-            validateStep(currentStepId);
             updateDynamicContent();
+            validateStep(currentStepId);
         });
     });
 
@@ -238,4 +355,5 @@ document.addEventListener("DOMContentLoaded", function()
     {
         isTransitioning = false;
     }, transitionDelay);
+    isContentLoaded = true;
 });

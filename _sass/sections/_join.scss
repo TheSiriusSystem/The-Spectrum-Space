@@ -1,7 +1,12 @@
 @use "abstracts/variables" as vars;
 @use "abstracts/mixins" as mixins;
 
-@mixin a-mixin($width, $background-color, $z-index)
+$margin-checkbox: 0.5rem;
+$color-neutral-default: #e0e0e0;
+$color-neutral-dark: #666;
+$color-progress: #00a36c;
+
+@mixin progress-line-style($width, $background-color, $z-index)
 {
     position: absolute;
     transform: translateY(-50%);
@@ -18,134 +23,326 @@
     padding: 6.0rem 0;
     background-color: #c1f0d9;
 
-    .progress-bar
+    #join-form
     {
-        position: relative;
-        margin-bottom: 2.0rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        border-top: 4px solid $color-progress;
+        border-radius: 20px;
+        box-shadow: vars.$shadow-heavy;
 
-        // Create the line connecting the dots.
-        &::before
-        {
-            content: "";
-            @include a-mixin(100%, #e0e0e0, 1);
-        }
-
-        .progress-line
-        {
-            @include a-mixin(0%, #48c78e, 2);
-            transition: width 0.4s ease;
-        }
-
-        .progress-step
+        .progress-bar
         {
             position: relative;
-            z-index: 3;
-            @include mixins.flex-column();
+            margin-bottom: 2.0rem;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
 
-            .step-dot
+            // Create the line connecting the dots.
+            &::before
             {
-                width: 30px;
-                height: 30px;
-                margin-bottom: 0.5rem;
-                border: 2px solid #e0e0e0;
-                border-radius: 50%;
-                background-color: #fff;
-                transition: all 0.3s ease;
-                display: flex;
+                content: "";
+                @include progress-line-style(100%, $color-neutral-default, 1);
+            }
+
+            .progress-line
+            {
+                @include progress-line-style(0%, $color-progress, 2);
+                transition: width 0.4s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            }
+
+            .progress-step
+            {
+                position: relative;
+                z-index: 3;
+                @include mixins.flex-column();
                 align-items: center;
-                justify-content: center;
 
-                .step-number
-                {
-                    font-size: 14px;
-                    font-weight: vars.$font-weight-bold;
-                    color: vars.$font-color-grey;
-                    transition: color 0.3s ease;
-                }
-
-                .step-check
-                {
-                    color: vars.$font-color-white;
-                    font-size: 14px;
-                    display: none;
-                }
-            }
-
-            &.is-active
-            {
                 .step-dot
                 {
-                    border-color: #48c78e;
+                    width: 30px;
+                    height: 30px;
+                    margin-bottom: 0.5rem;
+                    border: 2px solid $color-neutral-default;
+                    border-radius: vars.$border-radius-rounded;
+                    background-color: #fff;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
                     .step-number
                     {
-                        color: #48c78e;
-                    }
-                }
-            }
-
-            &.is-completed
-            {
-                .step-dot
-                {
-                    background-color: #48c78e;
-                    border-color: #48c78e;
-
-                    .step-number
-                    {
-                        display: none;
+                        font-size: 14px;
+                        font-weight: vars.$font-weight-bold;
+                        color: vars.$font-color-grey;
+                        transition: color 0.3s ease;
                     }
 
                     .step-check
                     {
-                        display: block;
+                        color: vars.$font-color-white;
+                        font-size: 14px;
+                        display: none;
+                    }
+                }
+
+                &.is-active
+                {
+                    .step-dot
+                    {
+                        transform: scale(1.1);
+                        border-color: $color-progress !important;
+
+                        .step-number
+                        {
+                            font-weight: vars.$font-weight-extra-black;
+                            color: $color-progress !important;
+                        }
+                    }
+                }
+
+                &.is-completed
+                {
+                    .step-dot
+                    {
+                        background-color: $color-progress !important;
+                        border-color: $color-progress !important;
+
+                        .step-number
+                        {
+                            display: none;
+                        }
+
+                        .step-check
+                        {
+                            display: block;
+                        }
                     }
                 }
             }
         }
-    }
-    
 
-    .form-step
-    {
-        opacity: 0.0;
-        transition: opacity 0.5s ease;
-        pointer-events: none;
-        display: none;
-
-        &.is-active
-        {
-            display: inline;
-        }
-
-        &.fade-in
-        {
-            opacity: 1.0;
-            pointer-events: auto;
-        }
-
-        &.fade-out
+        .form-step
         {
             opacity: 0.0;
+            transition: opacity 1.0s ease;
             pointer-events: none;
+            display: none;
+
+            &.is-active
+            {
+                display: block;
+            }
+
+            &.fade-in
+            {
+                opacity: 1.0;
+                pointer-events: auto;
+            }
+
+            &.fade-out
+            {
+                opacity: 0.0;
+                pointer-events: none;
+            }
+
+            fieldset
+            {
+                margin-bottom: 1.5rem;
+
+                legend
+                {
+                    width: 100%;
+                    padding: 0.5rem;
+                    border-radius: 4px;
+                    text-align: center;
+                    background-color: $color-neutral-default;
+                }
+            }
+
+            // We set field font colors here because _typography.scss doesn't seem to use that
+            // property well sometimes.
+            ::placeholder
+            {
+                color: vars.$font-color-grey;
+            }
+
+            input, textarea, select
+            {
+                border: 1px solid #a9a9a9;
+                border-radius: 6px;
+                color: vars.$font-color-licorice;
+                transition: border-color vars.$animation-time ease, box-shadow vars.$animation-time ease;
+
+                ~ .icon i
+                {
+                    color: vars.$font-color-grey;
+                    transition: color vars.$animation-time ease;
+                }
+
+                &:hover ~ .icon i
+                {
+                    color: vars.$font-color-charcoal;
+                }
+
+                &:focus
+                {
+                    border-color: $color-progress;
+                    box-shadow: 0 0 4px rgba($color-progress, 0.25);
+
+                    ~ .icon i
+                    {
+                        color: vars.$font-color-black;
+                    }
+                }
+            }
+
+            .checkbox
+            {
+                margin-bottom: $margin-checkbox;
+                cursor: pointer;
+                display: block;
+
+                input[type="checkbox"]
+                {
+                    margin-right: $margin-checkbox;
+
+                    &:checked
+                    {
+                        accent-color: $color-progress;
+                    }
+                }
+            }
+
+            .field.is-grouped .control
+            {
+                .button
+                {
+                    width: 160px;
+                }
+
+                .previous-step-button
+                {
+                    @include mixins.outlined-button(vars.$font-color-grey, #a9a9a9, rgba(169, 169, 169, 0.2));
+                }
+
+                .next-step-button
+                {
+                    @include mixins.button(vars.$font-color-white, $color-progress, #008f5f);
+                }
+            }
         }
     }
 }
 
-// TODO: Work on themes after the section is completed.
 html
 {
     &.light #join
     {
+        background-color: #f0f0f0;
 
+        #join-form
+        {
+            background-color: #faf9f6;
+
+            .field.is-grouped .control
+            {
+                .previous-step-button
+                {
+                    @include mixins.outlined-button(vars.$font-color-charcoal, #4a4a4a, rgba(74, 74, 74, 0.2));
+                }
+
+                .next-step-button
+                {
+                    @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
+                }
+            }
+        }
     }
 
     &.dark #join
     {
+        background-color: #3e3e3e;
 
+        #join-form
+        {
+            color: vars.$font-color-off-white;
+            background-color: #353e43;
+
+            .progress-bar
+            {
+                // Modify the line connecting the dots.
+                &::before
+                {
+                    background-color: $color-neutral-dark;
+                }
+
+                .progress-step
+                {
+                    .step-dot
+                    {
+                        border-color: $color-neutral-dark;
+                        background-color: #555;
+
+                        .step-number
+                        {
+                            color: vars.$font-color-light-grey;
+                        }
+                    }
+                }
+            }
+
+            fieldset legend
+            {
+                background-color: #414a4c;
+            }
+
+            // We set field font colors here because _typography.scss doesn't seem to use that
+            // property well sometimes.
+            ::placeholder
+            {
+                color: vars.$font-color-light-grey;
+            }
+
+            input, textarea, select
+            {
+                border-color: #696969;
+                color: vars.$font-color-off-white;
+                background-color: #4a4a4a;
+
+                ~ .icon i
+                {
+                    color: vars.$font-color-light-grey;
+                }
+
+                &:hover ~ .icon i
+                {
+                    color: vars.$font-color-platinum;
+                }
+
+                &:focus
+                {
+                    box-shadow: 0 0 4px rgba($color-progress, 0.5);
+
+                    ~ .icon i
+                    {
+                        color: vars.$font-color-white;
+                    }
+                }
+            }
+
+            .field.is-grouped .control
+            {
+                .previous-step-button
+                {
+                    @include mixins.outlined-button(vars.$font-color-platinum, #dcdcdc, rgba(220, 220, 220, 0.2));
+                }
+
+                .next-step-button
+                {
+                    @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
+                }
+            }
+        }
     }
 }

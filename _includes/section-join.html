@@ -15,113 +15,79 @@
             <div class="column is-6-desktop is-9-tablet is-12-mobile">
                 <form id="join-form" class="box">
                     <!-- Progress Bar -->
-                    <div id="form-progress" class="progress-bar mb-4">
+                    <div class="progress-bar mb-4">
                         <div class="progress-line"></div>
 
-                        <!-- Step 1 -->
-                        <div class="progress-step">
-                            <div class="step-dot">
-                                <span class="step-number">1</span>
-                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
-                            </div>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div class="progress-step">
-                            <div class="step-dot">
-                                <span class="step-number">2</span>
-                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="progress-step">
-                            <div class="step-dot">
-                                <span class="step-number">3</span>
-                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
-                            </div>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="progress-step">
-                            <div class="step-dot">
-                                <span class="step-number">4</span>
-                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
-                            </div>
-                        </div>
-
-                        <!-- Step 5 -->
-                        <div class="progress-step">
-                            <div class="step-dot">
-                                <span class="step-number">5</span>
-                                <span class="step-check"><i class="fa-solid fa-check"></i></span>
-                            </div>
-                        </div>
+                        {% include join-form-progress-dot.html number="1" %}
+                        {% include join-form-progress-dot.html number="2" %}
+                        {% include join-form-progress-dot.html number="3" %}
+                        {% include join-form-progress-dot.html number="4" %}
+                        {% include join-form-progress-dot.html number="5" %}
                     </div>
 
                     <!-- Step 1 -->
                     <div id="step-information" class="form-step">
-                        <div class="content mb-4 has-text-centered">
-                            <h3 class="title mb-2 is-size-4">
-                                Step 1: Personal Information
-                            </h3>
-                            <p class="is-size-5">
-                                Let's Start With The Basics
-                            </p>
-                        </div>
+                        {% include join-form-step-header.html heading="Step 1: Personal Information" subheading="Let's Start With The Basics" %}
 
-                        <div class="field">
-                            <label class="label">
-                                Full Name
-                            </label>
-                            <div class="control">
-                                <input id="name" name="name" type="text" class="input" required placeholder="John Doe">
-                            </div>
-                        </div>
+                        <fieldset>
+                            <legend class="title is-size-5">
+                                Can you provide us some basic information?
+                            </legend>
 
-                        <div class="field">
-                            <label class="label">
-                                Email Address
-                            </label>
-                            <div class="control">
-                                <input id="email" name="email" type="email" class="input" required placeholder="johndoe@provider.com">
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label class="label">
-                                Phone Number <strong>(Optional)</strong>
-                            </label>
-                            <div class="control">
-                                <input id="phone" name="phone" type="tel" class="input" placeholder="+1 555-123-4567">
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label class="label">
-                                Gender <strong>(Optional)</strong>
-                            </label>
-                            <div class="control">
-                                <div class="select">
-                                    <select id="gender-select" name="gender">
-                                        <option value="mystery" disabled hidden selected>Select an option...</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="nonbinary">Nonbinary</option>
-                                        <option value="mystery">Prefer not to disclose</option>
-                                    </select>
+                            <div class="field">
+                                {% include join-form-label.html id="name" text="Full Name" required=true %}
+                                <div class="control has-icons-left">
+                                    <input id="name" name="name" type="text" placeholder="John Doe" required class="input">
+                                    {% include join-form-icon.html icon="fa-solid fa-user" %}
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="field">
-                            <label class="label">
-                                Pronouns <strong>(Optional)</strong>
-                            </label>
-                            <div class="control">
-                                <input id="pronouns" name="pronouns" type="text" class="input" placeholder="he/him, she/her, they/them, etc.">
+                            <div class="field">
+                                {% include join-form-label.html id="email" text="Email Address" required=true %}
+                                <div class="control has-icons-left">
+                                    <input id="email" name="email" type="email" placeholder="youremail@provider.com" required class="input">
+                                    {% include join-form-icon.html icon="fa-solid fa-envelope" %}
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="phone" text="Phone Number" required=false %}
+                                <div class="control has-icons-left">
+                                    <input id="phone" name="phone" type="tel" placeholder="+1 555-123-4567" class="input">
+                                    {% include join-form-icon.html icon="fa-solid fa-phone" %}
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="title is-size-5">
+                                How do you express your identity? This is optional.
+                            </legend>
+
+                            <div class="field">
+                                {% include join-form-label.html id="gender-select" text="Gender" required=false %}
+                                <div class="control has-icons-left">
+                                    <div class="select is-fullwidth">
+                                        <select id="gender-select" name="gender">
+                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="nonbinary">Nonbinary</option>
+                                            <option value="mystery">Prefer not to disclose</option>
+                                        </select>
+                                    </div>
+                                    {% include join-form-icon.html icon="fa-solid fa-venus-mars" %}
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="pronouns" text="Pronouns" required=false %}
+                                <div class="control has-icons-left">
+                                    <input id="pronouns" name="pronouns" type="text" placeholder="he/him, she/her, they/them, etc." class="input">
+                                    {% include join-form-icon.html icon="fa-solid fa-comment" %}
+                                </div>
+                            </div>
+                        </fieldset>
 
                         <hr>
 
@@ -134,94 +100,96 @@
 
                     <!-- Step 2 -->
                     <div id="step-background" class="form-step">
-                        <div class="content mb-4 has-text-centered">
-                            <h3 class="title mb-2 is-size-4">
-                                Step 2: Interests & Background
-                            </h3>
-                            <p class="is-size-5">
-                                Tell Us More About Your Connection
-                            </p>
-                        </div>
+                        {% include join-form-step-header.html heading="Step 2: Interests & Background" subheading="Tell Us More About Your Connection" %}
 
-                        <div class="field">
-                            <label class="label">
-                                How do you identify within the LGBTQ+ community? <strong>(Optional)</strong>
-                            </label>
-                            <div class="control">
-                                <div class="select">
-                                    <select id="identity-select" name="identity">
-                                        <option value="mystery" disabled hidden selected>Select an option...</option>
-                                        <optgroup label="Sexual Orientations">
-                                            <option value="lesbian">Lesbian</option>
-                                            <option value="gay">Gay</option>
-                                            <option value="bisexual">Bisexual</option>
-                                            <option value="asexual">Asexual</option>
-                                            <option value="pansexual">Pansexual</option>
-                                            <option value="demisexual">Demisexual</option>
-                                        </optgroup>
-                                        <optgroup label="Gender Identities">
-                                            <option value="transgender">Transgender</option>
-                                            <option value="intersex">Intersex</option>
-                                        </optgroup>
-                                        <optgroup label="Other">
-                                            <option value="queer">Queer</option>
-                                            <option value="questioning">Questioning</option>
-                                            <option value="ally">Ally</option>
+                        <fieldset>
+                            <legend class="title is-size-5">
+                                Let’s talk identity and how long you’ve been around.
+                            </legend>
+
+                            <div class="field">
+                                {% include join-form-label.html id="identity-select" text="How do you identify within the LGBTQ+ community?" required=false %}
+                                <div class="control has-icons-left">
+                                    <div class="select is-fullwidth">
+                                        <select id="identity-select" name="identity">
+                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <optgroup label="Sexual Orientations">
+                                                <option value="lesbian">Lesbian</option>
+                                                <option value="gay">Gay</option>
+                                                <option value="bisexual">Bisexual</option>
+                                                <option value="asexual">Asexual</option>
+                                                <option value="pansexual">Pansexual</option>
+                                                <option value="demisexual">Demisexual</option>
+                                            </optgroup>
+                                            <optgroup label="Gender Identities">
+                                                <option value="transgender">Transgender</option>
+                                                <option value="intersex">Intersex</option>
+                                            </optgroup>
+                                            <optgroup label="Other">
+                                                <option value="queer">Queer</option>
+                                                <option value="questioning">Questioning</option>
+                                                <option value="ally">Ally</option>
+                                                <option value="other">Other</option>
+                                                <option value="mystery">Prefer not to disclose</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    {% include join-form-icon.html icon="fa-solid fa-heart" %}
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="connection-duration-select" text="How long have you been connected to or aware of our organization?" required=false %}
+                                <div class="control has-icons-left">
+                                    <div class="select is-fullwidth">
+                                        <select id="connection-duration-select" name="connection-duration">
+                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <option value="<6m">Less than 6 months</option>
+                                            <option value="6m-1y">6 months to 1 year</option>
+                                            <option value="1y-3y">1 to 3 years</option>
+                                            <option value="3y+">More than 3 years</option>
+                                            <option value="mystery">Prefer not to disclose</option>
+                                        </select>
+                                    </div>
+                                    {% include join-form-icon.html icon="fa-solid fa-clock" %}
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="title is-size-5">
+                                What brings you here and how’d you find us?
+                            </legend>
+
+                            <div class="field">
+                                {% include join-form-label.html id="expectations" text="What are you hoping to find or experience by joining our community?" required=false %}
+                                <div class="control">
+                                    <textarea id="expectations" name="expectations" rows="5" placeholder="Tell us about what you're looking for..." class="textarea"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="referral-source-select" text="How did you hear about us?" required=false %}
+                                <div class="control has-icons-left">
+                                    <div class="select is-fullwidth">
+                                        <select id="referral-source-select" name="referral-source">
+                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <option value="friend-family">Friend or Family</option>
+                                            <option value="social-media">Social Media</option>
+                                            <option value="online-search">Online Search</option>
+                                            <option value="another-org">Another Organization</option>
+                                            <option value="event">Event</option>
+                                            <option value="flyer-print">Flyer or Print Material</option>
+                                            <option value="news-article">News Article</option>
+                                            <option value="website">Our Website (Directly)</option>
                                             <option value="other">Other</option>
                                             <option value="mystery">Prefer not to disclose</option>
-                                        </optgroup>
-                                    </select>
+                                        </select>
+                                    </div>
+                                    {% include join-form-icon.html icon="fa-solid fa-map-signs" %}
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="field">
-                            <label class="label">
-                                How long have you been connected to or aware of our organization? <strong>(Optional)</strong>
-                            </label>
-                            <div class="control">
-                                <div class="select">
-                                    <select id="time-aware-select" name="time-aware">
-                                        <option value="mystery" disabled hidden selected>Select an option...</option>
-                                        <option value="<6m">Less than 6 months</option>
-                                        <option value="6m-1y">6 months to 1 year</option>
-                                        <option value="1y-3y">1 to 3 years</option>
-                                        <option value="3y+">More than 3 years</option>
-                                        <option value="mystery">Prefer not to disclose</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">
-                                What are you hoping to find or experience by joining our community? <strong>(Optional)</strong>
-                            </label>
-                            <div class="control">
-                                <textarea id="expectations" name="expectations" rows="5" class="textarea"></textarea>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">
-                                How did you hear about us? <strong>(Optional)</strong>
-                            </label>
-                            <div class="control">
-                                <div class="select">
-                                    <select id="hearsay-select" name="hearsay">
-                                        <option value="mystery" disabled hidden selected>Select an option...</option>
-                                        <option value="friend-family">Friend or Family</option>
-                                        <option value="social-media">Social Media</option>
-                                        <option value="online-search">Online Search</option>
-                                        <option value="another-org">Another Organization</option>
-                                        <option value="event">Event</option>
-                                        <option value="flyer-print">Flyer or Print Material</option>
-                                        <option value="news-article">News Article</option>
-                                        <option value="website">Our Website (Directly)</option>
-                                        <option value="other">Other</option>
-                                        <option value="mystery">Prefer not to disclose</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        </fieldset>
 
                         <hr>
 
@@ -234,136 +202,149 @@
 
                     <!-- Step 3 -->
                     <div id="step-involvement" class="form-step">
-                        <div class="content mb-4 has-text-centered">
-                            <h3 class="title mb-2 is-size-4">
-                                Step 3: Involvement Options
-                            </h3>
-                            <p class="is-size-5">
-                                How Would You Like To Get Involved?
-                            </p>
-                        </div>
+                        {% include join-form-step-header.html heading="Step 3: Involvement Options" subheading="How Would You Like To Get Involved?" %}
 
-                        <div class="field">
-                            <div class="control">
-                                <label class="checkbox">
-                                    <input id="involvement" name="involvement" type="checkbox" value="volunteer" class="controls-dynamic-content">
-                                    <span class="checkbox-custom">
-                                        <span class="icon"><i class="fa-solid fa-hands-helping"></i></span>
-                                        <span>Volunteer</span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="control">
-                                <label class="checkbox">
-                                    <input id="involvement" name="involvement" type="checkbox" value="donate" class="controls-dynamic-content">
-                                    <span class="checkbox-custom">
-                                        <span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
-                                        <span>Donate</span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="control">
-                                <label class="checkbox">
-                                    <input id="involvement" name="involvement" type="checkbox" value="membership" class="controls-dynamic-content">
-                                    <span class="checkbox-custom">
-                                        <span class="icon"><i class="fa-solid fa-id-card"></i></span>
-                                        <span>Become a Member</span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="control">
-                                <label class="checkbox">
-                                    <input id="involvement" name="involvement" type="checkbox" value="newsletter" class="controls-dynamic-content">
-                                    <span class="checkbox-custom">
-                                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                                        <span>Subscribe to Newsletter</span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
+                        {% include join-form-controlling-checkbox.html key="involvement" value="volunteer" icon="fa-solid fa-hands-helping" text="Volunteer" %}
+                        {% include join-form-controlling-checkbox.html key="involvement" value="donate" icon="fa-solid fa-hand-holding-heart" text="Donate" %}
+                        {% include join-form-controlling-checkbox.html key="involvement" value="membership" icon="fa-solid fa-id-card" text="Become a Member" %}
+                        {% include join-form-controlling-checkbox.html key="involvement" value="newsletter" icon="fa-solid fa-envelope" text="Subscribe to Newsletter" %}
 
                         {% include join-form-buttons.html prev_step_id="step-background" next_step_id="step-preferences" %}
                     </div>
 
                     <!-- Step 4 -->
                     <div id="step-preferences" class="form-step">
-                        <div class="content mb-4 has-text-centered">
-                            <h3 class="title is-size-4">
-                                Step 4: Preferences
-                            </h3>
-                            <p class="is-size-5">
-                                Please provide more details based on your selections.
-                            </p>
-                        </div>
+                        {% include join-form-step-header.html heading="Step 4: Preferences" subheading="Please provide more details based on your selections." %}
 
-                        <div id="volunteer-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:volunteer">
-                            <h4 class="title is-size-5">Volunteering Interests</h4>
-
-                            <div class="field">
-                                <label class="label">Areas of Interest (Select one or more)</label>
-                                <div class="control">
-                                    <label class="checkbox"><input type="checkbox" name="volunteer_interest" value="events"> Events</label><br>
-                                    <label class="checkbox"><input type="checkbox" name="volunteer_interest" value="outreach"> Outreach</label><br>
-                                    <label class="checkbox"><input type="checkbox" name="volunteer_interest" value="admin"> Administrative Support</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="donate-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:donate">
+                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:volunteer">
                             <h4 class="title is-size-5">
-                                Donation Details
+                                Volunteer Preferences
                             </h4>
 
                             <div class="field">
-                                <label class="label">How much would you like to donate?</label>
+                                {% include join-form-label.html id="volunteer-skills" text="What skills would you like to contribute?" required=true %}
                                 <div class="control">
-                                    <input type="number" name="donation_amount" class="input" placeholder="e.g. 50">
+                                    <textarea id="volunteer-skills" name="volunteer-skills" rows="5" placeholder="Tell us about your skills and interests." required class="textarea"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="volunteer-availability-select" text="Availability" required=true %}
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="volunteer-availability-select" name="volunteer-availability" required>
+                                            <option value="" hidden selected>Select an option...</option>
+                                            <option value="weekdays">Weekdays</option>
+                                            <option value="weekends">Weekends</option>
+                                            <option value="evenings">Evenings</option>
+                                            <option value="flexible">Flexible</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="membership-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:membership">
+                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:donate">
                             <h4 class="title is-size-5">
-                                Membership Preferences
+                                Donation Preferences
                             </h4>
 
                             <div class="field">
-                                <label class="label">
-                                    Preferred Membership Level
-                                </label>
+                                {% include join-form-label.html id="donator-donation-amount" text="Donation Amount" required=true %}
                                 <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" name="membership_level" value="individual"> Individual
+                                    <input id="donator-donation-amount" name="donator-donation-amount" type="number" min="1" placeholder="50" required class="input">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="donator-frequency-select" text="Frequency" required=true %}
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="donator-frequency-select" name="donator-frequency" required>
+                                            <option value="" hidden selected>Select an option...</option>
+                                            <option value="once">One-time donation</option>
+                                            <option value="monthly">Monthly</option>
+                                            <option value="quarterly">Quarterly</option>
+                                            <option value="annually">Annually</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:membership">
+                            <h4 class="title is-size-5">
+                                Membership Details
+                            </h4>
+
+                            <div class="field">
+                                {% include join-form-label.html id="membership-type-select" text="Membership Type" required=true %}
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="membership-type-select" name="membership-type" required>
+                                            <option value="" hidden selected>Select an option...</option>
+                                            <option value="standard">Standard Membership ($25/year)</option>
+                                            <option value="student">Student Membership ($15/year)</option>
+                                            <option value="supporter">Supporter Membership ($50/year)</option>
+                                            <option value="lifetime">Lifetime Membership ($250)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="" text="Areas of Interest" required=true %}
+                                <div class="control" data-require-one="true">
+                                    <label class="checkbox">
+                                        <input name="membership-interests" type="checkbox" value="community-events"> Community Events
                                     </label>
-                                    <br>
-                                    <label class="radio">
-                                        <input type="radio" name="membership_level" value="supporter"> Supporter
+                                    <label class="checkbox">
+                                        <input name="membership-interests" type="checkbox" value="support-groups"> Support Groups
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="membership-interests" type="checkbox" value="advocacy"> Advocacy
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="membership-interests" type="checkbox" value="education"> Education
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="newsletter-prefs" class="dynamic-content-section is-hidden" data-controlled-by="involvement:newsletter">
+                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:newsletter">
                             <h4 class="title is-size-5">
                                 Newsletter Preferences
                             </h4>
 
                             <div class="field">
-                                <label class="label">
-                                    Which topics are you interested in?
-                                </label>
+                                {% include join-form-label.html id="" text="Content Interests" required=true %}
+                                <div class="control" data-require-one="true">
+                                    <label class="checkbox">
+                                        <input name="newsletter-interests" type="checkbox" value="community-events"> Community Events
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="newsletter-interests" type="checkbox" value="resources-support"> Resources & Support
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="newsletter-interests" type="checkbox" value="advocacy-opportunities"> Advocacy Opportunities
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="newsletter-interests" type="checkbox" value="educational-content"> Educational Content
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% include join-form-label.html id="newsletter-frequency-select" text="Frequency" required=true %}
                                 <div class="control">
-                                    <label class="checkbox"><input type="checkbox" name="newsletter_topics" value="events"> Events</label><br>
-                                    <label class="checkbox"><input type="checkbox" name="newsletter_topics" value="advocacy"> Advocacy News</label>
+                                    <div class="select is-fullwidth">
+                                        <select id="newsletter-frequency-select" name="newsletter-frequency" required>
+                                            <option value="" hidden selected>Select an option...</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                            <option value="quarterly">Quarterly</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -373,14 +354,7 @@
 
                     <!-- Step 5 -->
                     <div id="step-confirm" class="form-step">
-                        <div class="content mb-4 has-text-centered">
-                            <h3 class="title is-size-4">
-                                Step 5: Confirmation
-                            </h3>
-                            <p class="is-size-5">
-                                We're excited to have you on board.
-                            </p>
-                        </div>
+                        {% include join-form-step-header.html heading="Step 5: Confirmation" subheading="We're Excited To Have You On Board" %}
 
                         <label class="checkbox">
                             <input type="checkbox" required>

@@ -1,27 +1,64 @@
 <footer class="footer">
-    <div class="container">
-        <div class="columns has-text-centered-mobile">
-            <div class="column is-4-desktop is-12-mobile">
-                <h3 class="is-size-4">Contact Us</h3>
-                <p>123 Main St, City, State, 12345</p>
-                <p>Email: contact@thespectrumspace.com</p>
-                <p>Phone: (123) 456-7890</p>
+    <div class="container has-text-centered">
+        <!-- Social Media Links -->
+        <div class="footer-connect mb-5">
+            <h3 class="title mb-3 is-size-5">
+                Connect
+            </h3>
+            <div class="buttons is-centered">
+                {% for social in site.data.socials %}
+                    <!-- Icon colors are not used in Light and Dark themes. -->
+                    <a class="icon is-medium mx-1" href="{{ social.link }}" target="_blank" aria-label="{{ social.name }}" style="color: {{ social.icon-color }};">
+                        <i class="{{ social.icon }} fa-2x"></i>
+                    </a>
+                {% endfor %}
             </div>
-            <div class="column is-4-desktop is-12-mobile">
-                <h3 class="is-size-4">Follow Us</h3>
-                <p><a href="https://twitter.com/thespectrumspace" target="_blank">Twitter</a></p>
-                <p><a href="https://facebook.com/thespectrumspace" target="_blank">Facebook</a></p>
-                <p><a href="https://instagram.com/thespectrumspace" target="_blank">Instagram</a></p>
-                <p><a href="https://linkedin.com/company/thespectrumspace" target="_blank">LinkedIn</a></p>
+        </div>
+
+        <!-- Main Navigation -->
+        <div class="footer-nav mb-5">
+            <h3 class="title mb-3 is-size-5">
+                Navigation
+            </h3>
+            <div class="buttons is-centered">
+                {% assign nav_items = "Home,About Us,Events,Resources,Join Us" | split: "," %}
+                {% assign nav_links = "#home,#about,#events,#resources,#join" | split: "," %}
+
+                {% for item in nav_items %}
+                    <a class="ls-wide" href="/{{ nav_links[forloop.index0] }}">
+                        {{ item }}
+                    </a>
+                    {% unless forloop.last %}
+                        <span class="nav-divider">•</span>
+                    {% endunless %}
+                {% endfor %}
             </div>
-            <div class="column is-4-desktop is-12-mobile">
-                <h3 class="is-size-4">Subscribe</h3>
-                <form action="/subscribe" method="post">
-                    <input type="email" name="email" placeholder="Your email" required>
-                    <button type="submit" class="button">Subscribe</button>
-                </form>
-                <p>Stay updated with our latest news and events.</p>
+        </div>
+
+        <!-- Connect & Support -->
+        <div class="columns is-centered is-mobile">
+            <div class="column is-1-desktop is-2-tablet is-5-mobile">
+                <a href="/support" class="button is-small is-fullwidth">Support Us</a>
             </div>
+            <div class="column is-1-desktop is-2-tablet is-5-mobile">
+                <a href="/contact" class="button is-small is-fullwidth is-outlined">Contact</a>
+            </div>
+        </div>
+
+        <!-- Copyright and Policies -->
+        <div class="footer-legal">
+            <span>&copy; {{ "now" | date: "%Y" }} {{ site.title }}</span>
+            <span>|</span>
+            <a href="/privacy">Privacy Policy</a>
+            <span>|</span>
+            <a href="/terms">Terms & Conditions</a>
+        </div>
+
+        <!-- Netlify Badge -->
+        <div class="mt-4">
+            <a href="https://www.netlify.com">
+                <img src="https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg" alt="Deploys by Netlify" />
+            </a>
         </div>
     </div>
 </footer>
