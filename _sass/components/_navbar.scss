@@ -1,4 +1,5 @@
 @use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
 
 $opacity-navbar-background-gradient: 0.5;
 
@@ -36,33 +37,149 @@ $opacity-navbar-background-gradient: 0.5;
         }
     }
 
-    .navbar-menu .navbar-start .navbar-item
+    .navbar-menu
     {
-        position: relative;
-        font-weight: vars.$font-weight-medium;
-        color: vars.$font-color-black;
-        transition: all vars.$animation-time ease;
-
-        &::after
+        .navbar-start .navbar-item
         {
-            content: "";
-            position: absolute;
-            transform: translateX(-50%);
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: #fff;
+            position: relative;
+            font-weight: vars.$font-weight-medium;
+            color: vars.$font-color-black;
             transition: all vars.$animation-time ease;
-        }
 
-        &:hover, &:focus
-        {
-            background-color: rgba(255, 255, 255, 0.15);
-
+            // Create the underline effect.
             &::after
             {
-                width: 80%;
+                content: "";
+                position: absolute;
+                transform: translateX(-50%);
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: #fff;
+                transition: all vars.$animation-time ease;
+            }
+
+            &:hover, &:focus
+            {
+                background-color: rgba(255, 255, 255, 0.15);
+                color: vars.$font-color-white;
+
+                &::after
+                {
+                    width: 80%;
+                }
+            }
+        }
+
+        .navbar-end .navbar-item .buttons
+        {
+            .contact-button
+            {
+                @include mixins.outlined-button(#00b4d8, #00b4d8, rgba(0, 180, 216, 0.15));
+            }
+
+            .support-button
+            {
+                @include mixins.button(vars.$font-color-white, #9b69c3, #8a4fbb);
+            }
+
+            #theme-toggle
+            {
+                @include mixins.outlined-button(vars.$font-color-white, #fff, rgba(255, 255, 255, 0.15));
+            }
+        }
+    }
+}
+
+html
+{
+    &.light .navbar
+    {
+        border-bottom-color: #b0b0b0;
+        background: #fff;
+        backdrop-filter: none;
+        box-shadow: vars.$shadow-light;
+
+        .navbar-menu
+        {
+            .navbar-start .navbar-item
+            {
+                // Modify the underline effect.
+                &::after
+                {
+                    background-color: #0077cc;
+                }
+
+                &:hover, &:focus
+                {
+                    color: #0077cc;
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+            }
+
+            .navbar-end .navbar-item .buttons
+            {
+                .contact-button
+                {
+                    @include mixins.outlined-button(vars.$font-color-black, #000, rgba(0, 0, 0, 0.15));
+                }
+
+                .support-button
+                {
+                    @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
+                }
+
+                #theme-toggle
+                {
+                    @include mixins.outlined-button(vars.$font-color-grey, #808080, rgba(128, 128, 128, 0.15));
+                }
+            }
+        }
+    }
+
+    &.dark .navbar
+    {
+        border-bottom-color: #5a5a5a;
+        background: #1a1a1a;
+        backdrop-filter: none;
+        box-shadow: vars.$shadow-heavy;
+
+        .navbar-menu
+        {
+            .navbar-start .navbar-item
+            {
+                color: vars.$font-color-white;
+
+                // Modify the underline effect.
+                &::after
+                {
+                    background-color: #00b4d8;
+                }
+
+                &:hover, &:focus
+                {
+                    color: #00b4d8;
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+            }
+
+            .navbar-end .navbar-item .buttons
+            {
+                .contact-button
+                {
+                    @include mixins.outlined-button(vars.$font-color-platinum, #e5e4e2, rgba(229, 228, 226, 0.15));
+                }
+
+                .support-button
+                {
+                    @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
+                }
+
+                #theme-toggle
+                {
+                    @include mixins.outlined-button(vars.$font-color-light-grey, #d3d3d3, rgba(211, 211, 211, 0.15));
+                }
             }
         }
     }
