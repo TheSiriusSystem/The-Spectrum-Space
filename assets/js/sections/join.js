@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function()
 
                     // TODO: Replace this with form actions.
                     event.preventDefault();
-                    alert("Thank you for your submission!");
+                    alert("Thank you for your submission! However, no actual data was sent because this is a web design exercise.");
                     window.location.href = "/";
                 } else if (targetStepId)
                 {
