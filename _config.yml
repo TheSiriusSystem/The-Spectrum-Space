@@ -30,6 +30,7 @@ featured-resource-url: https://www.thetrevorproject.org
 featured-resource-hotline-url: tel:+18664887386
 
 # Build Settings
+incremental: true
 plugins:
   - jekyll-feed
   - jekyll-sitemap
