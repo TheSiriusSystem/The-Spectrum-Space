@@ -74,9 +74,14 @@ $opacity-navbar-background-gradient: 0.5;
 
         .navbar-end .navbar-item .buttons
         {
+            a
+            {
+                width: 160px;
+            }
+
             .contact-button
             {
-                @include mixins.outlined-button(#00b4d8, #00b4d8, rgba(0, 180, 216, 0.15));
+                @include mixins.outlined-button(#a40061, #a40061, rgba(164, 0, 97, 0.15));
             }
 
             .support-button
@@ -87,6 +92,7 @@ $opacity-navbar-background-gradient: 0.5;
             #theme-toggle
             {
                 @include mixins.outlined-button(vars.$font-color-white, #fff, rgba(255, 255, 255, 0.15));
+                width: 50px;
             }
         }
     }
@@ -97,8 +103,8 @@ html
     &.light .navbar
     {
         border-bottom-color: #b0b0b0;
-        background: #fff;
-        backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(12px);
         box-shadow: vars.$shadow-light;
 
         .navbar-menu
@@ -141,8 +147,8 @@ html
     &.dark .navbar
     {
         border-bottom-color: #5a5a5a;
-        background: #1a1a1a;
-        backdrop-filter: none;
+        background: rgba(26, 26, 26, 0.25);
+        backdrop-filter: blur(12px);
         box-shadow: vars.$shadow-heavy;
 
         .navbar-menu
