@@ -1,14 +1,6 @@
 <section id="about" class="section">
     <div class="container">
-        <!-- Header -->
-        <header class="mb-5 has-text-centered">
-            <h1 class="title is-size-2-desktop is-size-3-mobile">
-                <i class="fa-solid fa-rainbow"></i> About Us
-            </h1>
-            <h2 class="subtitle is-size-4-desktop is-size-5-mobile ls-wide">
-                Our Mission. Our Values. Our Voice.
-            </h2>
-        </header>
+        {% include components/section-header.html heading="About Us" subheading="Our Mission. Our Values. Our Voice." icon="fa-solid fa-rainbow" %}
 
         <div class="columns">
             <!-- Main Column -->
@@ -46,7 +38,7 @@
                         {% for value in site.data.values limit:4 %}
                             <div class="column is-3-desktop is-6-touch has-text-centered">
                                 <div class="box value-box">
-                                    <i class="{{ value.icon }} fa-2x"></i>
+                                    <i class="{{ value.icon }} fa-2x" aria-hidden="true"></i>
                                     <p class="mt-2 mb-0 is-size-6">
                                         {{ value.name }}
                                     </p>
@@ -64,9 +56,9 @@
             <div class="column">
                 <div class="columns is-multiline">
                     {% for image in site.data.about-images limit:4 %}
-                        <div class="column is-6-desktop is-12-tablet is-12-mobile">
-                            <figure class="image pride-image-wrapper is-square">
-                                <img class="pride-image" src="{{ image.path }}" alt="{{ image.alt }}">
+                        <div class="column is-6-desktop is-12-touch">
+                            <figure class="image about-image-wrapper is-square">
+                                <img class="about-image" src="{{ image.path }}" alt="{{ image.alt }}">
                             </figure>
                         </div>
                     {% endfor %}
@@ -85,36 +77,24 @@
                 <div class="column is-6-desktop is-6-tablet is-12-mobile">
                     <div class="card">
                         <div class="card-content">
-                            <!-- Desktop Layout -->
                             <div class="desktop-only">
                                 <div class="columns is-vcentered">
                                     <div class="column is-3">
-                                        <figure class="image is-inline-block is-128x128">
+                                        <figure class="image is-128x128">
                                             <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
                                         </figure>
                                     </div>
                                     <div class="column is-9">
-                                        <blockquote class="is-size-6">
-                                            {{ testimonial.quote }}
-                                        </blockquote>
-                                        <p class="is-size-5 mt-4">
-                                            — {{ testimonial.author }}
-                                        </p>
+                                        {% include components/about/testimonial.html is_mobile=false %}
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Mobile Layout -->
                             <div class="touch-only-flex">
-                                <figure class="image is-inline-block is-96x96">
+                                <figure class="image is-96x96">
                                     <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
                                 </figure>
-                                <blockquote class="is-size-6 mt-3">
-                                    "{{ testimonial.quote }}"
-                                </blockquote>
-                                <p class="is-size-5 mt-4">
-                                    — {{ testimonial.author }}
-                                </p>
+                                {% include components/about/testimonial.html is_mobile=true %}
                             </div>
                         </div>
                     </div>
