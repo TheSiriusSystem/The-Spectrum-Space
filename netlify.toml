@@ -16,3 +16,6 @@ package = "netlify-plugin-submit-sitemap"
 package = "netlify-plugin-cache"
   [plugins.inputs]
   paths = [".jekyll-cache"]
+
+[[plugins]]
+package = "netlify-plugin-lighthouse"
