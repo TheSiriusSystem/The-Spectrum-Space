@@ -8,9 +8,9 @@
 
     .mission-box
     {
-        background-color: #d0f0c0;
         border-left: 6px solid transparent;
-        border-image: linear-gradient(to bottom, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787) 1;
+        border-image: linear-gradient(to bottom, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787) 1; // NOTE: This method doesn't work with rounded elements.
+        background-color: #d0f0c0;
         box-shadow: vars.$shadow-heavy;
 
         blockquote
@@ -22,12 +22,6 @@
             {
                 color: vars.$font-color-black;
             }
-        }
-
-        // Mission Emphasis
-        p.mt-2
-        {
-            color: vars.$font-color-licorice;
         }
 
         // Quote Source
@@ -56,21 +50,6 @@
                 transition: transform vars.$animation-time-long ease, opacity vars.$animation-time-long ease, box-shadow vars.$animation-time-long ease, filter vars.$animation-time-long ease;
                 @include mixins.flex-column();
 
-                &.fade-in
-                {
-                    transform: scale(1.0);
-                    opacity: 1.0;
-                    box-shadow: vars.$shadow-light;
-                    filter: blur(0px);
-
-                    &:hover
-                    {
-                        transform: translateY(-4px) scale(1.025);
-                        box-shadow: vars.$shadow-medium;
-                        transition: transform 0.6s ease, opacity vars.$animation-time-long ease, box-shadow 0.6s ease, filter vars.$animation-time-long ease;
-                    }
-                }
-
                 // Font Awesome Icon
                 i
                 {
@@ -89,13 +68,27 @@
                 p.is-size-7
                 {
                     font-weight: vars.$font-weight-light;
-                    color: vars.$font-color-licorice;
+                }
+
+                &.fade-in
+                {
+                    transform: scale(1.0);
+                    opacity: 1.0;
+                    box-shadow: vars.$shadow-light;
+                    filter: blur(0px);
+
+                    &:hover
+                    {
+                        transform: translateY(-4px) scale(1.025);
+                        box-shadow: vars.$shadow-medium;
+                        transition: transform 0.6s ease, opacity vars.$animation-time-long ease, box-shadow 0.6s ease, filter vars.$animation-time-long ease;
+                    }
                 }
             }
         }
     }
 
-    .pride-image-wrapper
+    .about-image-wrapper
     {
         transform: rotateY(90deg);
         perspective: 1000px;
@@ -105,12 +98,7 @@
         transition: transform vars.$animation-time-long ease, filter vars.$animation-time-long ease;
         display: block;
 
-        &.flip-in
-        {
-            transform: rotateY(0deg);
-        }
-
-        .pride-image
+        .about-image
         {
             border: 3px dotted #aaa;
             border-radius: 8px;
@@ -124,10 +112,14 @@
             }
         }
 
+        &.flip-in
+        {
+            transform: rotateY(0deg);
+        }
+
         @media screen and (max-width: vars.$breakpoint-touch)
         {
             width: 70%;
-            height: auto;
         }
     }
 
@@ -178,7 +170,7 @@
                             content: "“";
                             position: absolute;
                             left: 0;
-                            top: -0.25rem;
+                            font-family: "Montserrat", sans-serif;
                             font-size: 48px;
                             color: vars.$font-color-charcoal;
                             line-height: 1.0;
@@ -187,9 +179,16 @@
 
                     .touch-only-flex
                     {
+                        position: relative;
                         text-align: center;
                         flex-direction: column;
                         align-items: center;
+
+                        blockquote .quotation-mark
+                        {
+                            font-family: "Montserrat", sans-serif;
+                            color: vars.$font-color-charcoal;
+                        }
                     }
 
                     img
@@ -198,6 +197,7 @@
                         background: linear-gradient(to right, #d60270, #9b4f96, #0038a8);
                         box-shadow: 0 0 8px rgba(214, 2, 112, 0.4), 0 0 12px rgba(155, 79, 150, 0.3), 0 0 16px rgba(0, 56, 168, 0.3);
                         transition: transform 1.2s ease, box-shadow vars.$animation-time ease;
+                        display: inline-block;
 
                         &.spinning
                         {
@@ -223,7 +223,7 @@
                         font-style: italic;
                     }
 
-                    p
+                    footer p
                     {
                         font-weight: vars.$font-weight-bold;
                         color: vars.$font-color-black;
@@ -235,7 +235,7 @@
 
     @media (prefers-reduced-motion: reduce)
     {
-        .value-box, .pride-image-wrapper, .pride-image
+        .value-box, .about-image-wrapper, .about-image
         {
             transition: none !important;
         }
@@ -320,7 +320,7 @@ html
             }
         }
 
-        .pride-image-wrapper .pride-image
+        .about-image-wrapper .about-image
         {
             &:hover
             {
@@ -339,15 +339,14 @@ html
 
             .card-content
             {
-                .desktop-only
+                .desktop-only blockquote &::before
                 {
-                    blockquote
-                    {
-                        &::before
-                        {
-                            color: vars.$font-color-platinum !important;
-                        }
-                    }
+                    color: vars.$font-color-platinum !important;
+                }
+
+                .touch-only-flex blockquote .quotation-mark
+                {
+                    color: vars.$font-color-platinum;
                 }
 
                 img
@@ -360,7 +359,7 @@ html
                     color: vars.$font-color-off-white !important;
                 }
 
-                p
+                footer p
                 {
                     color: vars.$font-color-white !important;
                 }

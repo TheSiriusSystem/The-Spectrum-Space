@@ -1,0 +1,14 @@
+<blockquote class="is-size-6{% if include.is_mobile == true %} mt-3{% endif %}">
+    {% if include.is_mobile == true %}
+        <span class="quotation-mark" aria-hidden="true">“</span>
+    {% endif %}
+    {{ testimonial.quote }}
+    {% if include.is_mobile == true %}
+        <span class="quotation-mark" aria-hidden="true">“</span>
+    {% endif %}
+</blockquote>
+<footer>
+    <p class="is-size-5 mt-4">
+        — {{ testimonial.author }}
+    </p>
+</footer>

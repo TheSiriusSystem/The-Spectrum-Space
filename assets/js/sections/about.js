@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function()
     const boxes = document.querySelectorAll("#about .value-box");
     const cards = document.querySelectorAll("#about .card");
     const cardImages = document.querySelectorAll("#about .card .card-content img");
-    const images = document.querySelectorAll("#about .pride-image-wrapper");
+    const images = document.querySelectorAll("#about .about-image-wrapper");
 
     if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches)
     {
