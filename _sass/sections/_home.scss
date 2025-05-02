@@ -111,7 +111,6 @@ $shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
 
         .icon-wrapper
         {
-            width: auto;
             padding: 1.0rem;
             transition: transform vars.$animation-time ease;
             display: inline-flex;
@@ -224,6 +223,12 @@ html
             color: vars.$font-color-charcoal;
         }
 
+        // Primary CTA Button
+        .button:not(.is-outlined)
+        {
+            @include mixins.button(vars.$font-color-white, #7957d5, #673ab7);
+        }
+
         // Secondary CTA Button
         .button.is-outlined
         {
@@ -252,6 +257,12 @@ html
         {
             color: vars.$font-color-light-grey;
             -webkit-text-fill-color: vars.$font-color-light-grey;
+        }
+
+        // Primary CTA Button
+        .button:not(.is-outlined)
+        {
+            @include mixins.button(vars.$font-color-white, #48c78e, #34a874);
         }
 
         .icon-container .column .icon-wrapper
