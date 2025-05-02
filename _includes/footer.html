@@ -1,5 +1,14 @@
 <footer class="footer">
     <div class="container has-text-centered">
+        <div class="footer-brand mb-5">
+            <figure class="image">
+                <img src="{{ site.logo }}" alt="{{ site.title }}">
+            </figure>
+            <p class="subtitle mt-2 is-size-5">
+                {{ site.tagline }}
+            </p>
+        </div>
+
         <!-- Social Media Links -->
         <div class="footer-connect mb-5">
             <h3 class="title mb-3 is-size-5">
@@ -48,10 +57,19 @@
         <!-- Copyright and Policies -->
         <div class="footer-legal">
             <span>&copy; {{ "now" | date: "%Y" }} {{ site.title }}</span>
-            <span>|</span>
-            <a href="/privacy">Privacy Policy</a>
-            <span>|</span>
-            <a href="/terms">Terms & Conditions</a>
+            <span class="separator">|</span>
+            <a class="link" href="/privacy-policy">Privacy Policy</a>
+            <span class="separator">|</span>
+            <a class="link" href="/terms-of-service">Terms of Service</a>
+            <span class="separator">|</span>
+            <a class="link" href="/code-of-conduct">Code of Conduct</a>
+        </div>
+
+        <!-- Credits -->
+        <div class="footer-credits mt-1 is-size-7">
+            <span>Built with <strong>love</strong> by {{ site.author }}</span>
+            <span class="separator">|</span>
+            <span>Powered by <a class="link" href="https://jekyllrb.com/">Jekyll</a> + <a class="link" href="https://bulma.io/">Bulma</a></span>
         </div>
 
         <!-- Netlify Badge -->
