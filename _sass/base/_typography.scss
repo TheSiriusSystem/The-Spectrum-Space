@@ -1,40 +1,70 @@
 @use "abstracts/variables" as vars;
 
+$font-primary: "Montserrat", sans-serif;
+$font-secondary: "Open Sans", sans-serif;
+
+// Sets the font and font color of most content on the site. Keyword: most. This
+// doesn't always do its thing so elements have to be targeted later on to ensure
+// they receive their intended properties.
 body
 {
-    font-family: "Open Sans", sans-serif;
+    font-family: $font-secondary;
     color: vars.$font-color-licorice;
+}
+
+h1, h2, h3, h4, h5, h6, legend
+{
+    font-family: $font-primary;
+    color: vars.$font-color-black;
+}
+
+p, blockquote
+{
+    color: vars.$font-color-licorice;
+}
+
+strong, label
+{
+    color: vars.$font-color-black;
+}
+
+input, textarea, select, optgroup
+{
+    font-family: $font-secondary;
+    color: vars.$font-color-licorice !important;
+}
+
+::placeholder
+{
+    color: vars.$font-color-grey !important;
+}
+
+.title
+{
+    color: vars.$font-color-grey;
+}
+
+.subtitle
+{
+    color: vars.$font-color-charcoal;
+}
+
+html.dark
+{
+    body
+    {
+        color: vars.$font-color-off-white;
+    }
 
     h1, h2, h3, h4, h5, h6, legend
     {
-        font-family: "Montserrat", sans-serif;
+        color: vars.$font-color-white;
     }
 
-    strong, label
+    p, blockquote
     {
-        color: vars.$font-color-black;
+        color: vars.$font-color-off-white;
     }
-
-    input, textarea, select, optgroup
-    {
-        font-family: "Open Sans", sans-serif;
-        color: vars.$font-color-licorice;
-    }
-
-    .title
-    {
-        color: vars.$font-color-grey;
-    }
-
-    .subtitle
-    {
-        color: vars.$font-color-charcoal;
-    }
-}
-
-html.dark body
-{
-    color: vars.$font-color-off-white;
 
     strong, label
     {
@@ -43,7 +73,12 @@ html.dark body
 
     input, textarea, select, optgroup
     {
-        color: vars.$font-color-off-white;
+        color: vars.$font-color-off-white !important;
+    }
+
+    ::placeholder
+    {
+        color: vars.$font-color-light-grey !important;
     }
 
     .title
