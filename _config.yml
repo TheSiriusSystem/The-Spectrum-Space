@@ -33,3 +33,4 @@ footer-tagline: Creating inclusive spaces where every identity in the LGBTQ+ spe
 # Build Settings
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
