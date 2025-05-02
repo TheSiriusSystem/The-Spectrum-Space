@@ -1,10 +1,18 @@
 [[plugins]]
+package = "netlify-plugin-minify-html"
+
+[[plugins]]
 package = "netlify-plugin-image-optim"
 
 [[plugins]]
-package = "netlify-plugin-minify-html"
+package = "netlify-plugin-checklinks"
 
 [[plugins]]
 package = "netlify-plugin-submit-sitemap"
   [plugins.inputs]
   sitemap_path = "/sitemap.xml"
+
+[[plugins]]
+package = "netlify-plugin-cache"
+  [plugins.inputs]
+  paths = [".jekyll-cache"]
