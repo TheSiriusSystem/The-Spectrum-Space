@@ -1,13 +1,12 @@
 @use "abstracts/variables" as vars;
 @use "abstracts/mixins" as mixins;
 
-$opacity-footer-background-gradient: 0.2;
+$opacity-footer-background-gradient: 0.25;
 
 .footer
 {
     border-top: 2px solid #e91e63;
     background: linear-gradient(195deg, rgba(214, 41, 0, $opacity-footer-background-gradient), rgba(255, 155, 85, $opacity-footer-background-gradient), rgba(255, 255, 255, $opacity-footer-background-gradient), rgba(212, 98, 166, $opacity-footer-background-gradient), rgba(164, 0, 97, $opacity-footer-background-gradient));
-    background-color: #e0f8ff;
 
     .footer-brand
     {
