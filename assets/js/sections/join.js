@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function()
                                 text: `Input fields for ${value.charAt(0).toUpperCase()}${value.slice(1)} have been cleared!`,
                                 duration: toastDuration,
                                 style: {
-                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                    background: "#ff4081",
                                 },
                             }).showToast();
                         }
