@@ -1,0 +1,10 @@
+[[plugins]]
+package = "netlify-plugin-image-optim"
+
+[[plugins]]
+package = "netlify-plugin-minify-html"
+
+[[plugins]]
+package = "netlify-plugin-submit-sitemap"
+  [plugins.inputs]
+  sitemap_path = "/sitemap.xml"
