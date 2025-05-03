@@ -41,34 +41,17 @@ $opacity-navbar-background-gradient: 0.5;
     {
         .navbar-start .navbar-item
         {
-            position: relative;
+            @include mixins.link(vars.$font-color-black, vars.$font-color-white, 2px, 80%);
             font-weight: vars.$font-weight-medium;
-            color: vars.$font-color-black;
-            transition: all vars.$animation-time ease;
 
-            // Create the underline effect.
             &::after
             {
-                content: "";
-                position: absolute;
-                transform: translateX(-50%);
-                bottom: 0;
-                left: 50%;
-                width: 0;
-                height: 2px;
                 background-color: #fff;
-                transition: all vars.$animation-time ease;
             }
 
             &:hover, &:focus
             {
                 background-color: rgba(255, 255, 255, 0.15);
-                color: vars.$font-color-white;
-
-                &::after
-                {
-                    width: 80%;
-                }
             }
         }
 
