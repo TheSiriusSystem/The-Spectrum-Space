@@ -30,8 +30,8 @@
                 Navigation
             </h3>
             <div class="buttons is-centered">
-                {% assign nav_items = "Home,About Us,Events,Resources,Join Us" | split: "," %}
-                {% assign nav_links = "#home,#about,#events,#resources,#join" | split: "," %}
+                {% assign nav_items = "Home,About Us,Stories,Resources,Join Us" | split: "," %}
+                {% assign nav_links = "#home,#about,#stories,#resources,#join" | split: "," %}
 
                 {% for item in nav_items %}
                     <a class="ls-wide" href="/{{ nav_links[forloop.index0] }}">
