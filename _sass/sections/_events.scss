@@ -78,6 +78,7 @@ $event-border-accent: 6px solid #e8ffff;
 
             .button
             {
+                font-weight: vars.$font-weight-semi-bold;
                 background-color: #ff4d8d;
                 transition: transform vars.$animation-time ease, background-color vars.$animation-time ease, box-shadow vars.$animation-time ease;
 
