@@ -49,7 +49,7 @@ $shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
             left: 0;
             width: 100%;
             height: 6px;
-            border-radius: 3px;
+            border-radius: vars.$border-radius-rounded;
             background: linear-gradient(to right, 
                 #5bcefa 20%,
                 #f5a9b8 20%, #f5a9b8 40%,
@@ -57,7 +57,7 @@ $shadow-icon: 2px 4px 8px rgba(0, 0, 0, 0.125);
                 #f5a9b8 60%, #f5a9b8 80%,
                 #5bcefa 80%
             );
-            animation: underline-slide-in 0.8s ease forwards;
+            animation: underline-slide-in vars.$animation-time-long ease forwards;
         }
     }
 
