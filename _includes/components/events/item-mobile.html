@@ -1,13 +1,11 @@
 <div class="column is-6-tablet is-12-mobile">
     <div class="card {{ event.status }}">
-        <!-- Header -->
         <header class="card-header" style="background-color: {{ event.background-color }};">
             <p class="card-header-title is-size-4 is-centered" style="color: {{ event.font-color }};">
-                {{ event.date | date: "%B %d, %Y" | upcase }}
+                <time datetime="{{ event.date | date_to_xmlschema }}">{{ event.date | date: "%B %d, %Y" | upcase }}</time>
             </p>
         </header>
 
-        <!-- Content -->
         <div class="card-content has-text-centered">
             <h3 class="is-size-5">
                 {{ event.title }}
@@ -15,7 +13,7 @@
             <p class="mt-1">
                 {{ event.description }}
             </p>
-            {% include event-cta-button.html %}
+            {% include components/events/item-cta-button.html %}
         </div>
     </div>
 </div>

@@ -3,9 +3,9 @@
 
 $text-ongoing-event-watermark: "LIVE";
 $text-upcoming-event-watermark: "SOON";
-$margin-event-content: 1.0rem;
 $angle-event-watermark-desktop: 5deg;
 $angle-event-watermark-mobile: 30deg;
+$margin-event-content: 1.0rem;
 $border-color-event-border-accent-light: #b5ffff;
 $border-color-event-border-accent-dark: #00e8e8;
 $border-radius-date-column: 4px; // Desktop
@@ -130,12 +130,6 @@ $event-border-accent: 6px solid #e8ffff;
     h3
     {
         font-weight: vars.$font-weight-semi-bold;
-        color: vars.$font-color-black;
-    }
-
-    p
-    {
-        color: vars.$font-color-licorice;
     }
 }
 
@@ -390,19 +384,6 @@ html
         .past
         {
             box-shadow: vars.$shadow-heavy;
-        }
-
-        .ongoing .content-column, .ongoing .card-content, .upcoming .content-column, .upcoming .card-content, .past .content-column, .past .card-content
-        {
-            h3
-            {
-                color: vars.$font-color-white;
-            }
-
-            p
-            {
-                color: vars.$font-color-off-white;
-            }
         }
 
         .ongoing .content-column, .ongoing .card-content

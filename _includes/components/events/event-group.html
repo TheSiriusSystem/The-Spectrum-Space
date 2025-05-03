@@ -7,10 +7,7 @@
     <div class="desktop-only">
         <div class="columns is-multiline">
             {% for event in include.events %}
-                {% if events_shown_on_desktop < event_limit %}
-                    {% assign events_shown_on_desktop = events_shown_on_desktop | plus: 1 %}
-                    {% include event-item-desktop.html %}
-                {% endif %}
+                {% include components/events/item-desktop.html %}
             {% endfor %}
         </div>
     </div>
@@ -19,10 +16,7 @@
     <div class="touch-only">
         <div class="columns is-multiline is-mobile">
             {% for event in include.events %}
-                {% if events_shown_on_mobile < event_limit %}
-                    {% assign events_shown_on_mobile = events_shown_on_mobile | plus: 1 %}
-                    {% include event-card-mobile.html %}
-                {% endif %}
+                {% include components/events/item-mobile.html %}
             {% endfor %}
         </div>
     </div>
