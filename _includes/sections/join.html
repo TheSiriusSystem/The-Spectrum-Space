@@ -1,14 +1,6 @@
 <section id="join" class="section">
     <div class="container">
-        <!-- Header -->
-        <header class="mb-5 has-text-centered">
-            <h1 class="title is-size-2-desktop is-size-3-mobile">
-                <i class="fa-solid fa-user-plus"></i> Join Us
-            </h1>
-            <h2 class="subtitle is-size-4-desktop is-size-5-mobile ls-wide">
-                Let's Build a Brighter Future Together.
-            </h2>
-        </header>
+        {% include components/section-header.html heading="Join Our Spectrum Family" subheading="Let's Build a Brighter Future Together." icon="fa-solid fa-user-plus" %}
 
         <!-- Join Form -->
         <div class="columns is-centered is-mobile">
@@ -18,11 +10,11 @@
                     <div class="progress-bar mb-4">
                         <div class="progress-line"></div>
 
-                        {% include join-form-progress-dot.html number="1" %}
-                        {% include join-form-progress-dot.html number="2" %}
-                        {% include join-form-progress-dot.html number="3" %}
-                        {% include join-form-progress-dot.html number="4" %}
-                        {% include join-form-progress-dot.html number="5" %}
+                        {% include components/join/form-progress-dot.html number="1" %}
+                        {% include components/join/form-progress-dot.html number="2" %}
+                        {% include components/join/form-progress-dot.html number="3" %}
+                        {% include components/join/form-progress-dot.html number="4" %}
+                        {% include components/join/form-progress-dot.html number="5" %}
                     </div>
 
                     <!-- Step 1 -->
