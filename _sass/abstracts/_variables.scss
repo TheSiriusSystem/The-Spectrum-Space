@@ -2,6 +2,14 @@ $color-debug: #00c0ff; // Used only when I need to test how something actually l
 $breakpoint-mobile: 768px;
 $breakpoint-touch: 1023px;
 
+// Border Radii
+$border-radius-default: 8px;
+$border-radius-rounded: 9999px;
+
+// Fonts
+$font-primary: "Montserrat", sans-serif;
+$font-secondary: "Open Sans", sans-serif;
+
 // Font Weights
 $font-weight-thin: 100;
 $font-weight-extra-light: 200;
@@ -13,10 +21,6 @@ $font-weight-bold: 700;
 $font-weight-extra-bold: 800;
 $font-weight-black: 900;
 $font-weight-extra-black: 950;
-
-// Border Radii
-$border-radius-default: 8px;
-$border-radius-rounded: 9999px;
 
 // Font Colors
 $font-color-black: #000;

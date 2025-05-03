@@ -1,20 +1,18 @@
 @use "abstracts/variables" as vars;
-
-$font-primary: "Montserrat", sans-serif;
-$font-secondary: "Open Sans", sans-serif;
+@use "abstracts/mixins" as mixins;
 
 // Sets the font and font color of most content on the site. Keyword: most. This
 // doesn't always do its thing so elements have to be targeted later on to ensure
 // they receive their intended properties.
 body
 {
-    font-family: $font-secondary;
+    font-family: vars.$font-secondary;
     color: vars.$font-color-licorice;
 }
 
 h1, h2, h3, h4, h5, h6, legend
 {
-    font-family: $font-primary;
+    font-family: vars.$font-primary;
     color: vars.$font-color-black;
 }
 
@@ -30,7 +28,7 @@ strong, label
 
 input, textarea, select, optgroup
 {
-    font-family: $font-secondary;
+    font-family: vars.$font-secondary;
     color: vars.$font-color-licorice !important;
 }
 
@@ -49,45 +47,63 @@ input, textarea, select, optgroup
     color: vars.$font-color-charcoal;
 }
 
-html.dark
+.link
 {
-    body
+    @include mixins.link(#0077cc, #0055a5, 1px, 100%);
+}
+
+html
+{
+    &.light .link
     {
-        color: vars.$font-color-off-white;
+        color: vars.$font-color-grey;
+
+        &:hover
+        {
+            color: vars.$font-color-charcoal;
+        }
     }
 
-    h1, h2, h3, h4, h5, h6, legend
+    &.dark
     {
-        color: vars.$font-color-white;
-    }
+        body, p, blockquote
+        {
+            color: vars.$font-color-off-white;
+        }
 
-    p, blockquote
-    {
-        color: vars.$font-color-off-white;
-    }
+        h1, h2, h3, h4, h5, h6, legend, strong, label
+        {
+            color: vars.$font-color-white;
+        }
 
-    strong, label
-    {
-        color: vars.$font-color-white;
-    }
+        input, textarea, select, optgroup
+        {
+            color: vars.$font-color-off-white !important;
+        }
 
-    input, textarea, select, optgroup
-    {
-        color: vars.$font-color-off-white !important;
-    }
+        ::placeholder
+        {
+            color: vars.$font-color-light-grey !important;
+        }
 
-    ::placeholder
-    {
-        color: vars.$font-color-light-grey !important;
-    }
+        .title
+        {
+            color: vars.$font-color-light-grey;
+        }
 
-    .title
-    {
-        color: vars.$font-color-light-grey;
-    }
+        .subtitle
+        {
+            color: vars.$font-color-platinum;
+        }
 
-    .subtitle
-    {
-        color: vars.$font-color-platinum;
+        .link
+        {
+            color: vars.$font-color-light-grey;
+
+            &:hover
+            {
+                color: vars.$font-color-platinum;
+            }
+        }
     }
 }

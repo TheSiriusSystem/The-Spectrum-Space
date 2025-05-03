@@ -32,6 +32,37 @@
     flex-direction: column;
 }
 
+@mixin link($base-color, $hover-color, $underline-height, $underline-width-goal)
+{
+    position: relative;
+    text-decoration: none;
+    color: $base-color;
+    transition: color vars.$animation-time ease;
+
+    &::after
+    {
+        content: "";
+        position: absolute;
+        transform: translateX(-50%);
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: $underline-height;
+        background-color: currentcolor;
+        transition: width vars.$animation-time ease;
+    }
+
+    &:hover, &:focus
+    {
+        color: $hover-color;
+
+        &::after
+        {
+            width: $underline-width-goal;
+        }
+    }
+}
+
 @mixin button($font-color, $base-color, $hover-color)
 {
     border-color: transparent;
