@@ -164,13 +164,13 @@
                         font-style: italic;
                         color: vars.$font-color-licorice;
 
-                        // Create the stylized quotation mark.
+                        // Create the custom quotation mark.
                         &::before
                         {
                             content: "“";
                             position: absolute;
                             left: 0;
-                            font-family: "Montserrat", sans-serif;
+                            font-family: vars.$font-primary;
                             font-size: 48px;
                             color: vars.$font-color-charcoal;
                             line-height: 1.0;
@@ -186,7 +186,7 @@
 
                         blockquote .quotation-mark
                         {
-                            font-family: "Montserrat", sans-serif;
+                            font-family: vars.$font-primary;
                             color: vars.$font-color-charcoal;
                         }
                     }
