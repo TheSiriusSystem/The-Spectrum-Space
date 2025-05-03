@@ -47,15 +47,7 @@ $opacity-footer-background-gradient: 0.25;
 
         a
         {
-            text-decoration: none;
-            color: vars.$font-color-licorice;
-            transition: color vars.$animation-time ease;
-
-            &:hover
-            {
-                text-decoration: underline;
-                color: #e91e63;
-            }
+            @include mixins.link(vars.$font-color-licorice, #e91e63, 1px, 100%);
         }
 
         .nav-divider
@@ -76,19 +68,6 @@ $opacity-footer-background-gradient: 0.25;
         .button.is-outlined
         {
             @include mixins.outlined-button(vars.$font-color-black, #000, rgba(0, 0, 0, 0.2));
-        }
-    }
-
-    .link
-    {
-        text-decoration: none;
-        color: #0077cc;
-        transition: color vars.$animation-time ease;
-
-        &:hover
-        {
-            text-decoration: underline;
-            color: #0055a5;
         }
     }
 
@@ -156,16 +135,6 @@ html
                 @include mixins.outlined-button(vars.$font-color-black, #000, rgba(0, 0, 0, 0.2));
             }
         }
-
-        .link
-        {
-            color: vars.$font-color-grey;
-
-            &:hover
-            {
-                color: vars.$font-color-charcoal;
-            }
-        }
     }
 
     &.dark .footer
@@ -204,16 +173,6 @@ html
             .button.is-outlined
             {
                 @include mixins.outlined-button(vars.$font-color-white, #fff, rgba(255, 255, 255, 0.2));
-            }
-        }
-
-        .link
-        {
-            color: vars.$font-color-light-grey;
-
-            &:hover
-            {
-                color: vars.$font-color-platinum;
             }
         }
     }
