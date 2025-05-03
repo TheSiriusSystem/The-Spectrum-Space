@@ -1,25 +1,58 @@
-function toggleAccordion(header)
+document.addEventListener("DOMContentLoaded", function()
 {
-    const body = header.nextElementSibling;
-    const chevron = header.querySelector(".fa-chevron-down");
-    const isActive = !body.classList.contains("is-hidden");
+    document.querySelectorAll("#resources .accordion-item .accordion-item-header button").forEach(function(button)
+    {
+        const body = document.getElementById(button.getAttribute("aria-controls"));
+        const chevron = button.querySelector(".fa-chevron-down");
 
-    document.querySelectorAll(".message-body").forEach(function(item)
-    {
-        item.classList.add("is-hidden");
-    });
-    document.querySelectorAll(".fa-chevron-down").forEach(function(icon)
-    {
-        icon.classList.remove("fa-rotate-180");
+        button.addEventListener("click", () => toggleAccordion(body, button, chevron));
+
+        button.addEventListener("keydown", function(event)
+        {
+            if (event.key === "Enter" || event.key === " ")
+            {
+                event.preventDefault(); // Prevent default spacebar scrolling.
+                toggleAccordion(body, button, chevron);
+            }
+        });
     });
 
-    if (isActive)
+    function toggleAccordion(body, button, chevron)
     {
-        body.classList.add("is-hidden");
-        chevron.classList.remove("fa-rotate-180");
-    } else
-    {
-        body.classList.remove("is-hidden");
-        chevron.classList.add("fa-rotate-180");
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+        document.querySelectorAll("#resources .accordion-item .accordion-item-body.is-active").forEach(function(openBody)
+        {
+            if (openBody !== body)
+            {
+                const openButton = document.querySelector(`[aria-controls="${openBody.id}"]`);
+                const openChevron = openButton?.querySelector(".fa-chevron-down");
+                closeAccordionItem(openBody, openButton, openChevron);
+            }
+        });
+
+        if (!isExpanded)
+        {
+            openAccordionItem(body, button, chevron);
+        } else
+        {
+            closeAccordionItem(body, button, chevron);
+        }
     }
-}
+
+    function openAccordionItem(body, button, chevron)
+    {
+        body.classList.add("is-active");
+        body.style.maxHeight = `${body.scrollHeight}px`;
+        button.setAttribute("aria-expanded", "true");
+        chevron.style.transform = "rotateZ(180deg)";
+    }
+
+    function closeAccordionItem(body, button, chevron)
+    {
+        body.classList.remove("is-active");
+        body.style.maxHeight = null;
+        button.setAttribute("aria-expanded", "false");
+        chevron.style.transform = "rotateZ(0deg)";
+    }
+});

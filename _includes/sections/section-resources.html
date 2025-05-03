@@ -1,14 +1,6 @@
 <section id="resources" class="section">
     <div class="container">
-        <!-- Header -->
-        <header class="mb-5 has-text-centered">
-            <h1 class="title is-size-2-desktop is-size-3-mobile">
-                <i class="fa-solid fa-lightbulb"></i> Resources
-            </h1>
-            <h2 class="subtitle is-size-4-desktop is-size-5-mobile ls-wide">
-                Helpful Tools for Every Step of Your Journey.
-            </h2>
-        </header>
+        {% include components/section-header.html heading="Resources" subheading="Helpful Tools for Every Step of Your Journey." icon="fa-solid fa-lightbulb" %}
 
         <!-- Featured Resource -->
         <div class="card mb-6">
@@ -17,26 +9,27 @@
                     Featured Resource
                 </h3>
             </header>
+
             <div class="card-content">
                 <div class="columns is-multiline is-vcentered">
                     <div class="column is-3">
-                        <img src="{{ site.featured-resource-logo }}" alt="{{ site.featured-resource }} Logo">
+                        <img src="{{ site.featured-resource.logo }}" alt="{{ site.featured-resource.name }} Logo">
                     </div>
                     <div class="column is-9">
                         <h4 class="title mb-4 is-size-5">
-                            {{ site.featured-resource }}
+                            {{ site.featured-resource.name }}
                         </h4>
                         <p>
-                            {{ site.featured-resource-description }}
+                            {{ site.featured-resource.description }}
                         </p>
                         <div class="buttons mt-3">
-                            <a class="button" href="{{ site.featured-resource-url }}" target="_blank">
+                            <a class="button" href="{{ site.featured-resource.url }}" target="_blank">
                                 Visit Website
                             </a>
 
-                            {% unless site.featured-resource-hotline-url == "" or site.featured-resource-hotline-url == nil %}
-                                <a class="button is-outlined" href="{{ site.featured-resource-hotline-url }}">
-                                    {{ site.featured-resource-hotline-text }}
+                            {% unless site.featured-resource.hotline-url == "" or site.featured-resource.hotline-url == nil %}
+                                <a class="button is-outlined" href="{{ site.featured-resource.hotline-url }}">
+                                    {{ site.featured-resource.hotline-text }}
                                 </a>
                             {% endunless %}
                         </div>
@@ -48,26 +41,32 @@
         <hr class="mb-6">
 
         <!-- Resource Accordion -->
-        <div>
-            {% for resource in site.resources %}
-                <article class="message mb-4">
-                    <div class="message-header" style="background-color: {{ resource.header-color }};" onclick="toggleAccordion(this)">
-                        <h3 style="color: {{ resource.header-font-color }};">
-                            <i class="{{ resource.icon }} mr-2"></i> {{ resource.title }}
-                        </h3>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                    <div class="message-body is-hidden">
+        {% for resource in site.resources %}
+            <div class="accordion-item mb-4">
+                <h3 class="accordion-item-header" style="background-color: {{ resource.header-color }};">
+                    <button id="accordion-item-header-{{ forloop.index }}" class="accordion-item-header-button" aria-controls="accordion-item-body-{{ forloop.index }}" aria-expanded="false" style="color: {{ resource.header-font-color }};">
+                        <span class="accordion-item-header-start">
+                            <span class="icon"><i class="{{ resource.icon }}" aria-hidden="true"></i></span>
+                            <span>{{ resource.title }}</span>
+                        </span>
+                        <span class="accordion-item-header-end">
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </h3>
+
+                <div id="accordion-item-body-{{ forloop.index }}" class="accordion-item-body" role="region" aria-labelledby="accordion-item-header-{{ forloop.index }}">
+                    <div class="content">
                         <p>
                             {{ resource.description }}
                         </p>
-                        <a class="button mt-2 is-small is-outlined" href="{{ resource.url }}">
+                        <a class="button is-small is-outlined" href="{{ resource.url }}">
                             View Resource
                         </a>
                     </div>
-                </article>
-            {% endfor %}
-        </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </section>
 

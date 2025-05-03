@@ -40,13 +40,13 @@
                 }
 
                 // Primary CTA Button
-                .button:nth-child(1)
+                .button:not(.is-outlined)
                 {
                     @include mixins.button(vars.$font-color-white, #ff4081, #ff0d5f);
                 }
 
                 // Secondary CTA Button
-                .button:nth-child(2)
+                .button.is-outlined
                 {
                     @include mixins.outlined-button(vars.$font-color-black, #1976d2, rgba(25, 118, 210, 0.2));
                 }
@@ -54,23 +54,63 @@
         }
     }
 
-    .message
+    .accordion-item
     {
-        .message-header h3
+        .accordion-item-header
         {
-            font-weight: vars.$font-weight-semi-bold;
+            border-radius: 6px 6px 0 0;
+            // background-color is set in resource files.
+
+            button
+            {
+                width: 100%;
+                padding: 0.5rem;
+                // color is set in resource files.
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .accordion-item-header-start span:not(.icon)
+                {
+                    font-weight: vars.$font-weight-semi-bold;
+                }
+
+                .accordion-item-header-end .fa-chevron-down
+                {
+                    transition: transform vars.$animation-time ease;
+                }
+            }
         }
 
-        .message-body .button
+        .accordion-item-body
         {
-            @include mixins.outlined-button(vars.$font-color-black, #1976d2, rgba(25, 118, 210, 0.2));
+            max-height: 0; // Eventually overridden by JavaScript styling.
+            border-radius: 0 0 12px 12px;
+            background-color: #f4f5fa;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+
+            .content
+            {
+                padding: 1.0rem;
+
+                .button
+                {
+                    @include mixins.outlined-button(vars.$font-color-black, #1976d2, rgba(25, 118, 210, 0.2));
+                }
+            }
         }
     }
 
-    .fa-rotate-180
+    @media (prefers-reduced-motion: reduce)
     {
-        transform: rotate(180deg);
-        transition: transform 0.3s ease;
+        .accordion-item
+        {
+            .accordion-item-header button .accordion-item-header-end .fa-chevron-down, .accordion-item-body
+            {
+                transition: none;
+            }
+        }
     }
 }
 
@@ -103,11 +143,11 @@ html
             }
         }
 
-        .message .message-body
+        .accordion-item .accordion-item-body
         {
             background-color: #fff;
 
-            .button
+            .content .button
             {
                 @include mixins.outlined-button(vars.$font-color-black, #212121, rgba(0, 0, 0, 0.2));
             }
@@ -129,41 +169,28 @@ html
             {
                 background-color: #4a4a4a;
 
-                .columns .column.is-9
+                .columns .column.is-9 .buttons
                 {
-                    p
+                    // Primary CTA Button
+                    .button:not(.is-outlined)
                     {
-                        color: vars.$font-color-off-white;
+                        @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
                     }
 
-                    .buttons
+                    // Secondary CTA Button
+                    .button.is-outlined
                     {
-                        // Primary CTA Button
-                        .button:nth-child(1)
-                        {
-                            @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
-                        }
-
-                        // Secondary CTA Button
-                        .button:nth-child(2)
-                        {
-                            @include mixins.outlined-button(vars.$font-color-white, #f2f0ef, rgba(255, 255, 255, 0.2));
-                        }
+                        @include mixins.outlined-button(vars.$font-color-white, #f2f0ef, rgba(255, 255, 255, 0.2));
                     }
                 }
             }
         }
 
-        .message .message-body
+        .accordion-item .accordion-item-body
         {
             background-color: #3a3a3a;
 
-            p
-            {
-                color: vars.$font-color-off-white;
-            }
-
-            .button
+            .content .button
             {
                 @include mixins.outlined-button(vars.$font-color-white, #f2f0ef, rgba(255, 255, 255, 0.2));
             }
