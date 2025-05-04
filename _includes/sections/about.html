@@ -22,7 +22,7 @@
 
                     <!-- Mission Statement -->
                     <div class="box mission-box mt-5">
-                        <blockquote class="is-size-5 is-italic">
+                        <blockquote class="is-size-5">
                             To build a space where LGBTQ+ people are not just accepted, but <strong>uplifted</strong>—where we celebrate our diversity, share our stories, and stand proud in our colors.
                         </blockquote>
                         <p class="mt-2">
@@ -34,7 +34,7 @@
                     </div>
 
                     <!-- Values Display -->
-                    <div class="columns value-boxes-wrapper is-multiline is-centered is-mobile">
+                    <div class="columns is-multiline is-centered is-mobile value-boxes-wrapper">
                         {% for value in site.data.values limit:4 %}
                             <div class="column is-3-desktop is-6-touch has-text-centered">
                                 <div class="box value-box">
@@ -84,6 +84,7 @@
                                             <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
                                         </figure>
                                     </div>
+
                                     <div class="column is-9">
                                         {% include components/about/testimonial.html is_mobile=false %}
                                     </div>
