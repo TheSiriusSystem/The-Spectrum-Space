@@ -13,6 +13,7 @@
         background-color: #d0f0c0;
         box-shadow: vars.$shadow-heavy;
 
+        // This element is styled by default so ensure it always uses Pride/Light font colors.
         blockquote
         {
             font-style: italic;
@@ -116,11 +117,6 @@
         {
             transform: rotateY(0deg);
         }
-
-        @media screen and (max-width: vars.$breakpoint-touch)
-        {
-            width: 70%;
-        }
     }
 
     .testimonial-cards-wrapper
@@ -139,21 +135,6 @@
                 box-shadow: none; // Removes the default box shadow on Bulma's cards.
                 transition: transform vars.$animation-time-long ease, opacity vars.$animation-time-long ease, box-shadow vars.$animation-time-long ease;
                 flex-grow: 1.0;
-
-                &.fade-in
-                {
-                    transform: translateY(0px);
-                    opacity: 1.0;
-                    box-shadow: vars.$shadow-light, 0 0 8px rgba(214, 2, 112, 0.4), 0 0 12px rgba(155, 79, 150, 0.3), 0 0 16px rgba(0, 56, 168, 0.3);
-
-                    &:hover
-                    {
-                        transform: rotateX(3deg) rotateY(3deg);
-                        perspective: 1200px;
-                        transform-style: preserve-3d;
-                        transition: transform 0.6s ease, opacity vars.$animation-time-long ease, box-shadow vars.$animation-time-long ease;
-                    }
-                }
 
                 .card-content
                 {
@@ -229,7 +210,22 @@
                         color: vars.$font-color-black;
                     }
                 }
+
+                &.fade-in
+                {
+                    transform: translateY(0px);
+                    opacity: 1.0;
+                    box-shadow: vars.$shadow-light, 0 0 8px rgba(214, 2, 112, 0.4), 0 0 12px rgba(155, 79, 150, 0.3), 0 0 16px rgba(0, 56, 168, 0.3);
+                }
             }
+        }
+    }
+
+    @media screen and (max-width: vars.$breakpoint-touch)
+    {
+        .about-image-wrapper
+        {
+            width: 70%;
         }
     }
 
