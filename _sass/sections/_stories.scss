@@ -3,10 +3,8 @@
 
 $timeline-vertical-line-position: 30px;
 $timeline-item-offset: calc($timeline-vertical-line-position + 10px);
-$timeline-marker-offset: 38px;
+$timeline-marker-offset: 40px;
 $timeline-marker-size: 30px;
-$timeline-marker-pointer-offset: 40px;
-$timeline-marker-pointer-size: 20px;
 $timeline-marker-hover-scale: 1.1;
 
 #stories
@@ -46,24 +44,28 @@ $timeline-marker-hover-scale: 1.1;
 
             .box
             {
+                transform: scale(0.8);
                 padding: 1.25rem 1.75rem;
                 border-top: 4px solid #e8ffff;
+                opacity: 0.0;
+                transition: transform vars.$animation-time-long ease, opacity vars.$animation-time-long ease;
 
                 h3
                 {
                     color: vars.$font-color-charcoal;
                 }
-            }
 
-            // Create the marker pointer.
-            &.is-left::before, &.is-right::before
-            {
-                content: "";
-                position: absolute;
-                transform: rotateZ(45deg) scale(1.5);
-                top: $timeline-marker-offset + calc($timeline-marker-size / 2.0) - calc($timeline-marker-pointer-size / 2.0);
-                width: $timeline-marker-pointer-size;
-                height: $timeline-marker-pointer-size;
+                &.fade-in
+                {
+                    transform: scale(1.0);
+                    opacity: 1.0;
+
+                    &:hover
+                    {
+                        transform: translateY(-4px) scale(1.0);
+                        transition: transform 0.6s ease, opacity vars.$animation-time-long ease;
+                    }
+                }
             }
 
             &.is-left
@@ -81,11 +83,6 @@ $timeline-marker-hover-scale: 1.1;
                         transform: translateX(50%) scale($timeline-marker-hover-scale);
                     }
                 }
-
-                &::before
-                {
-                    right: $timeline-marker-pointer-offset;
-                }
             }
 
             &.is-right
@@ -102,37 +99,24 @@ $timeline-marker-hover-scale: 1.1;
                         transform: translateX(-50%) scale($timeline-marker-hover-scale);
                     }
                 }
-
-                &::before
-                {
-                    left: $timeline-marker-pointer-offset;
-                }
             }
 
-            &.story
+            &.story .box
             {
-                .box
+                box-shadow: vars.$shadow-light;
+
+                p.is-size-7
                 {
-                    box-shadow: vars.$shadow-light;
-
-                    p.is-size-7
-                    {
-                        padding: 0.25rem 0.75rem;
-                        border-radius: vars.$border-radius-rounded;
-                        color: vars.$font-color-off-white;
-                        background-color: #00b4d8;
-                        display: inline;
-                    }
-
-                    h4
-                    {
-                        color: vars.$font-color-licorice;
-                    }
+                    padding: 0.25rem 0.75rem;
+                    border-radius: vars.$border-radius-rounded;
+                    color: vars.$font-color-off-white;
+                    background-color: #00b4d8;
+                    display: inline;
                 }
 
-                &::before
+                h4
                 {
-                    background-color: #fff;
+                    color: vars.$font-color-licorice;
                 }
             }
 
@@ -152,11 +136,6 @@ $timeline-marker-hover-scale: 1.1;
                         transition: background-color vars.$animation-time ease, box-shadow vars.$animation-time ease;
                     }
                 }
-
-                &::before
-                {
-                    background-color: #ffe8e8;
-                }
             }
         }
 
@@ -173,6 +152,19 @@ $timeline-marker-hover-scale: 1.1;
             border-radius: vars.$border-radius-rounded;
             background: linear-gradient(to bottom, #000, #a4a4a4, #fff, #810081);
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .blog-cta-box
+    {
+        border: 2px dashed #808080;
+        background-color: #ade8f4;
+        box-shadow: vars.$shadow-light;
+
+        .button
+        {
+            width: 200px;
+            @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
         }
     }
 
@@ -196,11 +188,6 @@ $timeline-marker-hover-scale: 1.1;
                 &.is-left, &.is-right
                 {
                     left: 0;
-
-                    &::before
-                    {
-                        display: none;
-                    }
                 }
 
                 &.story
@@ -219,9 +206,22 @@ $timeline-marker-hover-scale: 1.1;
 
     @media (prefers-reduced-motion: reduce)
     {
-        .timeline .timeline-item .timeline-marker
+        .timeline .timeline-item
         {
-            transition: none;
+            .timeline-marker
+            {
+                transition: none;
+            }
+
+            .box
+            {
+                transition: none;
+
+                &:hover
+                {
+                    transition: none !important;
+                }
+            }
         }
     }
 }
@@ -253,27 +253,21 @@ html
                     border-top-color: #a5d8ff;
                 }
 
-                &.story
+                &.story .box
                 {
-                    .box, &::before
-                    {
-                        background-color: #fffafa;
-                    }
+                    background-color: #fffafa;
 
-                    .box p.is-size-7
+                    p.is-size-7
                     {
                         background-color: #718096;
                     }
                 }
 
-                &.cta
+                &.cta .box
                 {
-                    .box, &::before
-                    {
-                        background-color: #edf2f7;
-                    }
+                    background-color: #edf2f7;
 
-                    .box .button
+                    .button
                     {
                         @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
                     }
@@ -284,6 +278,16 @@ html
             &::after
             {
                 background: linear-gradient(to bottom, #a5d8ff, #5b9bd5);
+            }
+        }
+
+        .blog-cta-box
+        {
+            background-color: #e0f2fe;
+
+            .button
+            {
+                @include mixins.button(vars.$font-color-white, #0284c7, #0369a1);
             }
         }
     }
@@ -318,44 +322,30 @@ html
                     }
                 }
 
-                &.story
+                &.story .box
                 {
-                    .box, &::before
+                    background-color: #2d3748;
+                    box-shadow: vars.$shadow-medium;
+
+                    p.is-size-7
                     {
-                        background-color: #2d3748;
+                        background-color: #1a202c;
                     }
 
-                    .box
+                    h4
                     {
-                        box-shadow: vars.$shadow-medium;
-
-                        p.is-size-7
-                        {
-                            background-color: #1a202c;
-                        }
-
-                        h4
-                        {
-                            color: vars.$font-color-off-white;
-                        }
+                        color: vars.$font-color-off-white;
                     }
                 }
 
-                &.cta
+                &.cta .box
                 {
-                    .box, &::before
-                    {
-                        background-color: #323f4f;
-                    }
+                    background-color: #323f4f;
+                    box-shadow: vars.$shadow-heavy;
 
-                    .box
+                    .button
                     {
-                        box-shadow: vars.$shadow-heavy;
-
-                        .button
-                        {
-                            @include mixins.button(vars.$font-color-white, #805ad5, #6b46c1);
-                        }
+                        @include mixins.button(vars.$font-color-white, #805ad5, #6b46c1);
                     }
                 }
             }
@@ -364,6 +354,23 @@ html
             &::after
             {
                 background: linear-gradient(#4a5568, #805ad5);
+            }
+        }
+
+        .blog-cta-box
+        {
+            border-color: #d3d3d3;
+            background-color: #0f172a;
+
+            .button
+            {
+                @include mixins.button(vars.$font-color-white, #0ea5e9, #0284c7);
+                box-shadow: 0 0 8px rgba(14, 165, 233, 0.3);
+
+                &:hover
+                {
+                    box-shadow: 0 0 12px rgba(14, 165, 233, 0.75);
+                }
             }
         }
     }

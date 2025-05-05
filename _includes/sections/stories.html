@@ -2,6 +2,7 @@
     <div class="container">
         {% include components/section-header.html heading="Community Stories" subheading="Our Paths Through Challenge and Triumph." icon="fa-solid fa-book-reader" %}
 
+        <!-- Timeline -->
         <div class="columns is-centered is-mobile">
             <div class="column is-10-desktop is-12-touch">
                 <div class="timeline">
@@ -38,7 +39,9 @@
                                         Everyone in our community has a story worth sharing. Tell us about your journey, challenges, triumphs, or hopes.
                                     </p>
                                     <a class="button is-medium mt-3" href="/contact">
-                                        <span class="icon"><i class="fa-solid fa-pencil" aria-hidden="true"></i></span>
+                                        <span class="icon">
+                                            <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                                        </span>
                                         <span>Share Your Story</span>
                                     </a>
                                 {% endif %}
@@ -49,17 +52,26 @@
             </div>
         </div>
 
-        <div class="has-text-centered">
-            <h3 class="title mb-2 is-size-3-desktop is-size-4-mobile">
-                More Stories from Our Community
-            </h3>
-            <p>
-                Our blog features a growing collection of personal journeys, insights, and experiences from across the <strong>spectrum</strong>.
-            </p>
-            <a class="button is-medium mt-4" href="/blog">
-                <span class="icon"><i class="fa-solid fa-blog" aria-hidden="true"></i></span>
-                <span>Explore</span>
-            </a>
+        <!-- Blog Call-To-Action Box -->
+        <div class="columns is-centered is-mobile">
+            <div class="column is-6-desktop is-8-tablet is-10-mobile">
+                <div class="box blog-cta-box has-text-centered">
+                    <h3 class="title is-size-3-desktop is-size-4-mobile">
+                        More Stories from Our Community
+                    </h3>
+                    <p class="is-size-6">
+                        Our blog features a growing collection of personal journeys, insights, and experiences from across the <strong>spectrum</strong>.
+                    </p>
+                    <a class="button mt-4" href="/blog">
+                        <span class="icon">
+                            <i class="fa-solid fa-blog" aria-hidden="true"></i>
+                        </span>
+                        <span>Explore</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script src="/assets/js/sections/stories.js"></script>
