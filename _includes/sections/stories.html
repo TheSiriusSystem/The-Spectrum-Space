@@ -2,10 +2,10 @@
     <div class="container">
         {% include components/section-header.html heading="Community Stories" subheading="Our Paths Through Challenge and Triumph." icon="fa-solid fa-book-reader" %}
 
-        <!-- Timeline -->
+        <!-- Story Timeline -->
         <div class="columns is-centered is-mobile">
             <div class="column is-10-desktop is-12-touch">
-                <div class="timeline">
+                <ul class="timeline">
                     {% for story in site.data.stories %}
                         {% assign position = forloop.index0 | modulo: 2 %}
                         {% if position == 0 %}
@@ -14,7 +14,7 @@
                             {% assign side = "is-right" %}
                         {% endif %}
 
-                        <div class="timeline-item {{ side }} {{ story.type }}">
+                        <li class="timeline-item {{ side }} {{ story.type }}">
                             <div class="timeline-marker"></div>
 
                             <div class="box">
@@ -46,9 +46,9 @@
                                     </a>
                                 {% endif %}
                             </div>
-                        </div>
+                        </li>
                     {% endfor %}
-                </div>
+                </ul>
             </div>
         </div>
 

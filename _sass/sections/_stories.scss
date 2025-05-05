@@ -44,7 +44,7 @@ $timeline-marker-hover-scale: 1.1;
 
             .box
             {
-                transform: scale(0.8);
+                transform: scale(0.9);
                 padding: 1.25rem 1.75rem;
                 border-top: 4px solid #e8ffff;
                 opacity: 0.0;
@@ -110,7 +110,7 @@ $timeline-marker-hover-scale: 1.1;
                     padding: 0.25rem 0.75rem;
                     border-radius: vars.$border-radius-rounded;
                     color: vars.$font-color-off-white;
-                    background-color: #00b4d8;
+                    background-color: #0077a0;
                     display: inline;
                 }
 
