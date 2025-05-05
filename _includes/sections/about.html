@@ -82,11 +82,8 @@
                             <div class="desktop-only">
                                 <div class="columns is-vcentered">
                                     <div class="column is-3">
-                                        <figure class="image is-128x128">
-                                            <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
-                                        </figure>
+                                        {% include components/about/testimonial-avatar.html avatar_size="128x128" %}
                                     </div>
-
                                     <div class="column is-9">
                                         {% include components/about/testimonial.html is_mobile=false %}
                                     </div>
@@ -94,9 +91,7 @@
                             </div>
 
                             <div class="touch-only-flex">
-                                <figure class="image is-96x96">
-                                    <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
-                                </figure>
+                                {% include components/about/testimonial-avatar.html avatar_size="96x96" %}
                                 {% include components/about/testimonial.html is_mobile=true %}
                             </div>
                         </div>
