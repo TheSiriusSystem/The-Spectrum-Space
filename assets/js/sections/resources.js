@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function()
 
         button.addEventListener("keydown", function(event)
         {
-            if (event.key === "Enter" || event.key === " ")
+            if (event.key === "Enter")
             {
                 event.preventDefault(); // Prevent default spacebar scrolling.
                 toggleAccordion(body, button, chevron);
