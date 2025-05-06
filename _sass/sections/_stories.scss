@@ -157,7 +157,7 @@ $timeline-marker-hover-scale: 1.1;
 
     .blog-cta-box
     {
-        border: 2px dashed #808080;
+        border: 2px dashed #6b46c1;
         background-color: #ade8f4;
         box-shadow: vars.$shadow-light;
 
@@ -283,6 +283,7 @@ html
 
         .blog-cta-box
         {
+            border-color: #0284c7;
             background-color: #e0f2fe;
 
             .button
@@ -359,7 +360,7 @@ html
 
         .blog-cta-box
         {
-            border-color: #d3d3d3;
+            border-color: #38bdf8;
             background-color: #0f172a;
 
             .button

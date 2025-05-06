@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function()
         {
             if (event.key === "Enter")
             {
-                event.preventDefault(); // Prevent default spacebar scrolling.
+                event.preventDefault();
                 toggleAccordion(body, button, chevron);
             }
         });
@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function()
     {
         body.classList.add("is-active");
         body.style.maxHeight = `${body.scrollHeight}px`;
+        body.querySelector(".button").tabIndex = "0";
         button.setAttribute("aria-expanded", "true");
         chevron.style.transform = "rotateZ(180deg)";
     }
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function()
     {
         body.classList.remove("is-active");
         body.style.maxHeight = null;
+        body.querySelector(".button").tabIndex = "-1";
         button.setAttribute("aria-expanded", "false");
         chevron.style.transform = "rotateZ(0deg)";
     }

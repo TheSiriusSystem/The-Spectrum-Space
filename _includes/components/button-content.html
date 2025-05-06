@@ -1,0 +1,8 @@
+{% unless include.icon == "" or include.icon == nil %}
+    <span class="icon">
+        <i class="{{ include.icon }}" aria-hidden="true"></i>
+    </span>
+{% endunless %}
+{% unless include.text == "" or include.text == nil %}
+    <span>{{ include.text }}</span>
+{% endunless %}
