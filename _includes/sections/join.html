@@ -208,34 +208,83 @@
 
                     <!-- Step 3 -->
                     <div id="step-involvement" class="form-step">
-                        {% include components/join/step-header.html heading="Step 3: Involvement Options" subheading="How Would You Like To Get Involved?" %}
+                        {% include components/join/step-header.html heading="Step 3: Community Engagement" subheading="How Would You Like To Connect With Us?" %}
 
-                        {% include components/join/controlling-checkbox.html key="involvement" value="volunteer" icon="fa-solid fa-hands-helping" text="Volunteer" %}
-                        {% include components/join/controlling-checkbox.html key="involvement" value="donate" icon="fa-solid fa-hand-holding-heart" text="Donate" %}
-                        {% include components/join/controlling-checkbox.html key="involvement" value="membership" icon="fa-solid fa-id-card" text="Become a Member" %}
-                        {% include components/join/controlling-checkbox.html key="involvement" value="newsletter" icon="fa-solid fa-envelope" text="Subscribe to Newsletter" %}
+                        <fieldset>
+                            {% include components/join/fieldset-header.html text="I'm interested in: (Select all that apply)" %}
+
+                            {% include components/join/controlling-checkbox.html key="engagement" value="participation" icon="fa-solid fa-calendar-days" text="Attending Events & Programs" %}
+                            {% include components/join/controlling-checkbox.html key="engagement" value="volunteering" icon="fa-solid fa-handshake-angle" text="Volunteering" %}
+                            {% include components/join/controlling-checkbox.html key="engagement" value="newsletter" icon="fa-solid fa-envelope" text="Newsletter & Updates" %}
+                            {% include components/join/controlling-checkbox.html key="engagement" value="resources" icon="fa-solid fa-book-open" text="Access Resources" %}
+                        </fieldset>
+
+                        <hr>
+
+                        <p class="is-size-6 has-text-centered">
+                            Looking to support us financially? Visit our <a class="link" href="/support-us" target="_blank">Support Us</a> page for donation and membership options.
+                        </p>
 
                         {% include components/join/form-buttons.html prev_step_id="step-background" next_step_id="step-preferences" %}
                     </div>
 
                     <!-- Step 4 -->
                     <div id="step-preferences" class="form-step">
-                        {% include components/join/step-header.html heading="Step 4: Preferences" subheading="Please provide more details based on your selections." %}
+                        {% include components/join/step-header.html heading="Step 4: Your Preferences" subheading="Help Us Customize Your Community Experience" %}
 
-                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:volunteer">
-                            {% include components/join/fieldset-header.html text="Volunteer Preferences" %}
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="engagement:participation">
+                            {% include components/join/fieldset-header.html text="Events & Programs" %}
 
                             <div class="field">
-                                {% assign is_required = true %}
-                                {% include components/join/field-label.html id="volunteer-skills" text="What skills would you like to contribute?" required=is_required %}
-                                {% include components/join/textarea.html id="volunteer-skills" placeholder_text="Tell us about your skills and interests..." required=is_required %}
+                                {% include components/join/field-label.html id="" text="What programs interest you most?" required=true %}
+                                <div class="control" data-require-one="true">
+                                    <label class="checkbox">
+                                        <input name="participation-interests" type="checkbox" value="social"> Social Gatherings
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="participation-interests" type="checkbox" value="support"> Support Groups
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="participation-interests" type="checkbox" value="workshops"> Workshops & Learning
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="participation-interests" type="checkbox" value="advocacy"> Advocacy Events
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="participation-interests" type="checkbox" value="cultural"> Cultural Activities
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="field">
-                                {% include components/join/field-label.html id="volunteer-availability-select" text="Availability" required=true %}
+                                {% include components/join/field-label.html id="participation-attendance-format-select" text="What is your preferred attendance format?" required=true %}
                                 <div class="control">
                                     <div class="select is-fullwidth">
-                                        <select id="volunteer-availability-select" name="volunteer-availability" required>
+                                        <select id="participation-attendance-format-select" name="participation-attendance-format" required>
+                                            <option value="" hidden selected>Select an option...</option>
+                                            <option value="in-person">In-person only</option>
+                                            <option value="virtual">Virtual only</option>
+                                            <option value="hybrid">Both in-person and virtual</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="engagement:volunteering">
+                            {% include components/join/fieldset-header.html text="Volunteer Interests" %}
+
+                            <div class="field">
+                                {% assign is_required = true %}
+                                {% include components/join/field-label.html id="volunteering-skills" text="What skills would you like to contribute?" required=is_required %}
+                                {% include components/join/textarea.html id="volunteering-skills" placeholder_text="Tell us about your skills and interests..." required=is_required %}
+                            </div>
+
+                            <div class="field">
+                                {% include components/join/field-label.html id="volunteering-availability-select" text="When are you available?" required=true %}
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="volunteering-availability-select" name="volunteering-availability" required>
                                             <option value="" hidden selected>Select an option...</option>
                                             <option value="weekdays">Weekdays</option>
                                             <option value="weekends">Weekends</option>
@@ -247,92 +296,32 @@
                             </div>
                         </fieldset>
 
-                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:donate">
-                            {% include components/join/fieldset-header.html text="Donation Preferences" %}
-
-                            <div class="field">
-                                {% include components/join/field-label.html id="donator-donation-amount" text="Donation Amount" required=true %}
-                                <div class="control">
-                                    <input id="donator-donation-amount" name="donator-donation-amount" type="number" min="1" placeholder="50" required class="input">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                {% include components/join/field-label.html id="donator-frequency-select" text="Frequency" required=true %}
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select id="donator-frequency-select" name="donator-frequency" required>
-                                            <option value="" hidden selected>Select an option...</option>
-                                            <option value="once">One-time donation</option>
-                                            <option value="monthly">Monthly</option>
-                                            <option value="quarterly">Quarterly</option>
-                                            <option value="annually">Annually</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:membership">
-                            {% include components/join/fieldset-header.html text="Membership Details" %}
-
-                            <div class="field">
-                                {% include components/join/field-label.html id="membership-type-select" text="Membership Type" required=true %}
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select id="membership-type-select" name="membership-type" required>
-                                            <option value="" hidden selected>Select an option...</option>
-                                            <option value="standard">Standard Membership ($25/year)</option>
-                                            <option value="student">Student Membership ($15/year)</option>
-                                            <option value="supporter">Supporter Membership ($50/year)</option>
-                                            <option value="lifetime">Lifetime Membership ($250)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                {% include components/join/field-label.html id="" text="Areas of Interest" required=true %}
-                                <div class="control" data-require-one="true">
-                                    <label class="checkbox">
-                                        <input name="membership-interests" type="checkbox" value="community-events"> Community Events
-                                    </label>
-                                    <label class="checkbox">
-                                        <input name="membership-interests" type="checkbox" value="support-groups"> Support Groups
-                                    </label>
-                                    <label class="checkbox">
-                                        <input name="membership-interests" type="checkbox" value="advocacy"> Advocacy
-                                    </label>
-                                    <label class="checkbox">
-                                        <input name="membership-interests" type="checkbox" value="education"> Education
-                                    </label>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:newsletter">
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="engagement:newsletter">
                             {% include components/join/fieldset-header.html text="Newsletter Preferences" %}
 
                             <div class="field">
-                                {% include components/join/field-label.html id="" text="Content Interests" required=true %}
+                                {% include components/join/field-label.html id="" text="What information interests you most?" required=true %}
                                 <div class="control" data-require-one="true">
                                     <label class="checkbox">
-                                        <input name="newsletter-interests" type="checkbox" value="community-events"> Community Events
+                                        <input name="newsletter-interests" type="checkbox" value="events"> Upcoming Events
                                     </label>
                                     <label class="checkbox">
-                                        <input name="newsletter-interests" type="checkbox" value="resources-support"> Resources & Support
+                                        <input name="newsletter-interests" type="checkbox" value="resources"> Community Resources
                                     </label>
                                     <label class="checkbox">
-                                        <input name="newsletter-interests" type="checkbox" value="advocacy-opportunities"> Advocacy Opportunities
+                                        <input name="newsletter-interests" type="checkbox" value="advocacy"> Advocacy Opportunities
                                     </label>
                                     <label class="checkbox">
-                                        <input name="newsletter-interests" type="checkbox" value="educational-content"> Educational Content
+                                        <input name="newsletter-interests" type="checkbox" value="stories"> Member Stories
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="newsletter-interests" type="checkbox" value="news"> LGBTQ+ News
                                     </label>
                                 </div>
                             </div>
 
                             <div class="field">
-                                {% include components/join/field-label.html id="newsletter-frequency-select" text="Frequency" required=true %}
+                                {% include components/join/field-label.html id="newsletter-frequency-select" text="How often would you like to hear from us?" required=true %}
                                 <div class="control">
                                     <div class="select is-fullwidth">
                                         <select id="newsletter-frequency-select" name="newsletter-frequency" required>
@@ -340,9 +329,41 @@
                                             <option value="weekly">Weekly</option>
                                             <option value="monthly">Monthly</option>
                                             <option value="quarterly">Quarterly</option>
+                                            <option value="important">Important updates only</option>
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="engagement:resources">
+                            {% include components/join/fieldset-header.html text="Resource Interests" %}
+
+                            <div class="field">
+                                {% include components/join/field-label.html id="" text="What resources are you most interested in?" required=true %}
+                                <div class="control" data-require-one="true">
+                                    <label class="checkbox">
+                                        <input name="resources-types" type="checkbox" value="health"> Health & Wellness
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="resources-types" type="checkbox" value="legal"> Legal Support
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="resources-types" type="checkbox" value="education"> Educational Materials
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="resources-types" type="checkbox" value="community"> Community Connections
+                                    </label>
+                                    <label class="checkbox">
+                                        <input name="resources-types" type="checkbox" value="crisis"> Crisis Resources
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                {% assign is_required = false %}
+                                {% include components/join/field-label.html id="resources-specific-needs" text="Any specific resources you're looking for?" required=is_required %}
+                                {% include components/join/textarea.html id="resources-specific-needs" placeholder_text="Tell us about any specific support or resources you're seeking..." required=is_required %}
                             </div>
                         </fieldset>
 
