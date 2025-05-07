@@ -131,13 +131,6 @@ $opacity-testimonial-carousel-pagination-dot: 0.3;
             justify-content: space-between;
             align-items: center;
 
-            // Create the line connecting the dots.
-            &::before
-            {
-                content: "";
-                @include progress-line-style(100%, $color-neutral-pride, 1);
-            }
-
             .progress-line
             {
                 @include progress-line-style(0%, $color-progress, 2);
@@ -214,6 +207,13 @@ $opacity-testimonial-carousel-pagination-dot: 0.3;
                     }
                 }
             }
+
+            // Create the line connecting the dots.
+            &::before
+            {
+                content: "";
+                @include progress-line-style(100%, $color-neutral-pride, 1);
+            }
         }
 
         .form-step
@@ -222,23 +222,6 @@ $opacity-testimonial-carousel-pagination-dot: 0.3;
             transition: opacity 1.0s ease;
             pointer-events: none;
             display: none;
-
-            &.is-active
-            {
-                display: block;
-            }
-
-            &.fade-in
-            {
-                opacity: 1.0;
-                pointer-events: auto;
-            }
-
-            &.fade-out
-            {
-                opacity: 0.0;
-                pointer-events: none;
-            }
 
             fieldset
             {
@@ -318,6 +301,33 @@ $opacity-testimonial-carousel-pagination-dot: 0.3;
                     @include mixins.button(vars.$font-color-white, $color-progress, #008f5f);
                 }
             }
+
+            .notification
+            {
+                background-color: #90d5ff;
+
+                p.is-size-5
+                {
+                    font-weight: vars.$font-weight-bold;
+                }
+            }
+
+            &.is-active
+            {
+                display: block;
+            }
+
+            &.fade-in
+            {
+                opacity: 1.0;
+                pointer-events: auto;
+            }
+
+            &.fade-out
+            {
+                opacity: 0.0;
+                pointer-events: none;
+            }
         }
     }
 }
@@ -382,6 +392,11 @@ html
                 {
                     @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
                 }
+            }
+
+            .notification
+            {
+                background-color: #dbeafe;
             }
         }
     }
@@ -512,6 +527,11 @@ html
                 {
                     @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
                 }
+            }
+
+            .notification
+            {
+                background-color: #1e3a8a;
             }
         }
     }
