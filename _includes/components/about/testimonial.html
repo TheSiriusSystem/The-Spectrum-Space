@@ -1,4 +1,4 @@
-<blockquote class="is-size-6{% if include.is_mobile == true %} mt-3{% endif %}">
+<blockquote class="{% if include.is_mobile == true %}mt-3 {% endif %}is-size-6">
     {% if include.is_mobile == true %}
         <span class="quotation-mark" aria-hidden="true">&OpenCurlyDoubleQuote;</span>
     {% endif %}
@@ -8,7 +8,7 @@
     {% endif %}
 </blockquote>
 <footer>
-    <p class="is-size-5 mt-4">
+    <p class="mt-4 is-size-5">
         — {{ testimonial.author }}
     </p>
 </footer>
