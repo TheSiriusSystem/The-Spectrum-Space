@@ -321,7 +321,6 @@ document.addEventListener("DOMContentLoaded", function()
                         }
                     });
 
-                    // TODO: Replace this with form actions.
                     event.preventDefault();
                     alert("Thank you for your submission! However, no actual data was sent because this is a web design exercise.");
                     window.location.href = "/";
@@ -355,5 +354,9 @@ document.addEventListener("DOMContentLoaded", function()
     {
         isTransitioning = false;
     }, transitionDelay);
+    new Splide(".splide", {
+        rewind: true,
+        autoplay: true,
+    }).mount();
     isContentLoaded = true;
 });

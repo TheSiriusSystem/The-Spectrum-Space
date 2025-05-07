@@ -2,6 +2,37 @@
     <div class="container">
         {% include components/section-header.html heading="Join Our Spectrum Family" subheading="Let's Build a Brighter Future Together." icon="fa-solid fa-user-plus" %}
 
+        <!-- Testimonial Carousel -->
+        <div class="columns is-centered is-mobile">
+            <div class="column is-5-desktop is-8-tablet is-12-mobile">
+                <div class="splide" role="group" aria-label="New Member Testimonials">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            {% for testimonial in site.data.new-user-testimonials %}
+                                <li class="splide__slide">
+                                    <div class="box has-text-centered">
+                                        <figure class="image mb-4 is-96x96">
+                                            <img class="is-rounded" src="{{ testimonial.author-avatar }}" alt="Avatar of {{ testimonial.author }}">
+                                        </figure>
+                                        <blockquote class="mb-2 is-size-6">
+                                            <span class="quotation-mark" aria-hidden="true">&OpenCurlyDoubleQuote;</span>
+                                            <span>{{ testimonial.quote }}</span>
+                                            <span class="quotation-mark" aria-hidden="true">&CloseCurlyDoubleQuote;</span>
+                                        </blockquote>
+                                        <footer>
+                                            <p class="is-size-5">
+                                                — {{ testimonial.author }}
+                                            </p>
+                                        </footer>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Join Form -->
         <div class="columns is-centered is-mobile">
             <div class="column is-6-desktop is-9-tablet is-12-mobile">
@@ -19,92 +50,78 @@
 
                     <!-- Step 1 -->
                     <div id="step-information" class="form-step">
-                        {% include join-form-step-header.html heading="Step 1: Personal Information" subheading="Let's Start With The Basics" %}
+                        {% include components/join/step-header.html heading="Step 1: Personal Information" subheading="Let's Start With The Basics" %}
 
                         <fieldset>
-                            <legend class="title is-size-5">
-                                Can you provide us some basic information?
-                            </legend>
+                            {% include components/join/fieldset-header.html text="Can you provide us some basic information?" %}
 
                             <div class="field">
-                                {% include join-form-label.html id="name" text="Full Name" required=true %}
-                                <div class="control has-icons-left">
-                                    <input id="name" name="name" type="text" placeholder="John Doe" required class="input">
-                                    {% include join-form-icon.html icon="fa-solid fa-user" %}
-                                </div>
+                                {% assign is_required = true %}
+                                {% include components/join/field-label.html id="name" text="Full Name" required=is_required %}
+                                {% include components/join/input.html id="name" type="text" placeholder_text="John Doe" required=is_required icon="fa-solid fa-user" %}
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="email" text="Email Address" required=true %}
-                                <div class="control has-icons-left">
-                                    <input id="email" name="email" type="email" placeholder="youremail@provider.com" required class="input">
-                                    {% include join-form-icon.html icon="fa-solid fa-envelope" %}
-                                </div>
+                                {% assign is_required = true %}
+                                {% include components/join/field-label.html id="email" text="Email Address" required=is_required %}
+                                {% include components/join/input.html id="email" type="email" placeholder_text="youremail@provider.com" required=is_required icon="fa-solid fa-envelope" %}
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="phone" text="Phone Number" required=false %}
-                                <div class="control has-icons-left">
-                                    <input id="phone" name="phone" type="tel" placeholder="+1 555-123-4567" class="input">
-                                    {% include join-form-icon.html icon="fa-solid fa-phone" %}
-                                </div>
+                                {% assign is_required = false %}
+                                {% include components/join/field-label.html id="phone" text="Phone Number" required=is_required %}
+                                {% include components/join/input.html id="phone" type="tel" placeholder_text="+1 555-123-4567" required=is_required icon="fa-solid fa-phone" %}
                             </div>
                         </fieldset>
 
                         <fieldset>
-                            <legend class="title is-size-5">
-                                How do you express your identity? This is optional.
-                            </legend>
+                            {% include components/join/fieldset-header.html text="How do you express your identity?" %}
 
                             <div class="field">
-                                {% include join-form-label.html id="gender-select" text="Gender" required=false %}
+                                {% include components/join/field-label.html id="gender-select" text="Gender" required=false %}
                                 <div class="control has-icons-left">
                                     <div class="select is-fullwidth">
                                         <select id="gender-select" name="gender">
-                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <option value="mystery" disabled hidden selected>Select an option...</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                             <option value="nonbinary">Nonbinary</option>
                                             <option value="mystery">Prefer not to disclose</option>
                                         </select>
                                     </div>
-                                    {% include join-form-icon.html icon="fa-solid fa-venus-mars" %}
+                                    {% include components/join/field-icon.html icon="fa-solid fa-venus-mars" %}
                                 </div>
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="pronouns" text="Pronouns" required=false %}
-                                <div class="control has-icons-left">
-                                    <input id="pronouns" name="pronouns" type="text" placeholder="he/him, she/her, they/them, etc." class="input">
-                                    {% include join-form-icon.html icon="fa-solid fa-comment" %}
-                                </div>
+                                {% assign is_required = false %}
+                                {% include components/join/field-label.html id="pronouns" text="Pronouns" required=is_required %}
+                                {% include components/join/input.html id="pronouns" type="text" placeholder_text="He/Him, She/Her, They/Them, etc." required=is_required icon="fa-solid fa-comment" %}
                             </div>
                         </fieldset>
 
                         <hr>
 
-                        <p class="has-text-centered">
+                        <p class="is-size-6 has-text-centered">
                             We collect this information to personalize your experience and keep you informed about our activities. Your privacy is important to us.
                         </p>
 
-                        {% include join-form-buttons.html prev_step_id="" next_step_id="step-background" %}
+                        {% include components/join/form-buttons.html prev_step_id="" next_step_id="step-background" %}
                     </div>
 
                     <!-- Step 2 -->
                     <div id="step-background" class="form-step">
-                        {% include join-form-step-header.html heading="Step 2: Interests & Background" subheading="Tell Us More About Your Connection" %}
+                        {% include components/join/step-header.html heading="Step 2: Interests & Background" subheading="Tell Us More About Your Connection (Optional)" %}
 
                         <fieldset>
-                            <legend class="title is-size-5">
-                                Let’s talk identity and how long you’ve been around.
-                            </legend>
+                            {% include components/join/fieldset-header.html text="Let's talk identity and how long you've been around." %}
 
                             <div class="field">
-                                {% include join-form-label.html id="identity-select" text="How do you identify within the LGBTQ+ community?" required=false %}
+                                {% include components/join/field-label.html id="identity-select" text="How do you identify within the LGBTQ+ community?" required=false %}
                                 <div class="control has-icons-left">
                                     <div class="select is-fullwidth">
                                         <select id="identity-select" name="identity">
-                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <option value="mystery" disabled hidden selected>Select an option...</option>
                                             <optgroup label="Sexual Orientations">
                                                 <option value="lesbian">Lesbian</option>
                                                 <option value="gay">Gay</option>
@@ -126,16 +143,16 @@
                                             </optgroup>
                                         </select>
                                     </div>
-                                    {% include join-form-icon.html icon="fa-solid fa-heart" %}
+                                    {% include components/join/field-icon.html icon="fa-solid fa-heart" %}
                                 </div>
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="connection-duration-select" text="How long have you been connected to or aware of our organization?" required=false %}
+                                {% include components/join/field-label.html id="connection-duration-select" text="How long have you been connected to or aware of our organization?" required=false %}
                                 <div class="control has-icons-left">
                                     <div class="select is-fullwidth">
                                         <select id="connection-duration-select" name="connection-duration">
-                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <option value="mystery" disabled hidden selected>Select an option...</option>
                                             <option value="<6m">Less than 6 months</option>
                                             <option value="6m-1y">6 months to 1 year</option>
                                             <option value="1y-3y">1 to 3 years</option>
@@ -143,29 +160,26 @@
                                             <option value="mystery">Prefer not to disclose</option>
                                         </select>
                                     </div>
-                                    {% include join-form-icon.html icon="fa-solid fa-clock" %}
+                                    {% include components/join/field-icon.html icon="fa-solid fa-clock" %}
                                 </div>
                             </div>
                         </fieldset>
 
                         <fieldset>
-                            <legend class="title is-size-5">
-                                What brings you here and how’d you find us?
-                            </legend>
+                            {% include components/join/fieldset-header.html text="What brings you here and how'd you find us?" %}
 
                             <div class="field">
-                                {% include join-form-label.html id="expectations" text="What are you hoping to find or experience by joining our community?" required=false %}
-                                <div class="control">
-                                    <textarea id="expectations" name="expectations" rows="5" placeholder="Tell us about what you're looking for..." class="textarea"></textarea>
-                                </div>
+                                {% assign is_required = false %}
+                                {% include components/join/field-label.html id="expectations" text="What are you hoping to find or experience by joining our community?" required=is_required %}
+                                {% include components/join/textarea.html id="expectations" placeholder_text="Tell us about what you're looking for..." required=is_required %}
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="referral-source-select" text="How did you hear about us?" required=false %}
+                                {% include components/join/field-label.html id="referral-source-select" text="How did you hear about us?" required=false %}
                                 <div class="control has-icons-left">
                                     <div class="select is-fullwidth">
                                         <select id="referral-source-select" name="referral-source">
-                                            <option value="mystery" hidden selected>Select an option...</option>
+                                            <option value="mystery" disabled hidden selected>Select an option...</option>
                                             <option value="friend-family">Friend or Family</option>
                                             <option value="social-media">Social Media</option>
                                             <option value="online-search">Online Search</option>
@@ -178,50 +192,47 @@
                                             <option value="mystery">Prefer not to disclose</option>
                                         </select>
                                     </div>
-                                    {% include join-form-icon.html icon="fa-solid fa-map-signs" %}
+                                    {% include components/join/field-icon.html icon="fa-solid fa-map-signs" %}
                                 </div>
                             </div>
                         </fieldset>
 
                         <hr>
 
-                        <p class="has-text-centered">
+                        <p class="is-size-6 has-text-centered">
                             Sharing your connection and interests helps us tailor your experience and keep you informed about relevant opportunities.
                         </p>
 
-                        {% include join-form-buttons.html prev_step_id="step-information" next_step_id="step-involvement" %}
+                        {% include components/join/form-buttons.html prev_step_id="step-information" next_step_id="step-involvement" %}
                     </div>
 
                     <!-- Step 3 -->
                     <div id="step-involvement" class="form-step">
-                        {% include join-form-step-header.html heading="Step 3: Involvement Options" subheading="How Would You Like To Get Involved?" %}
+                        {% include components/join/step-header.html heading="Step 3: Involvement Options" subheading="How Would You Like To Get Involved?" %}
 
-                        {% include join-form-controlling-checkbox.html key="involvement" value="volunteer" icon="fa-solid fa-hands-helping" text="Volunteer" %}
-                        {% include join-form-controlling-checkbox.html key="involvement" value="donate" icon="fa-solid fa-hand-holding-heart" text="Donate" %}
-                        {% include join-form-controlling-checkbox.html key="involvement" value="membership" icon="fa-solid fa-id-card" text="Become a Member" %}
-                        {% include join-form-controlling-checkbox.html key="involvement" value="newsletter" icon="fa-solid fa-envelope" text="Subscribe to Newsletter" %}
+                        {% include components/join/controlling-checkbox.html key="involvement" value="volunteer" icon="fa-solid fa-hands-helping" text="Volunteer" %}
+                        {% include components/join/controlling-checkbox.html key="involvement" value="donate" icon="fa-solid fa-hand-holding-heart" text="Donate" %}
+                        {% include components/join/controlling-checkbox.html key="involvement" value="membership" icon="fa-solid fa-id-card" text="Become a Member" %}
+                        {% include components/join/controlling-checkbox.html key="involvement" value="newsletter" icon="fa-solid fa-envelope" text="Subscribe to Newsletter" %}
 
-                        {% include join-form-buttons.html prev_step_id="step-background" next_step_id="step-preferences" %}
+                        {% include components/join/form-buttons.html prev_step_id="step-background" next_step_id="step-preferences" %}
                     </div>
 
                     <!-- Step 4 -->
                     <div id="step-preferences" class="form-step">
-                        {% include join-form-step-header.html heading="Step 4: Preferences" subheading="Please provide more details based on your selections." %}
+                        {% include components/join/step-header.html heading="Step 4: Preferences" subheading="Please provide more details based on your selections." %}
 
-                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:volunteer">
-                            <h4 class="title is-size-5">
-                                Volunteer Preferences
-                            </h4>
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:volunteer">
+                            {% include components/join/fieldset-header.html text="Volunteer Preferences" %}
 
                             <div class="field">
-                                {% include join-form-label.html id="volunteer-skills" text="What skills would you like to contribute?" required=true %}
-                                <div class="control">
-                                    <textarea id="volunteer-skills" name="volunteer-skills" rows="5" placeholder="Tell us about your skills and interests." required class="textarea"></textarea>
-                                </div>
+                                {% assign is_required = true %}
+                                {% include components/join/field-label.html id="volunteer-skills" text="What skills would you like to contribute?" required=is_required %}
+                                {% include components/join/textarea.html id="volunteer-skills" placeholder_text="Tell us about your skills and interests..." required=is_required %}
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="volunteer-availability-select" text="Availability" required=true %}
+                                {% include components/join/field-label.html id="volunteer-availability-select" text="Availability" required=true %}
                                 <div class="control">
                                     <div class="select is-fullwidth">
                                         <select id="volunteer-availability-select" name="volunteer-availability" required>
@@ -234,22 +245,20 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </fieldset>
 
-                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:donate">
-                            <h4 class="title is-size-5">
-                                Donation Preferences
-                            </h4>
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:donate">
+                            {% include components/join/fieldset-header.html text="Donation Preferences" %}
 
                             <div class="field">
-                                {% include join-form-label.html id="donator-donation-amount" text="Donation Amount" required=true %}
+                                {% include components/join/field-label.html id="donator-donation-amount" text="Donation Amount" required=true %}
                                 <div class="control">
                                     <input id="donator-donation-amount" name="donator-donation-amount" type="number" min="1" placeholder="50" required class="input">
                                 </div>
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="donator-frequency-select" text="Frequency" required=true %}
+                                {% include components/join/field-label.html id="donator-frequency-select" text="Frequency" required=true %}
                                 <div class="control">
                                     <div class="select is-fullwidth">
                                         <select id="donator-frequency-select" name="donator-frequency" required>
@@ -262,15 +271,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </fieldset>
 
-                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:membership">
-                            <h4 class="title is-size-5">
-                                Membership Details
-                            </h4>
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:membership">
+                            {% include components/join/fieldset-header.html text="Membership Details" %}
 
                             <div class="field">
-                                {% include join-form-label.html id="membership-type-select" text="Membership Type" required=true %}
+                                {% include components/join/field-label.html id="membership-type-select" text="Membership Type" required=true %}
                                 <div class="control">
                                     <div class="select is-fullwidth">
                                         <select id="membership-type-select" name="membership-type" required>
@@ -285,7 +292,7 @@
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="" text="Areas of Interest" required=true %}
+                                {% include components/join/field-label.html id="" text="Areas of Interest" required=true %}
                                 <div class="control" data-require-one="true">
                                     <label class="checkbox">
                                         <input name="membership-interests" type="checkbox" value="community-events"> Community Events
@@ -301,15 +308,13 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </fieldset>
 
-                        <div class="dynamic-content-section mb-5" data-controlled-by="involvement:newsletter">
-                            <h4 class="title is-size-5">
-                                Newsletter Preferences
-                            </h4>
+                        <fieldset class="dynamic-content-section mb-5" data-controlled-by="involvement:newsletter">
+                            {% include components/join/fieldset-header.html text="Newsletter Preferences" %}
 
                             <div class="field">
-                                {% include join-form-label.html id="" text="Content Interests" required=true %}
+                                {% include components/join/field-label.html id="" text="Content Interests" required=true %}
                                 <div class="control" data-require-one="true">
                                     <label class="checkbox">
                                         <input name="newsletter-interests" type="checkbox" value="community-events"> Community Events
@@ -327,7 +332,7 @@
                             </div>
 
                             <div class="field">
-                                {% include join-form-label.html id="newsletter-frequency-select" text="Frequency" required=true %}
+                                {% include components/join/field-label.html id="newsletter-frequency-select" text="Frequency" required=true %}
                                 <div class="control">
                                     <div class="select is-fullwidth">
                                         <select id="newsletter-frequency-select" name="newsletter-frequency" required>
@@ -339,21 +344,21 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </fieldset>
 
-                        {% include join-form-buttons.html prev_step_id="step-involvement" next_step_id="step-confirm" %}
+                        {% include components/join/form-buttons.html prev_step_id="step-involvement" next_step_id="step-confirm" %}
                     </div>
 
                     <!-- Step 5 -->
                     <div id="step-confirm" class="form-step">
-                        {% include join-form-step-header.html heading="Step 5: Confirmation" subheading="We're Excited To Have You On Board" %}
+                        {% include components/join/step-header.html heading="Step 5: Confirmation" subheading="We're Excited To Have You On Board" %}
 
                         <label class="checkbox">
                             <input type="checkbox" required>
                             I agree to the <a href="/terms" target="_blank">Terms and Conditions</a>.
                         </label>
 
-                        {% include join-form-buttons.html prev_step_id="step-preferences" next_step_id="" %}
+                        {% include components/join/form-buttons.html prev_step_id="step-preferences" next_step_id="" %}
                     </div>
                 </form>
             </div>

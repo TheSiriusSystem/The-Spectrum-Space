@@ -2,9 +2,12 @@
 @use "abstracts/mixins" as mixins;
 
 $margin-checkbox: 0.5rem;
-$color-neutral-default: #e0e0e0;
+$color-neutral-pride: #e0e0e0;
 $color-neutral-dark: #666;
 $color-progress: #00a36c;
+$alpha-testimonial-carousel-arrow-base: 0.8;
+$alpha-testimonial-carousel-arrow-hover: 0.9;
+$opacity-testimonial-carousel-pagination-dot: 0.3;
 
 @mixin progress-line-style($width, $background-color, $z-index)
 {
@@ -22,6 +25,97 @@ $color-progress: #00a36c;
 {
     padding: 6.0rem 0;
     background-color: #c1f0d9;
+
+    .splide
+    {
+        .splide__arrows .splide__arrow
+        {
+            background: rgba(255, 255, 255, $alpha-testimonial-carousel-arrow-base);
+            opacity: 0.7;
+            transition: background vars.$animation-time ease, opacity vars.$animation-time ease;
+
+            svg
+            {
+                fill: $color-progress;
+                transition: fill vars.$animation-time ease;
+            }
+
+            &:hover
+            {
+                opacity: 1.0;
+                background: rgba(255, 255, 255, $alpha-testimonial-carousel-arrow-hover);
+
+                svg
+                {
+                    fill: #008f5f;
+                }
+            }
+        }
+
+        .splide__track .splide__list .splide__slide
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2.0rem 3.5rem;
+
+            .box
+            {
+                border: 4px dotted #ff9a8c;
+                background-color: #fff5ba;
+                box-shadow: vars.$shadow-medium;
+                transition: background-color vars.$animation-time ease;
+
+                figure
+                {
+                    display: inline-block;
+
+                    img
+                    {
+                        border: 3px solid transparent;
+                        background: linear-gradient(to right, #ff218c, #ffd800, #21b1ff);
+                        box-shadow: 0 0 8px rgba(255, 33, 140, 0.5), 0 0 12px rgba(255, 216, 0, 0.4), 0 0 16px rgba(33, 177, 255, 0.4);
+                        transition: transform 0.6s ease;
+
+                        &:hover
+                        {
+                            transform: translateY(-8px);
+                        }
+                    }
+                }
+
+                blockquote
+                {
+                    font-style: italic;
+
+                    .quotation-mark
+                    {
+                        font-family: vars.$font-primary;
+                        color: vars.$font-color-charcoal;
+                    }
+                }
+
+                // Quote Source
+                footer p
+                {
+                    font-weight: vars.$font-weight-bold;
+                    color: vars.$font-color-black;
+                }
+            }
+        }
+
+        .splide__pagination li .splide__pagination__page
+        {
+            background: rgba(138, 43, 226, $opacity-testimonial-carousel-pagination-dot);
+            transition: transform vars.$animation-time ease, background vars.$animation-time ease;
+
+            &.is-active
+            {
+                transform: scale(1.3);
+                background: #8a2be2;
+            }
+        }
+    }
 
     #join-form
     {
@@ -41,7 +135,7 @@ $color-progress: #00a36c;
             &::before
             {
                 content: "";
-                @include progress-line-style(100%, $color-neutral-default, 1);
+                @include progress-line-style(100%, $color-neutral-pride, 1);
             }
 
             .progress-line
@@ -62,10 +156,10 @@ $color-progress: #00a36c;
                     width: 30px;
                     height: 30px;
                     margin-bottom: 0.5rem;
-                    border: 2px solid $color-neutral-default;
+                    border: 2px solid $color-neutral-pride;
                     border-radius: vars.$border-radius-rounded;
                     background-color: #fff;
-                    transition: all 0.3s ease;
+                    transition: all vars.$animation-time ease;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -75,7 +169,7 @@ $color-progress: #00a36c;
                         font-size: 14px;
                         font-weight: vars.$font-weight-bold;
                         color: vars.$font-color-grey;
-                        transition: color 0.3s ease;
+                        transition: color vars.$animation-time ease;
                     }
 
                     .step-check
@@ -156,15 +250,8 @@ $color-progress: #00a36c;
                     padding: 0.5rem;
                     border-radius: 4px;
                     text-align: center;
-                    background-color: $color-neutral-default;
+                    background-color: $color-neutral-pride;
                 }
-            }
-
-            // We set field font colors here because _typography.scss doesn't seem to use that
-            // property well sometimes.
-            ::placeholder
-            {
-                color: vars.$font-color-grey;
             }
 
             input, textarea, select
@@ -241,6 +328,45 @@ html
     {
         background-color: #f0f0f0;
 
+        .splide
+        {
+            .splide__arrows .splide__arrow
+            {
+                background: rgba(220, 220, 220, $alpha-testimonial-carousel-arrow-base);
+
+                svg
+                {
+                    fill: #ff46a2;
+                }
+
+                &:hover
+                {
+                    background: rgba(220, 220, 220, $alpha-testimonial-carousel-arrow-hover);
+
+                    svg
+                    {
+                        fill: #ff69b4;
+                    }
+                }
+            }
+
+            .splide__track .splide__list .splide__slide .box
+            {
+                border-color: #7fc8f8;
+                background-color: #f9f0ff;
+            }
+
+            .splide__pagination li .splide__pagination__page
+            {
+                background: rgba(64, 224, 208, $opacity-testimonial-carousel-pagination-dot);
+
+                &.is-active
+                {
+                    background: #40e0d0;
+                }
+            }
+        }
+
         #join-form
         {
             background-color: #faf9f6;
@@ -263,6 +389,57 @@ html
     &.dark #join
     {
         background-color: #3e3e3e;
+
+        .splide
+        {
+            .splide__arrows .splide__arrow
+            {
+                background: rgba(90, 90, 90, $alpha-testimonial-carousel-arrow-base);
+
+                svg
+                {
+                    fill: #efbf04;
+                }
+
+                &:hover
+                {
+                    background: rgba(90, 90, 90, $alpha-testimonial-carousel-arrow-hover);
+
+                    svg
+                    {
+                        fill: #ffd700;
+                    }
+                }
+            }
+
+            .splide__track .splide__list .splide__slide .box
+            {
+                border-color: #fd3db5;
+                background-color: #2c3e50;
+                box-shadow: vars.$shadow-medium, 0 0 12px rgba(255, 0, 255, 0.5);
+
+                blockquote .quotation-mark
+                {
+                    color: vars.$font-color-platinum;
+                }
+
+                // Quote Source
+                footer p
+                {
+                    color: vars.$font-color-white;
+                }
+            }
+
+            .splide__pagination li .splide__pagination__page
+            {
+                background: rgba(0, 255, 255, $opacity-testimonial-carousel-pagination-dot);
+
+                &.is-active
+                {
+                    background: #00ffff;
+                }
+            }
+        }
 
         #join-form
         {
@@ -295,13 +472,6 @@ html
             fieldset legend
             {
                 background-color: #414a4c;
-            }
-
-            // We set field font colors here because _typography.scss doesn't seem to use that
-            // property well sometimes.
-            ::placeholder
-            {
-                color: vars.$font-color-light-grey;
             }
 
             input, textarea, select
