@@ -367,17 +367,57 @@
                             </div>
                         </fieldset>
 
+                        <hr class="mt-5">
+
+                        <p class="is-size-6 has-text-centered">
+                            Your preferences help us tailor your community experience. You can update these anytime by contacting us.
+                        </p>
+
                         {% include components/join/form-buttons.html prev_step_id="step-involvement" next_step_id="step-confirm" %}
                     </div>
 
                     <!-- Step 5 -->
                     <div id="step-confirm" class="form-step">
-                        {% include components/join/step-header.html heading="Step 5: Confirmation" subheading="We're Excited To Have You On Board" %}
+                        {% include components/join/step-header.html heading="Step 5: Confirmation" subheading="You're All Set!" %}
 
-                        <label class="checkbox">
-                            <input type="checkbox" required>
-                            I agree to the <a href="/terms" target="_blank">Terms and Conditions</a>.
-                        </label>
+                        <div class="field">
+                            <label class="checkbox">
+                                <input name="agree-terms" type="checkbox" required>
+                                I have read and agree to the <a class="link" href="/terms" target="_blank">Terms of Service</a>.
+                            </label>
+                        </div>
+
+                        <div class="field">
+                            <label class="checkbox">
+                                <input name="agree-conduct" type="checkbox" required>
+                                I will abide by the <a class="link" href="/code-of-conduct" target="_blank">Code of Conduct</a> and respect the community values.
+                            </label>
+                        </div>
+
+                        <div class="field">
+                            <label class="checkbox">
+                                <input name="agree-privacy" type="checkbox" required>
+                                I understand how my information will be used as outlined in the <a class="link" href="/privacy" target="_blank">Privacy Policy</a>.
+                            </label>
+                        </div>
+
+                        <div class="notification has-text-centered">
+                            <p class="is-size-5">
+                                What happens next?
+                            </p>
+                            <p class="mt-2 is-size-6">
+                                After submitting this form, you'll receive a confirmation email within 24 hours with information about next steps and how to get involved with our community.
+                            </p>
+                        </div>
+
+                        <div class="field mt-5">
+                            <div class="control">
+                                <label class="checkbox">
+                                    <input name="confirm-accurate" type="checkbox" required>
+                                    I confirm that the information I've provided is accurate and complete.
+                                </label>
+                            </div>
+                        </div>
 
                         {% include components/join/form-buttons.html prev_step_id="step-preferences" next_step_id="" %}
                     </div>
