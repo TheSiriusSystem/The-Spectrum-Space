@@ -12,7 +12,7 @@ favicon: /assets/images/favicon.png
 logo: /assets/images/logo.png
 
 # Post URL Structure
-permalink: /news/:title
+permalink: /blog/:title
 collections:
   resources:
     output: true
