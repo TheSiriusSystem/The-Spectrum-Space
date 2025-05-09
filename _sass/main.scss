@@ -22,6 +22,9 @@
 @use "sections/resources";
 @use "sections/join";
 
+// Page Styles
+@use "pages/404" as page-404;
+
 // External Modules & Google Fonts Imports
 @import "/assets/css/bulma.min.css";
 @import "/assets/css/splide.min.css";
