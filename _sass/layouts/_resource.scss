@@ -1,8 +1,15 @@
 @use "abstracts/variables" as vars;
 @use "abstracts/mixins" as mixins;
 
+#resource-hero
+{
+    background-color: #f8f8ff;
+}
+
 #resource-main
 {
+    background-color: #fbffff;
+
     .columns
     {
         @include mixins.flex-wrap();
@@ -13,9 +20,121 @@
 
             .card
             {
+                box-shadow: vars.$shadow-light;
                 @include mixins.flex-column();
                 justify-content: space-between;
                 flex-grow: 1.0;
+
+                .card-header
+                {
+                    background-color: #edeae0;
+                }
+
+                .card-content
+                {
+                    // Primary CTA Button
+                    .button:not(.is-outlined)
+                    {
+                        @include mixins.button(vars.$font-color-white, #ff4081, #ff0d5f);
+                    }
+
+                    // Secondary CTA Button
+                    .button.is-outlined
+                    {
+                        @include mixins.outlined-button(vars.$font-color-black, #1976d2, rgba(25, 118, 210, 0.2));
+                    }
+                }
+            }
+        }
+    }
+
+    .notification
+    {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: vars.$breakpoint-mobile)
+    {
+        .notification
+        {
+            width: 75%;
+        }
+    }
+}
+
+html
+{
+    &.light
+    {
+        #resource-hero
+        {
+            background-color: #eee;
+        }
+
+        #resource-main
+        {
+            background-color: #f5f5f5;
+
+            .columns .column .card
+            {
+                .card-header
+                {
+                    background-color: #f4f5fa;
+                }
+
+                .card-content
+                {
+                    // Primary CTA Button
+                    .button:not(.is-outlined)
+                    {
+                        @include mixins.button(vars.$font-color-white, #0077cc, #0055a5);
+                    }
+
+                    // Secondary CTA Button
+                    .button.is-outlined
+                    {
+                        @include mixins.outlined-button(vars.$font-color-black, #212121, rgba(0, 0, 0, 0.2));
+                    }
+                }
+            }
+        }
+    }
+
+    &.dark
+    {
+        #resource-hero
+        {
+            background-color: #424242;
+        }
+
+        #resource-main
+        {
+            background-color: #333;
+
+            .columns .column .card
+            {
+                .card-header
+                {
+                    background-color: #4a4a4a;
+                }
+
+                .card-content
+                {
+                    background-color: #5a5a5a;
+
+                    // Primary CTA Button
+                    .button:not(.is-outlined)
+                    {
+                        @include mixins.button(vars.$font-color-white, #00b4d8, #0096b5);
+                    }
+
+                    // Secondary CTA Button
+                    .button.is-outlined
+                    {
+                        @include mixins.outlined-button(vars.$font-color-white, #f2f0ef, rgba(255, 255, 255, 0.2));
+                    }
+                }
             }
         }
     }
