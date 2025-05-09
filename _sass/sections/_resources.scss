@@ -88,7 +88,7 @@
             border-radius: 0 0 12px 12px;
             background-color: #f4f5fa;
             overflow: hidden;
-            transition: max-height 0.6s ease;
+            transition: max-height vars.$animation-time-medium ease;
 
             .content
             {

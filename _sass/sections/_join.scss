@@ -75,7 +75,7 @@ $opacity-testimonial-carousel-pagination-dot: 0.3;
                         border: 3px solid transparent;
                         background: linear-gradient(to right, #ff218c, #ffd800, #21b1ff);
                         box-shadow: 0 0 8px rgba(255, 33, 140, 0.5), 0 0 12px rgba(255, 216, 0, 0.4), 0 0 16px rgba(33, 177, 255, 0.4);
-                        transition: transform 0.6s ease;
+                        transition: transform vars.$animation-time-medium ease;
 
                         &:hover
                         {

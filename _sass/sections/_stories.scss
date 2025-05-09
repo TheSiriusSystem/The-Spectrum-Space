@@ -63,7 +63,7 @@ $timeline-marker-hover-scale: 1.1;
                     &:hover
                     {
                         transform: translateY(-4px) scale(1.0);
-                        transition: transform 0.6s ease, opacity vars.$animation-time-long ease;
+                        transition: transform vars.$animation-time-medium ease, opacity vars.$animation-time-long ease;
                     }
                 }
             }

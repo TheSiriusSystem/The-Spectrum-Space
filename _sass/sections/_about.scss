@@ -82,7 +82,7 @@
                     {
                         transform: translateY(-4px) scale(1.025);
                         box-shadow: vars.$shadow-medium;
-                        transition: transform 0.6s ease, opacity vars.$animation-time-long ease, box-shadow 0.6s ease, filter vars.$animation-time-long ease;
+                        transition: transform vars.$animation-time-medium ease, opacity vars.$animation-time-long ease, box-shadow vars.$animation-time-medium ease, filter vars.$animation-time-long ease;
                     }
                 }
             }
