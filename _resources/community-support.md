@@ -7,20 +7,15 @@ long-description: Building connections within the LGBTQ+ community can be life-c
 subresources:
   - name: PFLAG
     description: Support, education, and advocacy for LGBTQ+ people, their families, and allies through local chapters.
-    link: https://pflag.org
-    tags: [family support, local chapters, allies, education]
+    url: https://pflag.org/
 
   - name: GLSEN
     description: Working to ensure that LGBTQ+ students can learn and grow in school environments free from bullying and harassment.
-    link: https://www.glsen.org
-    tags: [education, youth, safe spaces, advocacy]
+    url: https://www.glsen.org/
 
-  - name: CenterLink
-    description: Member-based coalition of LGBTQ+ community centers across the country.
-    link: https://www.lgbtcenters.org
-    tags: [local resources, community centers, directory]
-header-color: "#48c0a3" # Accordion entry header color.
-header-font-color: "#fff" # Accordion entry font color.
-page-color: "#e6f7f3" # Page background color.
-page-font-color: "#36454f" # Page font color.
+  - name: It Gets Better Project
+    description: Global movement sharing uplifting stories of LGBTQ+ people to inspire and connect the community, especially youth.
+    url: https://itgetsbetter.org/
+header-color: "#48c0a3" # Accordion item header color.
+header-font-color: "#fff" # Accordion item font color.
 ---

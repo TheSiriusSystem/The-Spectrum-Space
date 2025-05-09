@@ -7,21 +7,17 @@ long-description: Understanding your legal rights as an LGBTQ+ person is essenti
 subresources:
   - name: Lambda Legal
     description: National organization fighting for the civil rights of LGBTQ+ people and those with HIV through litigation and public policy work.
-    link: https://www.lambdalegal.org
-    hotline: 1-866-542-8336
-    tags: [legal support, civil rights, policy]
+    hotline-text: +1 866-542-8336
+    url: https://lambdalegal.org/
+    hotline-url: tel:+18665428336
 
-  - name: Transgender Law Center
-    description: Largest national trans-led organization advocating for transgender and gender non-conforming people.
-    link: https://transgenderlawcenter.org
-    tags: [transgender rights, legal resources, advocacy]
+  - name: A4TE
+    description: Advocates for the legal and political rights of transgender people in the U.S., working to achieve full legal and lived equality.
+    url: https://transequality.org/
 
-  - name: National Center for Transgender Equality
-    description: Advocacy organization dedicated to advancing the equality of transgender people through education and policy change.
-    link: https://transequality.org
-    tags: [ID documents, name changes, policy]
-header-color: "#9b5de5" # Accordion entry header color.
-header-font-color: "#fff" # Accordion entry font color.
-page-color: "#f3ebfc" # Page background color.
-page-font-color: "#36454f" # Page font color.
+  - name: ACLU LGBTQ Rights
+    description: Legal advocacy and litigation to protect LGBTQ+ rights in the U.S., including free resources and news updates.
+    url: https://www.aclu.org/issues/lgbtq-rights
+header-color: "#9b5de5" # Accordion item header color.
+header-font-color: "#fff" # Accordion item font color.
 ---

@@ -1,0 +1,22 @@
+@use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
+
+#resource-main
+{
+    .columns
+    {
+        @include mixins.flex-wrap();
+
+        .column
+        {
+            @include mixins.flex-column();
+
+            .card
+            {
+                @include mixins.flex-column();
+                justify-content: space-between;
+                flex-grow: 1.0;
+            }
+        }
+    }
+}

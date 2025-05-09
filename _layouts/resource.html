@@ -8,28 +8,68 @@ layout: compress
     <body>
         {% include navbar.html %}
 
-        <div class="hero is-primary is-fullheight">
+        <section id="resource-hero" class="hero is-primary">
             <div class="hero-body">
-                <div class="container">
-
-                </div>
-            </div>
-        </div>
-
-        <section class="section" style="background-color: {{ page.page-color }};">
-            <div class="container">
-                <!-- Header -->
-                <header class="mt-6 mb-5 has-text-centered">
-                    <h1 class="title is-size-1-desktop is-size-2-mobile" style="color: {{ page.page-font-color }};">
+                <div class="container has-text-centered">
+                    <h1 class="title mt-6 is-size-1-desktop is-size-2-mobile">
                         {{ page.title }}
                     </h1>
-                    <p class="subtitle is-size-5" style="color: {{ page.page-font-color }};">
+                    <p class="is-size-5">
                         {{ page.long-description }}
                     </p>
-                </header>
+                </div>
             </div>
         </section>
 
+        <main id="resource-main" class="section">
+            <div class="container">
+                <div class="columns is-multiline is-mobile">
+                    {% for subresource in page.subresources %}
+                        <div class="column is-4-desktop is-6-tablet is-12-mobile">
+                            <div class="card has-text-centered">
+                                <header class="card-header">
+                                    <h2 class="card-header-title title is-size-3-desktop is-size-4-mobile is-centered">
+                                        {{ subresource.name }}
+                                    </h2>
+                                </header>
+
+                                <div class="card-content">
+                                    <p class="mt-2 is-size-6">
+                                        {{ subresource.description }}
+                                    </p>
+                                    <div class="columns is-centered is-mobile mt-2">
+                                        <div class="column is-6-desktop is-12-touch">
+                                            <a class="button" href="{{ subresource.url }}" target="_blank">
+                                                {% include components/button-content.html icon="fa-solid fa-globe" text="Visit Website" %}
+                                            </a>
+                                        </div>
+                                        {% if subresource.hotline-text and subresource.hotline-url %}
+                                            <div class="column is-6-desktop is-12-touch">
+                                                <a class="button" href="{{ subresource.hotline-url }}">
+                                                    {% include components/button-content.html icon="fa-solid fa-phone" text=subresource.hotline-text %}
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="notification is-info has-text-centered">
+                    <strong class="is-size-5">
+                        Disclaimer
+                    </strong>
+                    <p class="is-size-6">
+                        The Spectrum Space is not affiliated with the organizations listed in this resources section and does not endorse their specific views, services, or actions. This list is provided for informational purposes only. We are not responsible for the content or accuracy of external websites or the services provided by these organizations.
+                    </p>
+                </div>
+            </div>
+        </main>
+
         {% include footer.html %}
+
+        {% include scripts.html %}
     </body>
 </html>

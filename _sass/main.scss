@@ -13,6 +13,8 @@
 @use "components/navbar";
 @use "components/footer";
 
+// Layout Styles
+@use "layouts/resource";
 // Section Styles
 @use "sections/home";
 @use "sections/about";

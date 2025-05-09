@@ -7,21 +7,19 @@ long-description: Finding mental health support that affirms your identity is cr
 subresources:
   - name: The Trevor Project
     description: 24/7 crisis intervention and suicide prevention services for LGBTQ+ young people under 25.
-    link: https://www.thetrevorproject.org
-    phone: 1-866-488-7386
-    tags: [24/7, crisis support, youth focused, free]
+    hotline-text: +1 866-488-7386
+    url: https://www.thetrevorproject.org
+    hotline-url: tel:+18664887386
 
   - name: Pride Counseling
     description: Online therapy platform specializing in the LGBTQ+ community with licensed therapists trained in LGBTQ+ issues.
-    link: https://www.pridecounseling.com
-    tags: [therapy, subscription, sliding scale]
+    url: https://www.pridecounseling.com
 
-  - name: National Queer and Trans Therapists of Color Network
-    description: Directory service helping QTPOC find mental health practitioners who affirm their identities.
-    link: https://www.nqttcn.com
-    tags: [QTPOC, directory, identity affirming]
-header-color: "#ff6b6b" # Accordion entry header color.
-header-font-color: "#fff" # Accordion entry font color.
-page-color: "#ffeaea" # Page background color.
-page-font-color: "#36454f" # Page font color.
+  - name: Trans Lifeline
+    description: Peer-run crisis hotline for trans people, offering emotional support and microgrants for legal name/gender marker changes.
+    hotline-text: +1 877-565-8860
+    url: https://translifeline.org/
+    hotline-url: tel:+18775658860
+header-color: "#ff6b6b" # Accordion item header color.
+header-font-color: "#fff" # Accordion item font color.
 ---
