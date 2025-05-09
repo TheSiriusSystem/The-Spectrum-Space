@@ -26,7 +26,7 @@
                             <a class="button" href="{{ site.featured-resource.url }}" target="_blank">
                                 {% include components/button-content.html icon="fa-solid fa-globe" text="Visit Website" %}
                             </a>
-                            {% unless site.featured-resource.hotline-url == "" or site.featured-resource.hotline-url == nil %}
+                            {% unless site.featured-resource.hotline-url == nil or site.featured-resource.hotline-url == "" %}
                                 <a class="button is-outlined" href="{{ site.featured-resource.hotline-url }}">
                                     {% include components/button-content.html icon="fa-solid fa-phone" text=site.featured-resource.hotline-text %}
                                 </a>
