@@ -1,6 +1,9 @@
+@use "abstracts/variables" as vars;
+
 .notification
 {
     background-color: #90d5ff;
+    box-shadow: vars.$shadow-light;
 }
 
 html
