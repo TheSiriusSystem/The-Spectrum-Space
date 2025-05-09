@@ -8,15 +8,15 @@ subresources:
   - name: The Trevor Project
     description: 24/7 crisis intervention and suicide prevention services for LGBTQ+ young people under 25.
     hotline-text: +1 866-488-7386
-    url: https://www.thetrevorproject.org
+    url: https://www.thetrevorproject.org/
     hotline-url: tel:+18664887386
 
-  - name: Pride Counseling
-    description: Online therapy platform specializing in the LGBTQ+ community with licensed therapists trained in LGBTQ+ issues.
-    url: https://www.pridecounseling.com
+  - name: Inclusive Therapists
+    description: Directory of affirming mental health professionals centering BIPOC and LGBTQ+ communities.
+    url: https://www.inclusivetherapists.com/
 
   - name: Trans Lifeline
-    description: Peer-run crisis hotline for trans people, offering emotional support and microgrants for legal name/gender marker changes.
+    description: Peer-run crisis hotline for transgender people, offering emotional support and microgrants for legal name/gender marker changes.
     hotline-text: +1 877-565-8860
     url: https://translifeline.org/
     hotline-url: tel:+18775658860
