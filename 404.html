@@ -3,28 +3,32 @@ layout: compress
 title: Page Not Found
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html>
     {% include head.html %}
 
     <body>
-        <section id="page-404" class="hero is-fullheight has-background-dark">
+        {% include navbar.html %}
+
+        <section id="page-404" class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container has-text-centered">
-                    <h1 class="title is-size-1-desktop is-size-2-mobile has-text-light">
+                    <h1 class="title is-size-1-desktop is-size-2-mobile">
                         404
                     </h1>
-                    <h2 class="subtitle mb-5 is-size-4-desktop is-size-5-mobile has-text-light">
-                        Oops! The page you're looking for doesn't exist.
+                    <h2 class="subtitle mb-4 is-size-3-desktop is-size-4-mobile">
+                        Looks like this page wandered off the spectrum.
                     </h2>
-                    <div class="columns is-centered is-mobile">
-                        <div class="column is-3-desktop is-5-tablet is-10-mobile">
-                            <a class="button is-large is-fullwidth" href="/">
-                                Back To Home
-                            </a>
-                        </div>
-                    </div>
+                    <hr>
+                    <p class="mb-5 is-size-5">
+                        But don't worry, you can return to a safe space!
+                    </p>
+                    <a class="button is-large" href="/">
+                        {% include components/button-content.html icon="fa-solid fa-house" text="Back To Home" %}
+                    </a>
                 </div>
             </div>
         </section>
+
+        {% include scripts.html %}
     </body>
 </html>

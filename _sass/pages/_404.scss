@@ -1,0 +1,37 @@
+@use "abstracts/variables" as vars;
+@use "abstracts/mixins" as mixins;
+
+$alpha-background-gradient: 0.15;
+
+#page-404
+{
+    background: linear-gradient(to bottom, rgba(244, 67, 54, $alpha-background-gradient) 0%, rgba(255, 152, 0, $alpha-background-gradient) 16.6%,rgba(255, 235, 59, $alpha-background-gradient) 33.3%, rgba(76, 175, 80, $alpha-background-gradient) 50%, rgba(33, 150, 243, $alpha-background-gradient) 66.6%, rgba(156, 39, 176, $alpha-background-gradient) 83.3%, rgba(233, 30, 99, $alpha-background-gradient) 100%);
+
+    .button
+    {
+        @include mixins.button(vars.$font-color-white, #ff4081, #ff0d5f);
+    }
+}
+
+html
+{
+    &.light #page-404
+    {
+        background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+
+        .button
+        {
+            @include mixins.button(vars.$font-color-white, #7957d5, #673ab7);
+        }
+    }
+
+    &.dark #page-404
+    {
+        background: linear-gradient(135deg, #1a1a2e 0%, #272757 100%);
+
+        .button
+        {
+            @include mixins.button(vars.$font-color-white, #48c78e, #34a874);
+        }
+    }
+}
