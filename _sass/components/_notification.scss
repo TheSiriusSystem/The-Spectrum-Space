@@ -1,0 +1,17 @@
+.notification
+{
+    background-color: #90d5ff;
+}
+
+html
+{
+    &.light .notification
+    {
+        background-color: #dbeafe;
+    }
+
+    &.dark .notification
+    {
+        background-color: #1e3a8a;
+    }
+}
