@@ -1,4 +1,4 @@
-<header class="mb-5 has-text-centered">
+<header class="{% if include.use_navbar_margin == true %}mt-6 {% endif %}mb-5 has-text-centered">
     <h1 class="title is-size-2-desktop is-size-3-mobile">
         {% if include.icon != "" %}<i class="{{ include.icon }}" aria-hidden="true"></i> {% endif %}{{ include.heading }}
     </h1>
